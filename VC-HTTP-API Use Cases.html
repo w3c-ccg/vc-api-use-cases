@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)https://www.w3.org/TR/vc-use-cases/ -->
+<html dir="ltr" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.7.27">
+  
+  <meta name="generator" content="ReSpec 24.32.2">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <style>
+  /* --- EXAMPLES --- */
+  span.example-title {
+    text-transform: none;
+  }
+  aside.example, div.example, div.illegal-example {
+    padding: 0.5em;
+    margin: 1em 0;
+    position: relative;
+    clear: both;
+  }
+  div.illegal-example { color: red }
+  div.illegal-example p { color: black }
+  aside.example, div.example {
+    padding: .5em;
+    border-left-width: .5em;
+    border-left-style: solid;
+    border-color: #e0cb52;
+    background: #fcfaee;
+  }
+
+  aside.example div.example {
+    border-left-width: .1em;
+    border-color: #999;
+    background: #fff;
+  }
+  aside.example div.example span.example-title {
+    color: #999;
+  }
+  </style>
+  <style>
+  /* --- ISSUES/NOTES --- */
+  .issue-label {
+    text-transform: initial;
+  }
+
+  .warning > p:first-child { margin-top: 0 }
+  .warning {
+    padding: .5em;
+    border-left-width: .5em;
+    border-left-style: solid;
+  }
+  span.warning { padding: .1em .5em .15em; }
+
+  .issue.closed span.issue-number {
+    text-decoration: line-through;
+  }
+
+  .warning {
+    border-color: #f11;
+    border-width: .2em;
+    border-style: solid;
+    background: #fbe9e9;
+  }
+
+  .warning-title:before{
+    content: "⚠"; /*U+26A0 WARNING SIGN*/
+    font-size: 3em;
+    float: left;
+    height: 100%;
+    padding-right: .3em;
+    vertical-align: top;
+    margin-top: -0.5em;
+  }
+
+  li.task-list-item {
+    list-style: none;
+  }
+
+  input.task-list-item-checkbox {
+    margin: 0 0.35em 0.25em -1.6em;
+    vertical-align: middle;
+  }
+
+  .issue a.respec-gh-label {
+  padding: 5px;
+  margin: 0 2px 0 2px;
+  font-size: 10px;
+  text-transform: none;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 4px;
+  position: relative;
+  bottom: 2px;
+  border: none;
+  }
+
+  .issue a.respec-label-dark {
+  color: #fff;
+  background-color: #000;
+  }
+
+  .issue a.respec-label-light {
+  color: #000;
+  background-color: #fff;
+  }
+  </style>
+  <title>VC-HTTP-API Use Cases</title>
+  <style id="respec-mainstyle">
+  /*****************************************************************
+  * ReSpec 3 CSS
+  * Robin Berjon - http://berjon.com/
+  *****************************************************************/
+
+  @keyframes pop {
+  0% {
+    transform: scale(1, 1);
+  }
+  25% {
+    transform: scale(1.25, 1.25);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+  }
+
+  /* Override code highlighter background */
+  .hljs {
+  background: transparent !important;
+  }
+
+  /* --- INLINES --- */
+  h1 abbr,
+  h2 abbr,
+  h3 abbr,
+  h4 abbr,
+  h5 abbr,
+  h6 abbr,
+  a abbr {
+  border: none;
+  }
+
+  dfn {
+  font-weight: bold;
+  }
+
+  a.internalDFN {
+  color: inherit;
+  border-bottom: 1px solid #99c;
+  text-decoration: none;
+  }
+
+  a.externalDFN {
+  color: inherit;
+  border-bottom: 1px dotted #ccc;
+  text-decoration: none;
+  }
+
+  a.bibref {
+  text-decoration: none;
+  }
+
+  .respec-offending-element:target {
+  animation: pop 0.25s ease-in-out 0s 1;
+  }
+
+  .respec-offending-element,
+  a[href].respec-offending-element {
+  text-decoration: red wavy underline;
+  }
+  @supports not (text-decoration: red wavy underline) {
+  .respec-offending-element:not(pre) {
+    display: inline-block;
+  }
+  .respec-offending-element {
+    /* Red squiggly line */
+    background: url(data:image/gif;base64,R0lGODdhBAADAPEAANv///8AAP///wAAACwAAAAABAADAEACBZQjmIAFADs=)
+      bottom repeat-x;
+  }
+  }
+
+  #references :target {
+  background: #eaf3ff;
+  animation: pop 0.4s ease-in-out 0s 1;
+  }
+
+  cite .bibref {
+  font-style: normal;
+  }
+
+  code {
+  color: #c83500;
+  }
+
+  th code {
+  color: inherit;
+  }
+
+  a[href].orcid {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+  a[href].orcid > svg {
+    margin-bottom: -2px;
+  }
+
+  /* --- TOC --- */
+
+  .toc a,
+  .tof a {
+  text-decoration: none;
+  }
+
+  a .secno,
+  a .figno {
+  color: #000;
+  }
+
+  ul.tof,
+  ol.tof {
+  list-style: none outside none;
+  }
+
+  .caption {
+  margin-top: 0.5em;
+  font-style: italic;
+  }
+
+  /* --- TABLE --- */
+
+  table.simple {
+  border-spacing: 0;
+  border-collapse: collapse;
+  border-bottom: 3px solid #005a9c;
+  }
+
+  .simple th {
+  background: #005a9c;
+  color: #fff;
+  padding: 3px 5px;
+  text-align: left;
+  }
+
+  .simple th[scope="row"] {
+  background: inherit;
+  color: inherit;
+  border-top: 1px solid #ddd;
+  }
+
+  .simple td {
+  padding: 3px 10px;
+  border-top: 1px solid #ddd;
+  }
+
+  .simple tr:nth-child(even) {
+  background: #f0f6ff;
+  }
+
+  /* --- DL --- */
+
+  .section dd > p:first-child {
+  margin-top: 0;
+  }
+
+  .section dd > p:last-child {
+  margin-bottom: 0;
+  }
+
+  .section dd {
+  margin-bottom: 1em;
+  }
+
+  .section dl.attrs dd,
+  .section dl.eldef dd {
+  margin-bottom: 0;
+  }
+
+  #issue-summary > ul,
+  .respec-dfn-list {
+  column-count: 2;
+  }
+
+  #issue-summary li,
+  .respec-dfn-list li {
+  list-style: none;
+  }
+
+  details.respec-tests-details {
+  margin-left: 1em;
+  display: inline-block;
+  vertical-align: top;
+  }
+
+  details.respec-tests-details > * {
+  padding-right: 2em;
+  }
+
+  details.respec-tests-details[open] {
+  z-index: 999999;
+  position: absolute;
+  border: thin solid #cad3e2;
+  border-radius: 0.3em;
+  background-color: white;
+  padding-bottom: 0.5em;
+  }
+
+  details.respec-tests-details[open] > summary {
+  border-bottom: thin solid #cad3e2;
+  padding-left: 1em;
+  margin-bottom: 1em;
+  line-height: 2em;
+  }
+
+  details.respec-tests-details > ul {
+  width: 100%;
+  margin-top: -0.3em;
+  }
+
+  details.respec-tests-details > li {
+  padding-left: 1em;
+  }
+
+  a[href].self-link:hover {
+  opacity: 1;
+  text-decoration: none;
+  background-color: transparent;
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+  position: relative;
+  }
+
+  aside.example .marker > a.self-link {
+  color: inherit;
+  }
+
+  h2 > a.self-link,
+  h3 > a.self-link,
+  h4 > a.self-link,
+  h5 > a.self-link,
+  h6 > a.self-link {
+  border: none;
+  color: inherit;
+  font-size: 83%;
+  height: 2em;
+  left: -1.6em;
+  opacity: 0.5;
+  position: absolute;
+  text-align: center;
+  text-decoration: none;
+  top: 0;
+  transition: opacity 0.2s;
+  width: 2em;
+  }
+
+  h2 > a.self-link::before,
+  h3 > a.self-link::before,
+  h4 > a.self-link::before,
+  h5 > a.self-link::before,
+  h6 > a.self-link::before {
+  content: "§";
+  display: block;
+  }
+
+  @media (max-width: 767px) {
+  dd {
+    margin-left: 0;
+  }
+
+  /* Don't position self-link in headings off-screen */
+  h2 > a.self-link,
+  h3 > a.self-link,
+  h4 > a.self-link,
+  h5 > a.self-link,
+  h6 > a.self-link {
+    left: auto;
+    top: auto;
+  }
+  }
+
+  @media print {
+  .removeOnSave {
+    display: none;
+  }
+  }
+  </style>
+  <style>
+  dl {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  dt,
+  dd {
+    line-height: 1.42857143;
+  }
+  dl.dl-horizontal > dt {
+    font-weight: bold;
+  }
+  dl.dl-horizontal > dd {
+    padding-bottom: 10px;
+  }
+  @media (min-width: 768px), print {
+    .dl-horizontal {
+        margin-bottom: 2em;
+    }
+    .dl-horizontal dt {
+        font-weight: normal;
+        float: left;
+        width: 160px;
+        clear: left;
+        overflow: hidden;
+        text-align: right;
+    }
+    .dl-horizontal dd {
+        margin-left: 180px;
+    }
+    .dl-horizontal dd > ul {
+        padding-left: 20px;
+        margin: 0px;
+    }
+    .dl-horizontal dd + dt { border-top: solid thin grey; }
+    dl.dl-horizontal dt:not(:first-child) + dd { border-top: solid thin grey; }
+
+    .left.dl-horizontal dt {
+        text-align: left;
+    }
+  }
+  .dl-horizontal dd + dd { border-top: dotted thin grey;
+    padding-top: 0.5em; }
+  </style>
+  <link rel="canonical" href="https://www.w3.org/TR/vc-use-cases/">
+  <style>
+  var {
+  position: relative;
+  cursor: pointer;
+  }
+
+  var[data-type]::before,
+  var[data-type]::after {
+  position: absolute;
+  left: 50%;
+  top: -6px;
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+  }
+
+  /* the triangle or arrow or caret or whatever */
+  var[data-type]::before {
+  content: "";
+  transform: translateX(-50%);
+  border-width: 4px 6px 0 6px;
+  border-style: solid;
+  border-color: transparent;
+  border-top-color: #000;
+  }
+
+  /* actual text */
+  var[data-type]::after {
+  content: attr(data-type);
+  transform: translateX(-50%) translateY(-100%);
+  background: #000;
+  text-align: center;
+  /* additional styling */
+  font-family: "Dank Mono", "Fira Code", monospace;
+  font-style: normal;
+  padding: 6px;
+  border-radius: 3px;
+  color: #daca88;
+  text-indent: 0;
+  font-weight: normal;
+  }
+
+  var[data-type]:hover::after,
+  var[data-type]:hover::before {
+  opacity: 1;
+  }
+  </style>
+  <script type="text/javascript" async="" src="./Verifiable Credentials Use Cases_files/matomo.js.download"></script><script id="initialUserConfig" type="application/json">
+  {
+  "specStatus": "NOTE",
+  "useExperimentalStyles": true,
+  "shortName": "vc-http-api-use-cases",
+  "publishDate": "2019-09-24",
+  "localBiblio": {
+    "REST": {
+      "title": "Architectural Styles and the Design of Network-based Software Architectures",
+      "date": "2000",
+      "href": "http://www.ics.uci.edu/~fielding/pubs/dissertation/",
+      "authors": [
+        "Fielding, Roy Thomas"
+      ],
+      "publisher": "University of California, Irvine."
+    },
+    "SECURE-MESSAGING": {
+      "title": "Secure Messaging",
+      "href": "https://web-payments.org/specs/source/secure-messaging",
+      "authors": [
+        "Manu Sporny"
+      ],
+      "etal": true,
+      "status": "unofficial",
+      "publisher": "Web Payments Community Group"
+    },
+    "VCTF-USECASES": {
+      "title": "Verifiable Claims Use Cases",
+      "href": "http://w3c.github.io/webpayments-ig/VCTF/use-cases/",
+      "authors": [
+        "Shane McCarron",
+        "Daniel Burnett",
+        "Gregg Kellogg",
+        "Brian Sletten",
+        "Manu Sporny"
+      ],
+      "status": "IG-DRAFT",
+      "publisher": "Web Payments Interest Group Verifiable Claims Task Force"
+    },
+    "HTTP-SIGNATURES": {
+      "aliasOf": "http-signatures"
+    },
+    "MACAROONS": {
+      "title": "Macaroons",
+      "href": "http://macaroons.io/",
+      "authors": [
+        "Arnar Birgisson",
+        "Joe Gibbs Politz",
+        "Úlfar Erlingsson",
+        "Ankur Taly",
+        "Michael Vrable",
+        "Mark Lentczner"
+      ],
+      "status": "unofficial",
+      "publisher": "Credentials Community Group"
+    },
+    "CREDENTIAL-MANAGEMENT": {
+      "title": "Credential Management Level 1",
+      "href": "https://w3c.github.io/webappsec-credential-management/",
+      "authors": [
+        "Mike West"
+      ],
+      "status": "WG-DRAFT",
+      "publisher": "Web Application Security Working Group"
+    },
+    "OPEN-BADGES": {
+      "title": "Open Badges",
+      "href": "https://github.com/openbadges/openbadges-specification",
+      "authors": [
+        "Brian Brennan",
+        "Mike Larsson",
+        "Chris McAvoy",
+        "Nate Otto",
+        "Kerri Lemoie"
+      ],
+      "status": "BA-DRAFT",
+      "publisher": "Badge Alliance Standard Working Group"
+    },
+    "IDENTITY-CREDENTIALS": {
+      "title": "Identity Credentials",
+      "href": "http://opencreds.org/specs/source/identity-credentials/",
+      "authors": [
+        "Manu Sporny",
+        "Dave Longley"
+      ],
+      "status": "CG-DRAFT",
+      "publisher": "W3C Credentials Community Group"
+    },
+    "RDF-NORMALIZATION": {
+      "title": "RDF Dataset Normalization",
+      "href": "http://json-ld.github.io/normalization/spec/",
+      "authors": [
+        "Dave Longley",
+        "Manu Sporny"
+      ],
+      "status": "CG-DRAFT",
+      "publisher": "Credentials W3C Community Group"
+    },
+    "WEB-COMMERCE": {
+      "title": "Web Commerce",
+      "href": "https://web-payments.org/specs/source/web-commerce/",
+      "authors": [
+        "Dave Longley",
+        "Manu Sporny",
+        "David I. Lehn"
+      ],
+      "status": "CG-DRAFT",
+      "publisher": "W3C Credentials Community Group"
+    },
+    "WEB-COMMERCE-API": {
+      "title": "Web Commerce API",
+      "href": "https://web-payments.org/specs/source/web-commerce-api/",
+      "authors": [
+        "Manu Sporny",
+        "Dave Longley",
+        "David I. Lehn"
+      ],
+      "status": "CG-DRAFT",
+      "publisher": "W3C Credentials Community Group"
+    }
+  },
+  "github": "https://github.com/w3c/vc-use-cases",
+  "includePermalinks": false,
+  "editors": [
+    {
+      "name": "Shane McCarron",
+      "url": "http://blog.halindrome.com/",
+      "company": "Spec-Ops",
+      "companyURL": "https://spec-ops.io",
+      "w3cid": "23346"
+    },
+    {
+      "name": "Joe Andrieu",
+      "company": "Legendary Requirements",
+      "companyURL": "http://legreq.com"
+    },
+    {
+      "name": "Matt Stone",
+      "url": "https://www.lithos.me/about",
+      "company": "The Brightlink",
+      "companyURL": "http://www.thebrightlink.com"
+    },
+    {
+      "name": "Tzviya Siegman",
+      "url": "",
+      "company": "Wiley",
+      "companyURL": ""
+    },
+    {
+      "name": "Gregg Kellogg",
+      "url": "http://greggkellogg.net/",
+      "company": "Spec-Ops",
+      "companyURL": "https://spec-ops.io/",
+      "w3cid": "44770"
+    },
+    {
+      "name": "Ted Thibodeau, Jr.",
+      "url": "https://www.linkedin.com/in/macted/",
+      "company": "OpenLink Software, Inc.",
+      "companyURL": "http://www.openlinksw.com/"
+    }
+  ],
+  "authors": [
+    {
+      "name": "Nate Otto",
+      "url": "",
+      "company": "Badge Alliance",
+      "companyURL": ""
+    },
+    {
+      "name": "Sunny Lee",
+      "url": "",
+      "company": "Badge Alliance",
+      "companyURL": ""
+    },
+    {
+      "name": "Brian Sletten",
+      "url": "http://bosatsu.net",
+      "company": "Bosatsu Consulting, Inc.",
+      "companyURL": "http://bosatsu.net"
+    },
+    {
+      "name": "Daniel Burnett",
+      "company": "Standards Play",
+      "companyURL": "http://standardsplay.com/"
+    },
+    {
+      "name": "Manu Sporny",
+      "url": "http://digitalbazaar.com/",
+      "company": "Digital Bazaar, Inc.",
+      "companyURL": "http://digitalbazaar.com/"
+    },
+    {
+      "name": "Ken Ebert",
+      "url": "",
+      "company": "Sovrin Foundation",
+      "companyURL": "https://sovrin.org/"
+    }
+  ],
+  "maxTocLevel": 3,
+  "wg": "Verifiable Claims Working Group",
+  "wgURI": "https://www.w3.org/2017/vc/",
+  "wgPatentURI": "https://www.w3.org/2004/01/pp-impl/98922/status",
+  "publishISODate": "2019-09-24T00:00:00.000Z",
+  "generatedSubtitle": "Working Group Note 24 September 2019"
+  }
+  </script>
+  <meta name="description" content="A verifiable claim is a qualification, achievement, quality, or piece of information about an entity&#39;s background such as a name, government ID, payment provider, home address, or university degree. Such a claim describes a quality or qualities, property or properties of an entity which establish its existence and uniqueness. The use cases outlined here are provided in order to make progress toward possible future standardization and interoperability of both low- and high-stakes claims with the goals of storing, transmitting, and receiving digitally verifiable proof of attributes such as qualifications and achievements. The use cases in this document focus on concrete scenarios that the technology defined by the group should address.">
+  <link rel="stylesheet" href="./Verifiable Credentials Use Cases_files/W3C-WG-NOTE">
+</head>
+<body class="h-entry informative toc-sidebar"><p id="toc-nav"><a id="toc-jump" href=""><span aria-hidden="true">↑</span> <span>Jump to Table of Contents</span></a><a id="toc-toggle" href=""><span aria-hidden="true">←</span> <span>Collapse Sidebar</span></a></p>
+  <div class="head">
+    <a class="logo" href="https://www.w3.org/"><img alt="W3C" src="./Verifiable Credentials Use Cases_files/W3C" width="72" height="48"></a>
+    <h1 id="title" class="title p-name">Verifiable Credentials Use
+    Cases</h1>
+    <h2>W3C Working Group Note <time class="dt-published" datetime="2019-09-24">24 September 2019</time></h2>
+    <dl>
+      <dt>This version:</dt>
+      <dd>
+        <a class="u-url" href="">TODO: need link</a>
+      </dd>
+      <dt>Latest published version:</dt>
+      <dd>
+        <a href="https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit#heading=h.cctvrmgl94xc">https://docs.google.com/document/d/1-u0_Ub6feiX6DH3jXFJFjt6n3CwKGpkmC3VISqDkWL4/edit#heading=h.cctvrmgl94xc</a>
+      </dd>
+      <dt>Latest editor's draft:</dt>
+      <dd>
+        <a href="">TODO: link to vc-http-api use cases repo</a>
+      </dd>
+      <dt>Previous version:</dt>
+      <dd>
+        <a href="">No previous version currenlty</a>
+      </dd>
+      <dt>Editors:</dt>
+      <dd class="p-author h-card vcard">
+        <span class="p-name fn">Juan Caballero</span> (<a class="p-org org h-org h-card" href="">TODO: what does Juan want linked?</a>)
+      </dd>
+      <dd class="p-author h-card vcard">
+        <span class="p-name fn">Eric Schuh</span> (<a class="p-org org h-org h-card" href="http://legreq.com/">Legendary
+        Requirements</a>)
+      </dd>
+      <dd class="p-author h-card vcard">
+        <span class="p-name fn">Joe Andrieu</span> (<a class="p-org org h-org h-card" href="http://legreq.com/">Legendary
+        Requirements</a>)
+      </dd>
+      <dt>Authors:</dt>
+      <dt>Participate:</dt>
+      <dd>
+        <a href="">TODO: add link once repo created</a>
+      </dd>
+      <dd>
+        <a href="">File a bug -- TODO: add link once repo created</a>
+      </dd>
+      <dd>
+        <a href="">Commit history -- TODO: add link once repo created</a>
+      </dd>
+      <dd>
+        <a href="">Pull requests -- TODO: add link once repo created</a>
+      </dd>
+    </dl>
+    <p class="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
+    © 2019 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup>
+    (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
+    <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
+    <a href="https://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">
+    liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">
+    trademark</a> and <a rel="license" href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document">
+    permissive document license</a> rules apply.</p>
+    <hr title="Separator for header">
+  </div>
+  <section id="abstract" class="introductory">
+    <h2>Abstract</h2>
+    <p>This document sets out the use cases for the transport of Verifiable Credentials (VCs) via HTTP. 
+       It will specify the transport of VCs for the following entities:</p>
+  </section>
+  <section id="sotd" class="introductory">
+    <h2>Status of This Document</h2>
+    <p><em>This section describes the status of this document at
+    the time of its publication. Other documents may supersede this
+    document. A list of current <abbr title="World Wide Web Consortium">W3C</abbr> publications and the
+    latest revision of this technical report can be found in the
+    <a href="https://www.w3.org/TR/"><abbr title="World Wide Web Consortium">W3C</abbr> technical reports
+    index</a> at https://www.w3.org/TR/.</em></p>
+    <p>This document represents a concise but limited collection of
+    use cases.</a>.</p>
+    <p>The work on this document was carried out under tight time
+    constraints due to limitations of the <abbr title="World Wide Web Consortium">W3C</abbr> process and publishing
+    deadlines. Under such conditions, errors are unavoidable and
+    some of the ideas presented here are incomplete. The Working
+    Group hopes that in the future, <abbr title="World Wide Web Consortium">W3C</abbr> process can be revised
+    to better support the dynamic nature of standards work in a
+    more consistent way across different groups.</p>
+    <p>Comments regarding this document are welcome. Please file
+    directly on <a href="">GitHub (TODO: need a link when available)</a>, or
+    send them to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org (TODO: is this mailto right?)</a>
+    (<a href="mailto:public-vc-comments-request@w3.org?subject=subscribe">subscribe (TODO: check the mailto address</a>,
+    <a href="https://lists.w3.org/Archives/Public/public-vc-comments/">archives (TODO: check the URL)</a>).</p>
+    <p>This document was published by the <a href="">VC-HTTP-API Working
+    Group (TODO: need a link)</a> as a Working Group Note.</p>
+    <p><a href="">GitHub
+    Issues (TODO: need link once available)</a> are preferred for discussion of this
+    specification.</p>
+    <p>Publication as a Working Group Note does not imply
+    endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr> Membership. This is a
+    draft document and may be updated, replaced or obsoleted by
+    other documents at any time. It is inappropriate to cite this
+    document as other than work in progress.</p>
+    <p data-deliverer="98922">This document was produced by a group operating under the
+    <a href="https://www.w3.org/Consortium/Patent-Policy/"><abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+    </p><p>This document is governed by the <a id="w3c_process_revision" href="https://www.w3.org/2019/Process-20190301/">1 March 2019
+    <abbr title="World Wide Web Consortium">W3C</abbr> Process
+    Document</a>.</p>
+  </section>
+  <nav id="toc">
+    <h2 class="introductory" id="table-of-contents">Table of
+    Contents</h2>
+    <ol class="toc">
+      <li class="tocline">
+        <a class="tocxref" href=""><bdi class="secno">1.</bdi> Introduction</a>
+        <ol class="toc">
+          <li class="tocline">
+            <a class="tocxref" href=""><bdi class="secno">1.1</bdi> Existing Work</a>
+          </li>
+        </ol>
+      </li>
+      <li class="tocline">
+        <a class="tocxref" href=""><bdi class="secno">2.</bdi> Use Cases</a>
+        <ol class="toc">
+          <li class="tocline">
+            <a class="tocxref" href=""><bdi class="secno">2.1</bdi> Get Digital Permanent Resident Card</a>
+          </li>
+          <li class="tocline">
+            <a class="tocxref" href=""><bdi class="secno">2.2</bdi> Refresh Expired Over Age Token</a>
+          </li>
+          <li class="tocline">
+            <a class="tocxref" href=""><bdi class="secno">2.3</bdi> Execute Multi-stage Presentation Workflow</a>
+          </li>
+          <li class="tocline">
+            <a class="tocxref" href=""><bdi class="secno">2.4</bdi> Aggregated Credential Workflow</a>
+          </li>
+          <li class="tocline">
+            <a class="tocxref" href=""><bdi class="secno">2.5</bdi> Submit/Sign/Verify a test credential to a licensure system</a>
+          </li>
+          <li class="tocline">
+            <a class="tocxref" href=""><bdi class="secno">2.6</bdi> Supply Chain Import</a>
+          </li>
+        </ol>
+      </li>
+      <li class="tocline">
+        <a class="tocxref" href=""><bdi class="secno">3.</bdi> Requirements</a>
+      </li>
+      <li class="tocline">
+        <a class="tocxref" href=""><bdi class="secno">4.</bdi> Features and Benefits</a>
+      </li>
+      <li class="tocline">
+        <a class="tocxref" href=""><bdi class="secno">5.</bdi> VC-HTTP-API Actions</a>
+        <ol class="toc">
+          <li class="tocline">
+            <a class="tocxref" href=""><bdi class="secno">5.1</bdi> Issue to Holder</a>
+          </li>
+          <li class="tocline">
+            <a class="tocxref" href=""><bdi class="secno">5.2</bdi> Present for Verification</a>
+          </li>
+          <li class="tocline">
+            <a class="tocxref" href=""><bdi class="secno">5.3</bdi> Refresh</a>
+          </li>
+        </ol>
+      </li>
+      <li class="tocline">
+        <a class="tocxref" href=""><bdi class="secno">5.</bdi> User Sequences</a>
+      </li>
+    </ol>
+  </nav>
+  <section id="introduction">
+    <h2 id="x1-introduction"><bdi class="secno">1.</bdi>
+    Introduction<a class="self-link" aria-label="§" href=""></a></h2>
+    <p>For Verifiable Credentials to be realized as a usable data format there needs to exist a neutral, 
+      standard-governed way for Issuers, Holders and Verifiers of these credentials to transport them 
+      between said entities. (TODO -- finish)</p>
+    <div class="note" role="note" id="issue-container-generatedID">
+      <div role="heading" class="note-title marker" id="h-note" aria-level="3">
+        <span>Note</span>
+      </div>
+      <div class="">
+        This document does NOT attempt to define an architecture
+        for the support of Verifiable Claims. Instead it expresses
+        the sorts of needs that real users have that could be
+        addressed through support for some sort of self-sovereign
+        claim environment. It attempts to use terminology that is
+        consistent with the other deliverables of the Verifiable
+        Claims Working Group (you can see the relevant terms in
+        Appendix A).
+      </div>
+    </div>
+    <section id="existing-work">
+      <h3 id="x1-1-existing-work"><bdi class="secno">1.1</bdi> Existing Work<a class="self-link" aria-label="§" href=""></a></h3>
+    </section>
+  </section>
+  <section id="use-cases">
+    <h2 id="x2-use-cases"><bdi class="secno">2.</bdi> Use Cases<a class="self-link" aria-label="§" href=""></a></h2>
+    <section id="get-digital-permanent-resident-card">
+      <h3 id="x2-1-get-digital-permanent-resident-card"><bdi class="secno">2.1</bdi>
+        Get Digital Permanent Resident Card<a class="self-link" aria-label="§" href=""></a></h3>
+      <p>Lana is an IT administrator for the United States Citizenship and Immigration Services (USCIS) 
+        Digital Permanent Resident Card (PRC) program. She configures the USCIS website to issue digital 
+        Permanent Resident Cards by utilizing industry standard issuer software and setting up the appropriate 
+        HTTP API Authorizations between systems. Legal Permanent Residents, upon receiving their physical card 
+        in the mail, are given the USCIS website URL, a login account, and PIN code that they may use to manage 
+        their account and pick up their digital Permanent Resident Card. When Louis, a Legal Permanent Resident, 
+        requests a digital Permanent Resident Card via the USCIS website, he authenticates using his login account 
+        and once authenticated, provides a DID associated with his client-side digital wallet against which the 
+        website will issue VCs. The USCIS website then connects to the digital card issuing server, which builds 
+        the Verifiable Credential Permanent Resident Card using Louis' account data, and then utilizes industry 
+        standard HTTP APIs to issue the Permanent Resident Card as a Verifiable Credential. Louis can then use his 
+        Digital Permanent Resident Card in online scenarios when he needs to prove his resident status, such as 
+        when applying for a job.</p>
+        <p><b>Requirements: </b>Verify DID Authentication Presentation, API Authorization, Issue Verifiable Credential, Website as Consumer</p>
+        <p><i>Contributed by: </i>Digital Bazaar</p>
+    </section>
+    <section id="refresh-expired-over-age-token">
+      <h3 id="x2-2-refresh-expired-over-age-token"><bdi class="secno">2.2</bdi>
+        Refresh Expired Over Age Token<a class="self-link" aria-label="§" href=""></a></h3>
+      <p>Lana is an IT administrator for the United States Citizenship and Immigration Services (USCIS) 
+        Digital Permanent Resident Card (PRC) program. She configures the USCIS website to issue digital 
+        Permanent Resident Cards by utilizing industry standard issuer software and setting up the appropriate 
+        HTTP API Authorizations between systems. Legal Permanent Residents, upon receiving their physical card 
+        in the mail, are given the USCIS website URL, a login account, and PIN code that they may use to manage 
+        their account and pick up their digital Permanent Resident Card. When Louis, a Legal Permanent Resident, 
+        requests a digital Permanent Resident Card via the USCIS website, he authenticates using his login account 
+        and once authenticated, provides a DID associated with his client-side digital wallet against which the 
+        website will issue VCs. The USCIS website then connects to the digital card issuing server, which builds 
+        the Verifiable Credential Permanent Resident Card using Louis' account data, and then utilizes industry 
+        standard HTTP APIs to issue the Permanent Resident Card as a Verifiable Credential. Louis can then use 
+        his Digital Permanent Resident Card in online scenarios when he needs to prove his resident status, such 
+        as when applying for a job.</p>
+        <p><b>Requirements: </b></p>
+        <p><i>Contributed by:</i></p>
+    </section>
+    <section id="execute-multi-stage-presentation-workflow">
+      <h3 id="x2-3-execute-multi-stage-presentation-workflow"><bdi class="secno">2.3</bdi>
+        Execute Multi-stage Presentation Workflow<a class="self-link" aria-label="§" href=""></a></h3>
+      <p>Description: Ignio, a logistics manager for "Kirk Company", would like to submit all necessary paperwork 
+        to send his company's products across international boundaries. These products are considered hazardous 
+        chemicals and thus are regulated, requiring extra paperwork to be filed before transportation is approved 
+        across boundaries. Some hazardous material shipments are different resulting in different required paperwork, 
+        and Ignio wants to automate as much of the process as possible with Shippers, 
+        their 3rd Party Logistics company (3PL). There are a set of verifiable credentials that Ignio is willing to 
+        share with Customs as well as the transportation company. 
+      </p>
+      <p>When Kirk starts a shipping workflow, his company's systems initiate the workflow by contacting a known 
+        location on the Shipper's Website. A presentation exchange occurs to first DIDAuth the company and send 
+        generic mandatory information for any shipment; if and only if the information provided requires additional 
+        information‒in this case a hazmat certification‒a second exchange is initiated to request this outstanding/required 
+        hazmat info.  Once this is received, Shippers can send back a Bill of Lading in VC form. The two (or more) 
+        credential exchanges are composable and idempotent, ending in a valid BoL if successful.
+      </p>
+        <p><b>Requirements: </b>Verify DID Authentication Presentation, API Authorization, Issue Verifiable Credential, Website as Consumer</p>
+        <p><i>Contributed by: </i>Digital Bazaar</p>
+    </section>
+    <section id="aggregated-credential-workflow">
+      <h3 id="x2-4-aggregated-credential-workflow"><bdi class="secno">2.4</bdi>
+        Aggregated Credential Workflow<a class="self-link" aria-label="§" href=""></a></h3>
+      <p>Tod is using digital credentials to apply for a service/qualify for a job/gain access to a programme. 
+        Some of his credentials are available today, some will need to be provided when they are ready 
+        (for example, a criminal background check can take 24-48 hrs to process). He would like these credentials to 
+        be presented to the Verifier (service provider) when ready, without having to constantly return to the Verifier 
+        (service provider) and deliver them "by hand". He should be able to have them released from his Holder directly 
+        as they become available.</p>
+        <p><b>Requirements: </b>Verifiable Presentation by policy, Automated notifications, Asynchronous release.         </p>
+        <p><i>Contributed by:</i>SecureKey Technologies Inc.</p>
+    </section>
+    <section id="submit-sign-verify-a-test-credential-to-a-licensure-system">
+      <h3 id="x2-5-submit-sign-verify-a-test-credential-to-a-licensure-system"><bdi class="secno">2.5</bdi>
+      Submit/Sign/Verify a test credential to a licensure system<a class="self-link" aria-label="§" href=""></a></h3>
+      <p>A student, Shabazz, wants to publish their MBLEx test results from an education test provider, 
+        Massage Therapy Test Corp. Massage Therapy Test Corp proxies their authority to sign to a service provider, 
+        SSI Ventures.  SSI Ventures issues Shabazz a VC when he logs into his Massage Therapy Test Corp account 
+        and enables his browser-based SSI Wallet, Billfold.  The signed VC is then stored in Shabazz’ Billfold™ Wallet 
+        to be presented elsewhere.
+      </p>
+      <p>In a separate session, Shabazz logs into a web portal of a State Massage Therapy licensure system to 
+        apply for his Massage Therapy license. The licensure specialist at the State checks the issuer using a 
+        State accreditation system, then checks the signature on the test results VC and ingests the 
+        credential’s payload. The licensure specialist then finalizes their workflow and issues 
+        Shabazz a Massage Therapy license.
+      </p>
+       <p><b>Requirements: </b>Issuance-as-a-Service, Accredited Issuer Lookup, Website as Consumer..</p>
+        <p><i>Contributed by:</i>RANDA Solutions</p>
+    </section>
+    <section id="supply-chain-import">
+      <h3 id="x2-6-supply-chain-import"><bdi class="secno">2.6</bdi>
+      Supply Chain Import<a class="self-link" aria-label="§" href=""></a></h3>
+      <p>In order to export steel products to the global market, Steel Mills Global must prove 
+        the quality of their products. For this, they rely on Inspectors & Co, an internationally 
+        recognized steel testing company. Upon inspection, Inspectors & Co issues a 
+        Mill Test Report VC to Steel Mills Global.</p>
+      <p>Steel Inc. imports and distributes steel products domestically. Negotiating a shipment 
+        Steel Mills Global presents the MTR as proof of product quality. Steel Inc. verifies the
+        MTR VP and accepts the shipment. </p>
+      <p>Steel Inc. initiates the importing procedures, starting out self-issuing an 
+        Import Declaration Form VC. The MTR and IDF are jointly presented to the Customs 
+        authority which verifies the VP. Upon verification the customs release is granted for goods import. </p>
+        </p>
+      <p><i>Note: These VC types are taken from the <a class="self-link" aria-label="§" href="">Traceability Vocabulary</a>, a W3C-CCG work item for supply chain use-cases.</i></p>
+        <p><b>Requirements: </b>VC Issuance, Re-Presentation and VC+VP Verification across a common supply chain process.</p>
+        <p><i>Contributed by:</i>Transmute Industries</p>
+    </section>
+  </section>
+  <section id="requirements">
+    <h2 id="x3-requirements"><bdi class="secno">3.</bdi> 
+      Requirements<a class="self-link" aria-label="§" href=""></a></h2>
+  </section>
+  <section id="features-and-benefits">
+    <h2 id="x4-features-and-benefits"><bdi class="secno">4.</bdi> 
+      Features and Benefits<a class="self-link" aria-label="§" href=""></a></h2>
+  </section>
+  <section id="vc-http-api-actions">
+    <h2 id="x5-vc-http-api-actions"><bdi class="secno">5.</bdi> 
+      VC-HTTP-API Actions<a class="self-link" aria-label="§" href=""></a></h2>
+      <section id="issuer-to-holder">
+        <h3 id="x5-1-issuer-to-holder"><bdi class="secno">5.1</bdi>
+          Issuer to Holder<a class="self-link" aria-label="§" href=""></a></h3>
+      </section>
+      <section id="present-for-verification">
+        <h3 id="x5-2-present-for-verification"><bdi class="secno">5.2</bdi>
+          Present for Verification<a class="self-link" aria-label="§" href=""></a></h3>
+      </section>
+      <section id="refresh">
+        <h3 id="x5-3-refresh"><bdi class="secno">5.3</bdi>
+          Refresh<a class="self-link" aria-label="§" href=""></a></h3>
+      </section>
+   </section>
+   <section id="focal-use-cases">
+    <h2 id="x6-focal-use-cases"><bdi class="secno">6.</bdi> 
+      Focal Use Cases<a class="self-link" aria-label="§" href=""></a></h2>
+  </section>
+  <section class="appendix" id="terminology">
+    <h2 id="a-terminology"><bdi class="secno">A.</bdi>
+    Terminology<a class="self-link" aria-label="§" href=""></a></h2><em>This section is non-normative. TODO: link to proper section</em>
+  </section>
+  <section class="appendix" id="example-verifiable-credentials">
+  </section>
+  <section class="informative" id="acknowledgements">
+    <h2 id="c-acknowledgements"><bdi class="secno">C.</bdi>
+    Acknowledgements<a class="self-link" aria-label="§" href="">TODO: link to proper section</a></h2>
+    <p><em>This section is non-normative.</em></p>
+    <p>The editors are thankful to the contributions from the Web
+    Payments Workshop, the Web Payments Community Group, the Web
+    Payments Interest Group, the Credentials Community Group, the
+    Verifiable Claims Task Force, and the Verifiable Claims Working
+    Group.</p>
+  </section>
+  <section id="references" class="appendix">
+    <h2 id="d-references"><bdi class="secno">D.</bdi>
+    References<a class="self-link" aria-label="§" href="">TODO: link to proper section</a></h2>
+    <section id="informative-references">
+      <h3 id="d-1-informative-references"><bdi class="secno">D.1</bdi> Informative references<a class="self-link" aria-label="§" href="https://www.w3.org/TR/vc-use-cases/#informative-references"></a></h3>
+    </section>
+  </section>
+  <p role="navigation" id="back-to-top"><a href="">TODO: link to proper section<abbr title="Back to Top">↑</abbr></a></p>
+  <script src="./Verifiable Credentials Use Cases_files/fixup.js.download"></script>
+
+
+</body></html>
