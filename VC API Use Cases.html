@@ -490,6 +490,54 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
         <p><i>Contributed by:</i>Transmute Industries</p>
     </section>
 
+    <section id="private-automobile-as-credential-subject-and-wallet">
+      <h3 id="x2-7-private-automobile-as-credential-subject-and-wallet"><bdi class="secno">2.7</bdi>
+        private-automobile-as-credential-subject-and-wallet<a class="self-link" aria-label="§" href=""></a></h3>
+      <p>A car owner gets a verifiable digital record when their car passes Smog
+      Check; it can live in the human owner’s mobile wallet or the car’s
+      custodial wallet.</p>
+      <p>As a State-certified AutoShop licensed to do official inspections, I am
+      able to issue a vehicle inspection report for a vehicle and present the
+      credential to the wallet of the vehicle and/or to its current owner’s
+      wallet. In both places, it can be combined with other documents to form a
+      dossier for various kinds of transactions, but to ensure neutrality in the
+      market, both kinds of issuance should take place across a vendor-neutral
+      interface/protocol.</p>
+      <p>Chuck gets his car smog-checked every 5 years at his friend Ricki’s
+      shop, Reliable Smog, an accredited facility that issues its smog check
+      reports electronically (in VC format) via Smog Checkers, LLC, an issuance
+      service registered with state authorities as a trusted issuer. Because of
+      strict data portability laws in that state, Ricki has to use an issuance
+      service that not only supports a standard API, but also supports car-based
+      storage of such credentials.</p>
+      <p><i>Variant A: issuance to car owner’s mobile wallet</i></p>
+        <p>Five years ago, Chuck brought in his mobile phone and used it to
+        authenticate an application which received the credential. He used it to
+        get a discount on Stateful, his auto insurance company, through the
+        Stateful mobile application on his phone.</p>
+        <p><i>Variant B: issuance to car’s “internal wallet” (functions as an
+        offline resource server, controlled by a remote authorization
+        server)</i></p>
+        <p>This time around, however, he has a flashy new Edison Smart Diesel™
+        car, which has an on-board computer that stores verifiable credentials
+        and other sensitive data.  By tethering his phone for an internet
+        connection, Ricki actually authorizes the credential to be issued
+        directly to the onboard computer.  A few months later while
+        road-tripping, Chuck has to stop at Rocky’s Hard Place on Route 66 in
+        Arizona.  To speed up the diagnostic process, Chuck uses his mobile
+        phone to authorize Rocky to download his smog records directly from the
+        on-board computer. Unfortunately the signal is patchy in Hackberry, AZ,
+        so he has to walk outside and pace the parking lot for a while for the
+        request to go through.  Rocky retrieves the authorization token over a
+        dialup modem and downloads the three-month-old smog check records.</p>
+        <p><i>Note: issuance of smog check VC can be requirement for subsequent
+        Registration VC re-issuance/refresh)</i></p>
+        <p><b>Requirements</b>: Authorization token for offline use-case,
+        (Variant B), Crossing “Trust Boundary”, non-human credential subject,
+        non-human wallet</p>
+        <p><i>Contributed by:</i>Spherity GmbH</p>
+      </section>
+
 </section>
 <section id="requirements">
     <!--OddPage--><h2 id="x3-requirements"><bdi class="secno">3.<!---0.245102%--> </bdi>Requirements<a class="self-link" aria-label="§" href="">TODO: get self link</a></h2>
