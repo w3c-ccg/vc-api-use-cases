@@ -21,10 +21,8 @@ mailing list as well.
 * Chairs
   * 
 
-### Other Verifiable Claims github repos
-* [Data Model](https://github.com/w3c/vc-api)
-* [Implementation Guideline]()
-* [Test Suite]()
+### Other VC API github repos
+* [VC API](https://github.com/w3c/vc-api)
 
 ### Other useful links
 * [Public group email archive](https://lists.w3.org/Archives/Public/public-vc-api-wg/)
