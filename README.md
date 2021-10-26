@@ -13,7 +13,7 @@ on the
 mailing list as well.
 
 ### Use Cases (this document) editor's draft:
-* [Use Cases](https://w3c.github.io/vc-api-use-cases/)
+* [Use Cases](https://w3c-ccg.github.io/vc-api-use-cases/)
 
 ## VC API Working Group
 * Group page: []()
