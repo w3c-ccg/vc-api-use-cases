@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>VC API Use Cases</title>
+<meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
+<script src='https://www.w3.org/Tools/respec/respec-w3c-common' class='remove'></script>
+<script src='https://opencreds.github.io/vc-common/common.js' class='remove'></script>
+<script src='./refs.js' class='remove'></script>
+<script class='remove'>
+var respecConfig = {
+  // specification status (e.g. WD, LCWD, NOTE, etc.). If in doubt use .
+  specStatus:           "NOTE",
+  useExperimentalStyles: true,
+
+  // the specification's short name, as in http://www.w3.org/TR/short-name/
+  shortName:            "vc-api-use-cases",
+
+  // if you wish the publication date to be other than today, set this
+  // publishDate:  "2019-09-24",
+
+  // if there is a previously published draft, uncomment this and set its YYYY-MM-DD date
+  // and its maturity status
+  //previousPublishDate:  "2017-05-01",
+  //previousMaturity:     "CG-FINAL",
+
+  // extend the bibliography entries
+  localBiblio: opencreds.localBiblio,
+
+  github: "https://github.com/w3c-ccg/vc-api-use-cases",
+  includePermalinks: false,
+
+  // if there a publicly available Editor's Draft, this is the link
+  //edDraftURI: "https://opencreds.github.io/vc-api-use-cases/",
+
+  // if this is a LCWD, uncomment and set the end of its review period
+  // lcEnd: "2009-08-05",
+
+  // if you want to have extra CSS, append them to this list
+  // it is recommended that the respec.css stylesheet be kept
+  //extraCSS:             [],
+
+  // editors, add as many as you like
+  // only "name" is required
+  editors:  [
+    { name: "Juan Caballero", 
+      company: "Spherity", companyURL: "https://spherity.com/"},
+    { name: "Joe Andrieu", 
+      company: "Legendary Requirements", companyURL: "http://legreq.com" },
+    { name: "Eric Schuh", 
+      company: "Legendary Requirements", companyURL: "http://legreq.com" },
+  ],
+
+  // authors, add as many as you like.
+  // This is optional, uncomment if you have authors as well as editors.
+  // only "name" is required. Same format as editors.
+
+  authors:  [
+
+  ],
+
+  // maximum level of table of contents
+  maxTocLevel: 3,
+
+  // name of the WG
+  wg:           "VC API Working Group",
+
+  // URI of the public WG page
+  wgURI:        "TODO: get wg url",
+
+  // name (with the @w3c.org) of the public mailing to which comments are due
+  // wgPublicList: "public-vc-comments",
+
+  // URI of the patent status for this WG, for Rec-track documents
+  // !!!! IMPORTANT !!!!
+  // This is important for Rec-track documents, do not copy a patent URI from a random
+  // document unless you know what you're doing. If in doubt ask your friendly neighbourhood
+  // Team Contact.
+  wgPatentURI:  "https://www.w3.org/2004/01/pp-impl/98922/status"
+};
+</script>
+
+<style>
+dl {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+dt,
+dd {
+    line-height: 1.42857143;
+}
+dl.dl-horizontal > dt {
+    font-weight: bold;
+}
+dl.dl-horizontal > dd {
+    padding-bottom: 10px;
+}
+@media (min-width: 768px), print {
+    .dl-horizontal {
+        margin-bottom: 2em;
+    }
+    .dl-horizontal dt {
+        font-weight: normal;
+        float: left;
+        width: 160px;
+        clear: left;
+        overflow: hidden;
+        text-align: right;
+    }
+    .dl-horizontal dd {
+        margin-left: 180px;
+    }
+    .dl-horizontal dd > ul {
+        padding-left: 20px;
+        margin: 0px;
+    }
+    .dl-horizontal dd + dt { border-top: solid thin grey; }
+    dl.dl-horizontal dt:not(:first-child) + dd { border-top: solid thin grey; }
+
+    .left.dl-horizontal dt {
+        text-align: left;
+    }
+}
+.dl-horizontal dd + dd { border-top: dotted thin grey;
+    padding-top: 0.5em; }
+</style>
+
+</head>
+
+<body>
+  <section id='abstract'>
+    <p>
+      TODO: write a real abstract
+    </p>
+  </section>
+
+  <section id='sotd'>
+    <p>
+This document represents a concise but limited collection of use cases readers
+should review alongside the <a href="https://github.com/w3c-ccg/vc-api">VC API Specification</a>.
+    </p>
+    <p>
+Comments regarding this document are welcome. Please file directly on
+<a href="https://github.com/w3c-ccg/vc-api-use-cases/issues">GitHub</a>, or send them
+to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
+(<a href="mailto:public-vc-comments-request@w3.org?subject=subscribe">subscribe</a>,
+<a href="https://lists.w3.org/Archives/Public/public-vc-api-comments/">archives</a>).
+    </p>
+  </section>
+
+  <section>
+    <!-- Editor - @eric-schuh -->
+    <h2>Introduction</h2>
+      <p>
+        For Verifiable Credentials to be realized as a usable data format there needs to exist a neutral, 
+        standard-governed way for Issuers, Holders and Verifiers of these credentials to transport them between said entities.
+        TODO: Finish introduction
+    </p>
+    <section>
+      <h3>Existing Work</h3>
+      <p>
+        TODO: fill in
+      </p>
+    </section>
+  </section>
+
+  <section>
+    <h2>Use Cases</h2>
+
+    <section>
+      <h3>Get Digital Permanent Resident Card</h3>
+      <p>Lana is an IT administrator for the United States Citizenship and Immigration Services (USCIS) 
+        Digital Permanent Resident Card (PRC) program. She configures the USCIS website to issue digital 
+        Permanent Resident Cards by utilizing industry standard issuer software and setting up the appropriate 
+        HTTP API Authorizations between systems. Legal Permanent Residents, upon receiving their physical card 
+        in the mail, are given the USCIS website URL, a login account, and PIN code that they may use to manage 
+        their account and pick up their digital Permanent Resident Card. When Louis, a Legal Permanent Resident, 
+        requests a digital Permanent Resident Card via the USCIS website, he authenticates using his login account 
+        and once authenticated, provides a DID associated with his client-side digital wallet against which the 
+        website will issue VCs. The USCIS website then connects to the digital card issuing server, which builds 
+        the Verifiable Credential Permanent Resident Card using Louis' account data, and then utilizes industry 
+        standard HTTP APIs to issue the Permanent Resident Card as a Verifiable Credential. Louis can then use his 
+        Digital Permanent Resident Card in online scenarios when he needs to prove his resident status, such as 
+        when applying for a job.</p>
+        <p><b>Requirements: </b>Verify DID Authentication Presentation, API Authorization, Issue Verifiable Credential, Website as Consumer</p>
+        <p><i>Contributed by: </i>Digital Bazaar</p>
+    </section>
+    <section>
+      <h3>Refresh Expired Over Age Token</h3>
+      <p>Lana is an IT administrator for the United States Citizenship and Immigration Services (USCIS) 
+        Digital Permanent Resident Card (PRC) program. She configures the USCIS website to issue digital 
+        Permanent Resident Cards by utilizing industry standard issuer software and setting up the appropriate 
+        HTTP API Authorizations between systems. Legal Permanent Residents, upon receiving their physical card 
+        in the mail, are given the USCIS website URL, a login account, and PIN code that they may use to manage 
+        their account and pick up their digital Permanent Resident Card. When Louis, a Legal Permanent Resident, 
+        requests a digital Permanent Resident Card via the USCIS website, he authenticates using his login account 
+        and once authenticated, provides a DID associated with his client-side digital wallet against which the 
+        website will issue VCs. The USCIS website then connects to the digital card issuing server, which builds 
+        the Verifiable Credential Permanent Resident Card using Louis' account data, and then utilizes industry 
+        standard HTTP APIs to issue the Permanent Resident Card as a Verifiable Credential. Louis can then use 
+        his Digital Permanent Resident Card in online scenarios when he needs to prove his resident status, such 
+        as when applying for a job.</p>
+        <p><b>Requirements: </b>Start Presentation Flow, Verify Presentation, Issue Verifiable Credential</p>
+        <p><i>Contributed by: </i>Digital Bazaar</p>
+    </section>
+    <section>
+      <h3>Execute Multi-stage Presentation Workflow</h3>
+      <p>Description: Ignio, a logistics manager for "Kirk Company", would like to submit all necessary paperwork 
+        to send his company's products across international boundaries. These products are considered hazardous 
+        chemicals and thus are regulated, requiring extra paperwork to be filed before transportation is approved 
+        across boundaries. Some hazardous material shipments are different resulting in different required paperwork, 
+        and Ignio wants to automate as much of the process as possible with Shippers, 
+        their 3rd Party Logistics company (3PL). There are a set of verifiable credentials that Ignio is willing to 
+        share with Customs as well as the transportation company. 
+      </p>
+      <p>When Kirk starts a shipping workflow, his company's systems initiate the workflow by contacting a known 
+        location on the Shipper's Website. A presentation exchange occurs to first DIDAuth the company and send 
+        generic mandatory information for any shipment; if and only if the information provided requires additional 
+        information‒in this case a hazmat certification‒a second exchange is initiated to request this outstanding/required 
+        hazmat info.  Once this is received, Shippers can send back a Bill of Lading in VC form. The two (or more) 
+        credential exchanges are composable and idempotent, ending in a valid BoL if successful.
+      </p>
+        <p><b>Requirements: </b>Verify DID Authentication Presentation, API Authorization, Issue Verifiable Credential, Website as Consumer</p>
+        <p><i>Contributed by: </i>Digital Bazaar</p>
+    </section>
+
+    <section>
+      <h3>Aggregated Credential Workflow</h3>
+      <p>Tod is using digital credentials to apply for a service/qualify for a job/gain access to a programme. 
+        Some of his credentials are available today, some will need to be provided when they are ready 
+        (for example, a criminal background check can take 24-48 hrs to process). He would like these credentials to 
+        be presented to the Verifier (service provider) when ready, without having to constantly return to the Verifier 
+        (service provider) and deliver them "by hand". He should be able to have them released from his Holder directly 
+        as they become available.</p>
+        <p><b>Requirements: </b>Verifiable Presentation by policy, Automated notifications, Asynchronous release.         </p>
+        <p><i>Contributed by:</i>SecureKey Technologies Inc.</p>
+    </section>
+
+    <section>
+      <h3>Submit/Sign/Verify a test credential to a licensure system</h3>
+      <p>A student, Shabazz, wants to publish their MBLEx test results from an education test provider, 
+        Massage Therapy Test Corp. Massage Therapy Test Corp proxies their authority to sign to a service provider, 
+        SSI Ventures.  SSI Ventures issues Shabazz a VC when he logs into his Massage Therapy Test Corp account 
+        and enables his browser-based SSI Wallet, Billfold.  The signed VC is then stored in Shabazz’ Billfold™ Wallet 
+        to be presented elsewhere.
+      </p>
+      <p>In a separate session, Shabazz logs into a web portal of a State Massage Therapy licensure system to 
+        apply for his Massage Therapy license. The licensure specialist at the State checks the issuer using a 
+        State accreditation system, then checks the signature on the test results VC and ingests the 
+        credential’s payload. The licensure specialist then finalizes their workflow and issues 
+        Shabazz a Massage Therapy license.
+      </p>
+       <p><b>Requirements: </b>Issuance-as-a-Service, Accredited Issuer Lookup, Website as Consumer..</p>
+        <p><i>Contributed by:</i>RANDA Solutions</p>
+    </section>
+    <section>
+      <h3>Supply Chain Import</h3>
+      <p>In order to export steel products to the global market, Steel Mills Global must prove 
+        the quality of their products. For this, they rely on Inspectors & Co, an internationally 
+        recognized steel testing company. Upon inspection, Inspectors & Co issues a 
+        Mill Test Report VC to Steel Mills Global.</p>
+      <p>Steel Inc. imports and distributes steel products domestically. Negotiating a shipment 
+        Steel Mills Global presents the MTR as proof of product quality. Steel Inc. verifies the
+        MTR VP and accepts the shipment. </p>
+      <p>Steel Inc. initiates the importing procedures, starting out self-issuing an 
+        Import Declaration Form VC. The MTR and IDF are jointly presented to the Customs 
+        authority which verifies the VP. Upon verification the customs release is granted for goods import. </p>
+        </p>
+      <p><i>Note: These VC types are taken from the <a class="self-link" aria-label="§" href="">Traceability Vocabulary</a>, a W3C-CCG work item for supply chain use-cases.</i></p>
+        <p><b>Requirements: </b>VC Issuance, Re-Presentation and VC+VP Verification across a common supply chain process.</p>
+        <p><i>Contributed by:</i>Transmute Industries</p>
+    </section>
+</section>
+<section>
+  <h2>Requirements</h2>
+
+</section>
+<section>
+  <h2>Features and Benefits</h2>
+</section>
+<section>
+  <!-- Editor - @eric-schuh -->
+  <h2>VC API Actions</h2>
+    <section>
+      <h3>Issuer to Holder</h3>
+    </section>
+    <section>
+      <h3>Present for Verification</h3>
+    </section>
+    <section>
+      <h3>Refresh</h3>
+    </section>
+</section>
+<section>
+  <!-- Editor - @eric-schuh -->
+  <h2>Focal Use Cases</h2>
+
+</section>
+
+  <section class="appendix">
+    <!-- Editor - @halindrome -->
+    <h2>Terminology</h2>
+
+      <em>This section is non-normative.</em>
+
+      <div data-include="./terms.html"
+          data-oninclude="restrictReferences">
+      </div>
+
+  </section>
+
+  <section class="informative">
+    <h2>Acknowledgements</h2>
+
+    <p>
+The editors are thankful to the contributions from the VC API Working Group
+    </p>
+
+  </section>
+
+
+</body>
+</html>
