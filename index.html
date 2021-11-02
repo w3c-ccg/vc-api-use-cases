@@ -182,6 +182,7 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
         Digital Permanent Resident Card in online scenarios when he needs to prove his resident status, such as 
         when applying for a job.</p>
         <p><b>Requirements: </b>Verify DID Authentication Presentation, API Authorization, Issue Verifiable Credential, Website as Consumer</p>
+        <p><b>Endpoints: </b> /presentations/Available, /presentations/issue, /presentations/submissions, [/presentations/verify, /credentials/verify,] /identity/map* (out of scope for this spec: lookup code to map to DID/do 2FA), /credentials/issue </p>
         <p><i>Contributed by: </i>Digital Bazaar</p>
     </section>
     <section>
@@ -199,7 +200,8 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
         standard HTTP APIs to issue the Permanent Resident Card as a Verifiable Credential. Louis can then use 
         his Digital Permanent Resident Card in online scenarios when he needs to prove his resident status, such 
         as when applying for a job.</p>
-        <p><b>Requirements: </b>Start Presentation Flow, Verify Presentation, Issue Verifiable Credential</p>
+        <p><b>Requirements: </b>Start Presentation Flow, Verify Presentation, Issue Verifiable Credential, Refresh Credential</p>
+        <p><b>Endpoints: </b>/presentations/Available, /presentations/issue, /presentations/submissions, [/presentations/verify, /credentials/verify,] /credentials/issue, /credentials/refresh/*? (is the parent credential/receipt/authorization to have tokens getting refreshed?) </p>
         <p><i>Contributed by: </i>Digital Bazaar</p>
     </section>
     <section>
@@ -219,7 +221,8 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
         hazmat info.  Once this is received, Shippers can send back a Bill of Lading in VC form. The two (or more) 
         credential exchanges are composable and idempotent, ending in a valid BoL if successful.
       </p>
-        <p><b>Requirements: </b>Verify DID Authentication Presentation, API Authorization, Issue Verifiable Credential, Website as Consumer</p>
+        <p><b>Requirements: </b>Verify DID Authentication Presentation, API Authorization, Issue Verifiable Credential, Website as Consumer, continuous workflow</p>
+        <p><b>Endpoints: /presentations/Available, /presentations/issue, /presentations/submissions, [/presentations/verify, /credentials/verify,] /credentials/issue,</b></p>
         <p><i>Contributed by: </i>Digital Bazaar</p>
     </section>
 
@@ -231,7 +234,8 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
         be presented to the Verifier (service provider) when ready, without having to constantly return to the Verifier 
         (service provider) and deliver them "by hand". He should be able to have them released from his Holder directly 
         as they become available.</p>
-        <p><b>Requirements: </b>Verifiable Presentation by policy, Automated notifications, Asynchronous release.         </p>
+        <p><b>Requirements: </b>Verifiable Presentation by policy, Automated notifications, Asynchronous release, Present Credentials issued by third party?, Authorized/pre-consented authorization, VP formed with future VCs ("stateful VP")</p>
+        <p><b>Endpoints: /presentations/Available, /presentations/issue, /presentations/submissions, [/presentations/verify, /credentials/verify,] /credentials/issue, /presentations/stateful/* </b></p>
         <p><i>Contributed by:</i>SecureKey Technologies Inc.</p>
     </section>
 
@@ -249,8 +253,9 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
         credential’s payload. The licensure specialist then finalizes their workflow and issues 
         Shabazz a Massage Therapy license.
       </p>
-       <p><b>Requirements: </b>Issuance-as-a-Service, Accredited Issuer Lookup, Website as Consumer..</p>
-        <p><i>Contributed by:</i>RANDA Solutions</p>
+       <p><b>Requirements: </b>Issuance-as-a-Service, Issuer Lookup* (is that business logic?), Website as Consumer.</p>
+       <p><b>Endpoints: </b> /credentials/issue, /issuer/lookup* (out of scope; in-scope for the <a href=https://gataca-io.github.io/verifier-apis/#interfaces>UVI</a>, tho!), /presentations/verify, /credentials/verify </p>
+       <p><i>Contributed by:</i>RANDA Solutions</p>
     </section>
     <section>
       <h3>Supply Chain Import</h3>
@@ -258,15 +263,16 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
         the quality of their products. For this, they rely on Inspectors & Co, an internationally 
         recognized steel testing company. Upon inspection, Inspectors & Co issues a 
         Mill Test Report VC to Steel Mills Global.</p>
-      <p>Steel Inc. imports and distributes steel products domestically. Negotiating a shipment 
+      <p>Steel, Inc. imports and distributes steel products domestically. Negotiating a shipment 
         Steel Mills Global presents the MTR as proof of product quality. Steel Inc. verifies the
         MTR VP and accepts the shipment. </p>
-      <p>Steel Inc. initiates the importing procedures, starting out self-issuing an 
+      <p>Steel, Inc. initiates the importing procedures, starting out self-issuing an 
         Import Declaration Form VC. The MTR and IDF are jointly presented to the Customs 
         authority which verifies the VP. Upon verification the customs release is granted for goods import. </p>
         </p>
       <p><i>Note: These VC types are taken from the <a class="self-link" aria-label="§" href="">Traceability Vocabulary</a>, a W3C-CCG work item for supply chain use-cases.</i></p>
         <p><b>Requirements: </b>VC Issuance, Re-Presentation and VC+VP Verification across a common supply chain process.</p>
+        <p><b>Endpoints: </b> (VERIFIER-APP*?)/presentations/available, /presentations/issue, /presentations/submissions, [/presentations/verify, /credentials/verify,] /credentials/issue</p>
         <p><i>Contributed by:</i>Transmute Industries</p>
     </section>
 </section>
