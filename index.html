@@ -185,18 +185,18 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
             <li>1. Verify DID Authentication Presentation,</li>
             <li>2. API Authorization,</li>
             <li>3. Issue Verifiable Credential,</li>
-            <li>4. Website as Consumer</li>
+            <li>X. Website as Consumer</li>
           </ul></p>
         <p><b>Endpoints: </b><ul>
             <li>1.  /presentations/Available,</li>
             <li>[ 
-            <i> Issuer-Service /identity/map (out of scope for this spec: lookup code to map to DID/do 2FA)</i>,
+            <i> 1. Issuer-Service /identity/map (out of scope for this spec: lookup code to map to DID/do 2FA)</i>,
             ]</li>
             <li>2. Issuer-App /presentations/issue, </li>
             <li>3. Issuer-App /presentations/submissions, </li>
             <li>[
             3. Verifier-Service? /presentations/verify, 
-            3. Verifier-Service? /credentials/verify,
+            Verifier-Service? /credentials/verify,
             ]</li>
             <li>3. /credentials/issue </li>
             </ul></p>
@@ -218,10 +218,10 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
         his Digital Permanent Resident Card in online scenarios when he needs to prove his resident status, such 
         as when applying for a job.</p>
         <p><b>Requirements: </b><ul>
-          <li>Start Presentation Flow,</li>
-          <li> Verify Presentation, </li>
-          <li>Issue Verifiable Credential, </li>
-          <li>Refresh Credential</li>
+          <li>1. Start Presentation Flow,</li>
+          <li>2. Verify Presentation, </li>
+          <li>3. Issue Verifiable Credential, </li>
+          <li>4. Refresh Credential</li>
           </ul></p>
         <p><b>Endpoints: </b></li>
           <li>/presentations/Available,</li>
@@ -251,11 +251,11 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
         credential exchanges are composable and idempotent, ending in a valid BoL if successful.
       </p>
         <p><b>Requirements: </b><ul>
-          <li>Verify DID Authentication Presentation, </li>
-          <li>API Authorization, </li>
-          <li>Issue Verifiable Credential, </li>
-          <li>Website as Consumer, </li>
-          <li>continuous workflow</li>
+          <li>1. Verify DID Authentication Presentation, </li>
+          <li>2. API Authorization, </li>
+          <li>3. Issue Verifiable Credential, </li>
+          <li>X. Website as Consumer, </li>
+          <li>X. continuous workflow</li>
           </ul></p>
         <p><b>Endpoints: </b><ul>
           <li>/presentations/Available,</li>
@@ -276,12 +276,12 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
         (service provider) and deliver them "by hand". He should be able to have them released from his Holder directly 
         as they become available.</p>
         <p><b>Requirements: </b><ul>
-          <li>Verifiable Presentation by policy, </li>
-          <li>Automated notifications, </li>
-          <li>Asynchronous release, </li>
-          <li>Present Credentials issued by third party?, </li>
-          <li>Authorized/pre-consented authorization, </li>
-          <li>VP formed with future VCs ("stateful VP")</li>
+          <li>X. Verifiable Presentation by policy, </li>
+          <li>X. Automated notifications, </li>
+          <li>X. Asynchronous release, </li>
+          <li>X. Authorized/pre-consented authorization, </li>
+          <li>X. VP formed with future VCs ("stateful VP")</li>
+          <li>X. Present Credentials issued by third party?, </li>
           </ul></p>
         <p><b>Endpoints: </b></ul>
           <li>/presentations/Available, </li>
@@ -309,9 +309,13 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
         Shabazz a Massage Therapy license.
       </p>
        <p><b>Requirements: </b></li>
-         <li>Issuance-as-a-Service, </li>
-         <li><i>Issuer Lookup (is that business logic?),</i></li>
-         <li>Website as Consumer.</li>
+          <li>1. VC Issuance</li>
+          <li>2. VC Presentation</li>
+          <li><i> 3. Issuer Lookup (is that business logic?),</i></li>
+          <li>4. VP Verification</li>
+          <li>5. VC Verification</li>
+          <li>X. Website as Consumer.</li>
+          <li>X. Issuance-as-a-Service, </li>
          </ul></p>
        <p><b>Endpoints:</b></li>
          <li>/credentials/issue,</li>
@@ -336,9 +340,9 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
         </p>
       <p><i>Note: These VC types are taken from the <a class="self-link" aria-label="§" href="">Traceability Vocabulary</a>, a W3C-CCG work item for supply chain use-cases.</i></p>
         <p><b>Requirements:</b><ul>
-          <li>VC Issuance,</li>
-          <li><i>Self-Issuance,</i></li>
-          <li>Re-Presentation and VC+VP Verification across a common supply chain process.</li>
+          <li>1. VC Issuance,</li>
+          <li><i>X. Self-Issuance,</i></li>
+          <li>X. Re-Presentation and VC+VP Verification across a common supply chain process.</li>
           </ul></p>
         <p><b>Endpoints:</b></li>
           <li><i>(VERIFIER-APP?) /presentations/available,</i></li>
