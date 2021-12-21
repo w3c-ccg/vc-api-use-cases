@@ -188,7 +188,7 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
             <li>X. Website as Consumer</li>
           </ul></p>
         <p><b>Endpoints: </b><ul>
-            <li>1.  /presentations/Available,</li>
+            <li>1. Issuer-Service /presentations/Available,</li>
             <li>[ 
             <i> 1. Issuer-Service /identity/map (out of scope for this spec: lookup code to map to DID/do 2FA)</i>,
             ]</li>
@@ -200,6 +200,25 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
             ]</li>
             <li>3. /credentials/issue </li>
             </ul></p>
+        <p><b>New Endpoints: </b><ul>
+          <li>Holder-Service --> Holder-App/registerCredentialHandler -- <b>does-not-exist-yet/out-of-scope?</b></li>
+          <li>Holder (Louis) --> Holder-App (browser) --> Issuer-App/getCredential (uscis.gov/getPRC) -- <b>out-of-scope</b></li>
+          <li>Holder (Louis) --> Holder-App (browser) --> Issuer-App/authenticate (uscis.gov/authenticate) -- <b>out-of-scope</b></li>
+          <li>Issuer-App --> Holder-App/requestPresentation -- <b>does-not-exist-yet</b></li>
+          <li>Holder-App --> Holder/selectHolderService -- <b>out-of-scope</b></li>
+          <li>Holder-App --> Holder-Service/requestPresentation -- <b>does-not-exist/out-of-scope?</b></li>
+          <li>Holder-Service --> Holder/selectWallet -- <b>out-of-scope</b></li>
+          <li>Holder-Service --> Holder/selectProfile -- <b>out-of-scope</b></li>
+          <li>Holder-Service --> Holder-App/requestedPresentaiton -- <b>out-of-scope</b></li>
+          <li>Holder-App --> Issuer-App/requestedPresentation -- <b>does-not-exist-yet</b></li>
+          <li>Issuer-App --> Issuer-Service/credentials/issue?"providedVP" -- <b>exists</b></li>
+          <li>Issuer-Service --> Issuer-App/credentials/issued?"issuedCredentialsWrappedByIssuerApp" -- <b>does-not-exist-yet</b></li>
+          <li>Issuer-App --> Holder-App/newCredential?"issuedCredentialsUnwrappedByIssuerApp" -- <b>does-not-exist-yet</b></li>
+          <li>Holder-App --> Holder/selectHolderService -- <b>out-of-scope</b></li>
+          <li>Holder-App --> Holder-Service/storeCredentials -- <b>does-not-exist/out-of-scope?</b></li>
+          <li>Holder-Service --> Holder/selectWallet -- <b>out-of-scope</b></li>
+          <li>Holder-Service --> Holder/selectProfile -- <b>out-of-scope</b></li>
+        </ul></p>
         <p><i>Contributed by: </i>Digital Bazaar</p>
     </section>
     <section>
