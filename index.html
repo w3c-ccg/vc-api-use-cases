@@ -188,19 +188,6 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
             <li>X. Website as Consumer</li>
           </ul></p>
         <p><b>Endpoints: </b><ul>
-            <li>1. Issuer-Service /presentations/Available,</li>
-            <li>[ 
-            <i> 1. Issuer-Service /identity/map (out of scope for this spec: lookup code to map to DID/do 2FA)</i>,
-            ]</li>
-            <li>2. Issuer-App /presentations/issue, </li>
-            <li>3. Issuer-App /presentations/submissions, </li>
-            <li>[
-            3. Verifier-Service? /presentations/verify, 
-            Verifier-Service? /credentials/verify,
-            ]</li>
-            <li>3. /credentials/issue </li>
-            </ul></p>
-        <p><b>New Endpoints: </b><ul>
           <li>Holder-Service --> Holder-App/registerCredentialHandler -- <b>does-not-exist-yet/out-of-scope?</b></li>
           <li>Holder (Louis) --> Holder-App (browser) --> Issuer-App/getCredential (uscis.gov/getPRC) -- <b>out-of-scope</b></li>
           <li>Holder (Louis) --> Holder-App (browser) --> Issuer-App/authenticate (uscis.gov/authenticate) -- <b>out-of-scope</b></li>
@@ -252,6 +239,7 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
           </ul></p>
         <p><i>Contributed by: </i>Digital Bazaar</p>
     </section>
+
     <section>
       <h3>Execute Multi-stage Presentation Workflow</h3>
       <p>Description: Ignio, a logistics manager for "Kirk Company", would like to submit all necessary paperwork 
@@ -337,13 +325,14 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
           <li>X. Issuance-as-a-Service, </li>
          </ul></p>
        <p><b>Endpoints:</b></li>
-         <li>/credentials/issue,</li>
+         <li></credentials/issue,</li>
          <li><i>/issuer/lookup (out of scope; in-scope for the <a href=https://gataca-io.github.io/verifier-apis/#interfaces>UVI</a>, tho!),</i></li>
          <li>/presentations/verify,</li>
-         <li>/credentials/verify,</li>
+         <li>/credentials/verify,</li>>
          </p>
        <p><i>Contributed by:</i>RANDA Solutions</p>
     </section>
+
     <section>
       <h3>Supply Chain Import</h3>
       <p>In order to export steel products to the global market, Steel Mills Global must prove 
@@ -364,11 +353,17 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
           <li>X. Re-Presentation and VC+VP Verification across a common supply chain process.</li>
           </ul></p>
         <p><b>Endpoints:</b></li>
-          <li><i>(VERIFIER-APP?) /presentations/available,</i></li>
-          <li>/presentations/issue,</li>
-          <li>/presentations/submissions,</li>
-          <li>[/presentations/verify, /credentials/verify,]</li>
-          <li>/credentials/issue</li>
+          <li>Holder (SMG) --> Holder App --> Verifier App: Notify ( GET /presentations/available ) </li>
+          <li>Holder App <-- Verifier App: return Domain & Challenge </li>
+          <li> {Holder App --> Holder Storage: get VCs ( out of scope )}</li>
+          <li> {Holder App --> Holder Storage and/or KMS: get keys ( out of scope )}</li>
+          <li>Holder App --> Holder Service: sign VP ( POST /presentations/issue ) </li>
+          <li>Holder App <-- Holder Service: return signed VP </li>
+          <li>Holder App --> Verifier App: Submit Presentation ( POST /presentations/submissions/ )</li>
+          <li>Verifier App --> Verifier Service: Verify VP ( POST /presentations/verify, /credential/verify ) </li>
+          <li> {Verifier App: Business Logic}</li>
+          <li>Verifier App --> Verifier Storage: Store VC ( out of scope? ) </li>
+          <li>[ Holder App <-- Verifier App: ACK ]</li>
           </ul></p>
         <p><i>Contributed by:</i>Transmute Industries</p>
     </section>
