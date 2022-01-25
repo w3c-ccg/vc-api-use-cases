@@ -187,33 +187,16 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
             <li>3. Issue Verifiable Credential,</li>
             <li>X. Website as Consumer</li>
           </ul></p>
+        <p><b>Sequence Diagram</b>
           <figure>
             <img alt="UC2.1 Sequence Diagram" 
                  style="display:block; margin:auto"
-                 src="2.1 - Get Digital Permanent Resident Card.png.png" />
+                 src="2.1 - Get Digital Permanent Resident Card.png" />
             <figcaption>
-               UC2.1 Sequence Diagram
+              Get Digital Permanent Resident Card Sequence Diagram
             </figcaption>
          </figure>
-        <p><b>Endpoints: </b><ul>
-          <li>Holder-Service --> Holder-App/registerCredentialHandler -- <b>does-not-exist-yet/out-of-scope?</b></li>
-          <li>Holder (Louis) --> Holder-App (browser) --> Issuer-App/getCredential (uscis.gov/getPRC) -- <b>out-of-scope</b></li>
-          <li>Holder (Louis) --> Holder-App (browser) --> Issuer-App/authenticate (uscis.gov/authenticate) -- <b>out-of-scope</b></li>
-          <li>Issuer-App --> Holder-App/requestPresentation -- <b>does-not-exist-yet</b></li>
-          <li>Holder-App --> Holder/selectHolderService -- <b>out-of-scope</b></li>
-          <li>Holder-App --> Holder-Service/requestPresentation -- <b>does-not-exist/out-of-scope?</b></li>
-          <li>Holder-Service --> Holder/selectWallet -- <b>out-of-scope</b></li>
-          <li>Holder-Service --> Holder/selectProfile -- <b>out-of-scope</b></li>
-          <li>Holder-Service --> Holder-App/requestedPresentaiton -- <b>out-of-scope</b></li>
-          <li>Holder-App --> Issuer-App/requestedPresentation -- <b>does-not-exist-yet</b></li>
-          <li>Issuer-App --> Issuer-Service/credentials/issue?"providedVP" -- <b>exists</b></li>
-          <li>Issuer-Service --> Issuer-App/credentials/issued?"issuedCredentialsWrappedByIssuerApp" -- <b>does-not-exist-yet</b></li>
-          <li>Issuer-App --> Holder-App/newCredential?"issuedCredentialsUnwrappedByIssuerApp" -- <b>does-not-exist-yet</b></li>
-          <li>Holder-App --> Holder/selectHolderService -- <b>out-of-scope</b></li>
-          <li>Holder-App --> Holder-Service/storeCredentials -- <b>does-not-exist/out-of-scope?</b></li>
-          <li>Holder-Service --> Holder/selectWallet -- <b>out-of-scope</b></li>
-          <li>Holder-Service --> Holder/selectProfile -- <b>out-of-scope</b></li>
-        </ul></p>
+        </p>
         <p><i>Contributed by: </i>Digital Bazaar</p>
     </section>
     <section>
@@ -360,19 +343,16 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
           <li><i>X. Self-Issuance,</i></li>
           <li>X. Re-Presentation and VC+VP Verification across a common supply chain process.</li>
           </ul></p>
-        <p><b>Endpoints:</b></li>
-          <li>Holder (SMG) --> Holder App --> Verifier App: Notify ( GET /presentations/available ) </li>
-          <li>Holder App <-- Verifier App: return Domain & Challenge </li>
-          <li> {Holder App --> Holder Storage: get VCs}</li>
-          <li> {Holder App --> Holder Storage and/or KMS: get keys ( out of scope )}</li>
-          <li>Holder App --> Holder Service: sign VP ( POST /presentations/issue ) </li>
-          <li>Holder App <-- Holder Service: return signed VP </li>
-          <li>Holder App --> Verifier App: Submit Presentation ( POST /presentations/submissions/ )</li>
-          <li>Verifier App --> Verifier Service: Verify VP ( POST /presentations/verify, /credential/verify ) </li>
-          <li> {Verifier App: Business Logic}</li>
-          <li>Verifier App --> Verifier Storage: Store VC ( out of scope? ) </li>
-          <li>[ Holder App <-- Verifier App: ACK ]</li>
-          </ul></p>
+        <p><b>Sequence Diagram</b>
+          <figure>
+            <img alt="UC2.6 Sequence Diagram" 
+                 style="display:block; margin:auto"
+                 src="2.6 - Supply Chain Import.png" />
+            <figcaption>
+              Supply Chain Import Sequence Diagram
+            </figcaption>
+         </figure>
+        </p>
         <p><i>Contributed by:</i>Transmute Industries</p>
     </section>
 </section>
