@@ -201,19 +201,20 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
     </section>
     <section>
       <h3>Refresh Expired Over Age Token</h3>
-      <p>Lana is an IT administrator for the United States Citizenship and Immigration Services (USCIS) 
-        Digital Permanent Resident Card (PRC) program. She configures the USCIS website to issue digital 
-        Permanent Resident Cards by utilizing industry standard issuer software and setting up the appropriate 
-        HTTP API Authorizations between systems. Legal Permanent Residents, upon receiving their physical card 
-        in the mail, are given the USCIS website URL, a login account, and PIN code that they may use to manage 
-        their account and pick up their digital Permanent Resident Card. When Louis, a Legal Permanent Resident, 
-        requests a digital Permanent Resident Card via the USCIS website, he authenticates using his login account 
-        and once authenticated, provides a DID associated with his client-side digital wallet against which the 
-        website will issue VCs. The USCIS website then connects to the digital card issuing server, which builds 
-        the Verifiable Credential Permanent Resident Card using Louis' account data, and then utilizes industry 
-        standard HTTP APIs to issue the Permanent Resident Card as a Verifiable Credential. Louis can then use 
-        his Digital Permanent Resident Card in online scenarios when he needs to prove his resident status, such 
-        as when applying for a job.</p>
+      <p>Riley has onboarded into the TruAge digital age verification system, which has provided her 
+        with a set of Verifiable Credentials that she stores in her digital wallet. A subset of the 
+        Verifiable Credentials that she has received are digitally signed single-use age tokens that 
+        only assert that she is above the age of 21 and are marked as "used" by the TruAge system 
+        when they are submitted as a part of an age-restricted goods purchase, such as buying a 
+        bottle of wine. Eventually, Riley runs out of single use age tokens in her digital wallet. 
+        The digital wallet keeps track of which tokens have been used and once all tokens have been 
+        consumed, contacts a refresh service endpoint listed in one of the TruAge credentials that 
+        provides new over-age tokens. The digital wallet requests a new set of tokens by hitting the 
+        HTTP API of this VC-refresh service listed in the “refreshService” array and POSTing the 
+        original Verifiable Credential containing the refresh service description. The HTTP API 
+        ensures that it has received a valid credential and reissues a set of new digitally signed 
+        single-use age tokens in the response.
+      </p>
         <p><b>Requirements: </b><ul>
           <li>1. Start Presentation Flow,</li>
           <li>2. Verify Presentation, </li>
