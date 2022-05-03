@@ -204,51 +204,51 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
         <p><b>Mermaid</b>
           <figure>
             <pre class="diagram mermaid">
-          sequenceDiagram\n              
-            autonumber\n    
-              Lana - Issuer Admin->>uscis.gov - Issuer App:Configure to properly use Generic Issuer SAAS\n    
-              uscis.gov - Issuer App->>uscis.gov - Issuer App:Process configuration\n    
-              uscis.gov - Issuer App->>Generic Issuer SAAS - Issuer Service:Status check\n    
-              Generic Issuer SAAS - Issuer Service->>Generic Issuer SAAS - Issuer Service:Verify Authorization\n    
-              Generic Issuer SAAS - Issuer Service->>Generic Issuer SAAS - Issuer Service:Check business rules\n    
-              Generic Issuer SAAS - Issuer Service->>uscis.gov - Issuer App:All good\n    
-              uscis.gov - Issuer App->>Lana - Issuer Admin:Configuration complete\n    
-              authn.io - Holder Service->>Louis's Browser - Holder App:Holder-App/registerCredentialHandler\n    
-              Louis - Holder->>Louis's Browser - Holder App:uscis.gov\n    
-              Louis's Browser - Holder App->>uscis.gov - Issuer App:uscis.gov\n    
-              uscis.gov - Issuer App->>Louis's Browser - Holder App:uscis.gov/index.html\n    
-              Louis's Browser - Holder App->>Louis - Holder:uscis.gov/index.html\n    
-              Louis - Holder->>Louis's Browser - Holder App:Click \"Get PRC\"\n    
-              Louis's Browser - Holder App->>uscis.gov - Issuer App:uscis.gov/getPRC\n    
-              uscis.gov - Issuer App->>Louis's Browser - Holder App:request authentication\n    
-              Louis's Browser - Holder App->>Louis - Holder:request authentication\n    
-              Louis - Holder->>Louis's Browser - Holder App:provide authentication details\n    
-              Louis's Browser - Holder App->>uscis.gov - Issuer App:uscis.gov/authenticate?louiss-details\n    
-              uscis.gov - Issuer App->>uscis.gov - Issuer App:process provided authentication details\n    
-              uscis.gov - Issuer App->>Louis's Browser - Holder App:authentication succuss\n    
-              Louis's Browser - Holder App->>Louis - Holder:authentication succuss\n    
-              uscis.gov - Issuer App->>Louis's Browser - Holder App:Holder-App/requestPresentation\n    
-              Louis's Browser - Holder App->>Louis - Holder:Holder/selectHolderService\n    
-              Louis - Holder->>Louis's Browser - Holder App:holderServiceSelection\n    
-              Louis's Browser - Holder App->>authn.io - Holder Service:HolderService/requestPresentation\n    
-              authn.io - Holder Service->>Louis - Holder:Holder/selectWallet\n    
-              Louis - Holder->>authn.io - Holder Service:walletSelection\n    
-              authn.io - Holder Service->>Louis - Holder:Holder/selectProfile\n    
-              Louis - Holder->>authn.io - Holder Service:profileSelection\n    
-              authn.io - Holder Service->>Louis's Browser - Holder App:HolderApp/requestedPresentation\n    
-              Louis's Browser - Holder App->>uscis.gov - Issuer App:IssuerApp/requestedPresentation\n    
-              uscis.gov - Issuer App->>Generic Issuer SAAS - Issuer Service:IssuerService/credentials/issue?\"providedVP\"\n    
-              Generic Issuer SAAS - Issuer Service->>uscis.gov - Issuer App:IssuerApp/credentials/issued?\"issuedCredentailsWrappedByIssuerApp\"\n    
-              uscis.gov - Issuer App->>Louis's Browser - Holder App:HolderApp/newCredential?\"issuedCredentialUnwrappedByIssuerApp\"\n    
-              Louis's Browser - Holder App->>Louis - Holder:Holder/selectHolderService\n    
-              Louis - Holder->>Louis's Browser - Holder App:holderServiceSelection\n    
-              Louis's Browser - Holder App->>authn.io - Holder Service:HolderService/storeCredentials?\"credentials\"\n    
-              authn.io - Holder Service->>Louis - Holder:Holder/selectWallet\n    
-              Louis - Holder->>authn.io - Holder Service:walletSelection\n    
-              authn.io - Holder Service->>Louis - Holder:Holder/selectProfile\n    
-              Louis - Holder->>authn.io - Holder Service:profileSelection\n    
-              authn.io - Holder Service->>authn.io - Holder Service:Store credentials\n    
-              authn.io - Holder Service->>Louis's Browser - Holder App:HolderApp/credentialsStored\n
+          sequenceDiagram             
+            autonumber  
+              Lana - Issuer Admin->>uscis.gov - Issuer App:Configure to properly use Generic Issuer SAAS    
+              uscis.gov - Issuer App->>uscis.gov - Issuer App:Process configuration    
+              uscis.gov - Issuer App->>Generic Issuer SAAS - Issuer Service:Status check    
+              Generic Issuer SAAS - Issuer Service->>Generic Issuer SAAS - Issuer Service:Verify Authorization    
+              Generic Issuer SAAS - Issuer Service->>Generic Issuer SAAS - Issuer Service:Check business rules    
+              Generic Issuer SAAS - Issuer Service->>uscis.gov - Issuer App:All good    
+              uscis.gov - Issuer App->>Lana - Issuer Admin:Configuration complete    
+              authn.io - Holder Service->>Louis's Browser - Holder App:Holder-App/registerCredentialHandler    
+              Louis - Holder->>Louis's Browser - Holder App:uscis.gov    
+              Louis's Browser - Holder App->>uscis.gov - Issuer App:uscis.gov    
+              uscis.gov - Issuer App->>Louis's Browser - Holder App:uscis.gov/index.html    
+              Louis's Browser - Holder App->>Louis - Holder:uscis.gov/index.html    
+              Louis - Holder->>Louis's Browser - Holder App:Click \"Get PRC\"    
+              Louis's Browser - Holder App->>uscis.gov - Issuer App:uscis.gov/getPRC    
+              uscis.gov - Issuer App->>Louis's Browser - Holder App:request authentication   
+              Louis's Browser - Holder App->>Louis - Holder:request authentication    
+              Louis - Holder->>Louis's Browser - Holder App:provide authentication details   
+              Louis's Browser - Holder App->>uscis.gov - Issuer App:uscis.gov/authenticate?louiss-details   
+              uscis.gov - Issuer App->>uscis.gov - Issuer App:process provided authentication details   
+              uscis.gov - Issuer App->>Louis's Browser - Holder App:authentication succus    
+              Louis's Browser - Holder App->>Louis - Holder:authentication succuss  
+              uscis.gov - Issuer App->>Louis's Browser - Holder App:Holder-App/requestPresentation
+              Louis's Browser - Holder App->>Louis - Holder:Holder/selectHolderService 
+              Louis - Holder->>Louis's Browser - Holder App:holderServiceSelection
+              Louis's Browser - Holder App->>authn.io - Holder Service:HolderService/requestPresentation   
+              authn.io - Holder Service->>Louis - Holder:Holder/selectWallet    
+              Louis - Holder->>authn.io - Holder Service:walletSelection    
+              authn.io - Holder Service->>Louis - Holder:Holder/selectProfile  
+              Louis - Holder->>authn.io - Holder Service:profileSelection   
+              authn.io - Holder Service->>Louis's Browser - Holder App:HolderApp/requestedPresentation   
+              Louis's Browser - Holder App->>uscis.gov - Issuer App:IssuerApp/requestedPresentation   
+              uscis.gov - Issuer App->>Generic Issuer SAAS - Issuer Service:IssuerService/credentials/issue?\"providedVP\"   
+              Generic Issuer SAAS - Issuer Service->>uscis.gov - Issuer App:IssuerApp/credentials/issued?\"issuedCredentailsWrappedByIssuerApp\"    
+              uscis.gov - Issuer App->>Louis's Browser - Holder App:HolderApp/newCredential?\"issuedCredentialUnwrappedByIssuerApp\"    
+              Louis's Browser - Holder App->>Louis - Holder:Holder/selectHolderService 
+              Louis - Holder->>Louis's Browser - Holder App:holderServiceSelection   
+              Louis's Browser - Holder App->>authn.io - Holder Service:HolderService/storeCredentials?\"credentials\"    
+              authn.io - Holder Service->>Louis - Holder:Holder/selectWallet 
+              Louis - Holder->>authn.io - Holder Service:walletSelection   
+              authn.io - Holder Service->>Louis - Holder:Holder/selectProfile  
+              Louis - Holder->>authn.io - Holder Service:profileSelection   
+              authn.io - Holder Service->>authn.io - Holder Service:Store credentials 
+              authn.io - Holder Service->>Louis's Browser - Holder App:HolderApp/credentialsStored
             </pre>
             <figcaption>A sequence diagram example</figcaption>
           </figure>
