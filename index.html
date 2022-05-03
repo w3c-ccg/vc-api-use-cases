@@ -5,6 +5,7 @@
 <meta http-equiv='Content-Type' content='text/html;charset=utf-8' />
 <script src='https://www.w3.org/Tools/respec/respec-w3c-common' class='remove'></script>
 <script src='https://opencreds.github.io/vc-common/common.js' class='remove'></script>
+<script class="remove" src="https://cdn.jsdelivr.net/gh/digitalbazaar/respec-mermaid@1.0.0/dist/main.js"></script>
 <script src='./refs.js' class='remove'></script>
 <script class='remove'>
 var respecConfig = {
@@ -75,7 +76,9 @@ var respecConfig = {
   // This is important for Rec-track documents, do not copy a patent URI from a random
   // document unless you know what you're doing. If in doubt ask your friendly neighbourhood
   // Team Contact.
-  wgPatentURI:  "https://www.w3.org/2004/01/pp-impl/98922/status"
+  wgPatentURI:  "https://www.w3.org/2004/01/pp-impl/98922/status",
+  // This is for the mermaid rendering
+  preProcess: [window.respecMermaid.createFigures]
 };
 </script>
 
@@ -198,6 +201,58 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
          </figure>
         </p>
         <p><i>Contributed by: </i>Digital Bazaar</p>
+        <p><b>Mermaid</b>
+          <figure>
+            <pre class="diagram mermaid">
+          sequenceDiagram\n              
+            autonumber\n    
+              Lana - Issuer Admin->>uscis.gov - Issuer App:Configure to properly use Generic Issuer SAAS\n    
+              uscis.gov - Issuer App->>uscis.gov - Issuer App:Process configuration\n    
+              uscis.gov - Issuer App->>Generic Issuer SAAS - Issuer Service:Status check\n    
+              Generic Issuer SAAS - Issuer Service->>Generic Issuer SAAS - Issuer Service:Verify Authorization\n    
+              Generic Issuer SAAS - Issuer Service->>Generic Issuer SAAS - Issuer Service:Check business rules\n    
+              Generic Issuer SAAS - Issuer Service->>uscis.gov - Issuer App:All good\n    
+              uscis.gov - Issuer App->>Lana - Issuer Admin:Configuration complete\n    
+              authn.io - Holder Service->>Louis's Browser - Holder App:Holder-App/registerCredentialHandler\n    
+              Louis - Holder->>Louis's Browser - Holder App:uscis.gov\n    
+              Louis's Browser - Holder App->>uscis.gov - Issuer App:uscis.gov\n    
+              uscis.gov - Issuer App->>Louis's Browser - Holder App:uscis.gov/index.html\n    
+              Louis's Browser - Holder App->>Louis - Holder:uscis.gov/index.html\n    
+              Louis - Holder->>Louis's Browser - Holder App:Click \"Get PRC\"\n    
+              Louis's Browser - Holder App->>uscis.gov - Issuer App:uscis.gov/getPRC\n    
+              uscis.gov - Issuer App->>Louis's Browser - Holder App:request authentication\n    
+              Louis's Browser - Holder App->>Louis - Holder:request authentication\n    
+              Louis - Holder->>Louis's Browser - Holder App:provide authentication details\n    
+              Louis's Browser - Holder App->>uscis.gov - Issuer App:uscis.gov/authenticate?louiss-details\n    
+              uscis.gov - Issuer App->>uscis.gov - Issuer App:process provided authentication details\n    
+              uscis.gov - Issuer App->>Louis's Browser - Holder App:authentication succuss\n    
+              Louis's Browser - Holder App->>Louis - Holder:authentication succuss\n    
+              uscis.gov - Issuer App->>Louis's Browser - Holder App:Holder-App/requestPresentation\n    
+              Louis's Browser - Holder App->>Louis - Holder:Holder/selectHolderService\n    
+              Louis - Holder->>Louis's Browser - Holder App:holderServiceSelection\n    
+              Louis's Browser - Holder App->>authn.io - Holder Service:HolderService/requestPresentation\n    
+              authn.io - Holder Service->>Louis - Holder:Holder/selectWallet\n    
+              Louis - Holder->>authn.io - Holder Service:walletSelection\n    
+              authn.io - Holder Service->>Louis - Holder:Holder/selectProfile\n    
+              Louis - Holder->>authn.io - Holder Service:profileSelection\n    
+              authn.io - Holder Service->>Louis's Browser - Holder App:HolderApp/requestedPresentation\n    
+              Louis's Browser - Holder App->>uscis.gov - Issuer App:IssuerApp/requestedPresentation\n    
+              uscis.gov - Issuer App->>Generic Issuer SAAS - Issuer Service:IssuerService/credentials/issue?\"providedVP\"\n    
+              Generic Issuer SAAS - Issuer Service->>uscis.gov - Issuer App:IssuerApp/credentials/issued?\"issuedCredentailsWrappedByIssuerApp\"\n    
+              uscis.gov - Issuer App->>Louis's Browser - Holder App:HolderApp/newCredential?\"issuedCredentialUnwrappedByIssuerApp\"\n    
+              Louis's Browser - Holder App->>Louis - Holder:Holder/selectHolderService\n    
+              Louis - Holder->>Louis's Browser - Holder App:holderServiceSelection\n    
+              Louis's Browser - Holder App->>authn.io - Holder Service:HolderService/storeCredentials?\"credentials\"\n    
+              authn.io - Holder Service->>Louis - Holder:Holder/selectWallet\n    
+              Louis - Holder->>authn.io - Holder Service:walletSelection\n    
+              authn.io - Holder Service->>Louis - Holder:Holder/selectProfile\n    
+              Louis - Holder->>authn.io - Holder Service:profileSelection\n    
+              authn.io - Holder Service->>authn.io - Holder Service:Store credentials\n    
+              authn.io - Holder Service->>Louis's Browser - Holder App:HolderApp/credentialsStored\n
+            </pre>
+            <figcaption>A sequence diagram example</figcaption>
+          </figure>
+        </p>
     </section>
     <section>
       <h3>Refresh Expired Over Age Token</h3>
