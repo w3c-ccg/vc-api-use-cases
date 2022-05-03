@@ -299,7 +299,16 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
                 Riley's Wallet - Holder Service->>TruAge Website - Verifier App:truage.com//presentations/submissions?\"OverAgeVP\"     
                 TruAge Website - Verifier App->>TruAge Website - Verifier App:Extract contained VC     
                 TruAge Website - Verifier App->>TruAge Website - Verifier App:Check if subject of contained VC is signer of VP     
-                TruAge Website - Verifier App->>Generic Verifier SAAS - Verifier Service:genericverifier.com/presentations/verify?\"OverAgeVP\"     Generic Verifier SAAS - Verifier Service->>Generic Verifier SAAS - Verifier Service:Process provided VP     Generic Verifier SAAS - Verifier Service->>TruAge Website - Verifier App:truage.com/presentations/verified?\"VerificationResult\"     TruAge Website - Verifier App->>TruAge Website - Verifier App:Evaluate VP verification result     TruAge Website - Verifier App->>Generic Verifier SAAS - Verifier Service:genericverifier.com/credentials/verify?\"OverAgeVC\"     Generic Verifier SAAS - Verifier Service->>Generic Verifier SAAS - Verifier Service:Process provided VC     Generic Verifier SAAS - Verifier Service->>TruAge Website - Verifier App:truage.com/credentials/verified?\"VerificationResult\"     TruAge Website - Verifier App->>TruAge Website - Verifier App:Evaluate business rules     TruAge Website - Verifier App->>Generic Issuer SAAS - Issuer Service:genericissuer.com/credentials/issue?\"OverAgeVC\"     Generic Issuer SAAS - Issuer Service->>Generic Issuer SAAS - Issuer Service:Generate new Age Tokens     
+                TruAge Website - Verifier App->>Generic Verifier SAAS - Verifier Service:genericverifier.com/presentations/verify?\"OverAgeVP\"     
+                Generic Verifier SAAS - Verifier Service->>Generic Verifier SAAS - Verifier Service:Process provided VP     
+                Generic Verifier SAAS - Verifier Service->>TruAge Website - Verifier App:truage.com/presentations/verified?\"VerificationResult\"     
+                TruAge Website - Verifier App->>TruAge Website - Verifier App:Evaluate VP verification result     
+                TruAge Website - Verifier App->>Generic Verifier SAAS - Verifier Service:genericverifier.com/credentials/verify?\"OverAgeVC\"     
+                Generic Verifier SAAS - Verifier Service->>Generic Verifier SAAS - Verifier Service:Process provided VC     
+                Generic Verifier SAAS - Verifier Service->>TruAge Website - Verifier App:truage.com/credentials/verified?\"VerificationResult\"     
+                TruAge Website - Verifier App->>TruAge Website - Verifier App:Evaluate business rules     
+                TruAge Website - Verifier App->>Generic Issuer SAAS - Issuer Service:genericissuer.com/credentials/issue?\"OverAgeVC\"     
+                Generic Issuer SAAS - Issuer Service->>Generic Issuer SAAS - Issuer Service:Generate new Age Tokens     
                 Generic Issuer SAAS - Issuer Service->>TruAge Website - Verifier App:truage.com/credentials/issued?\"NewAgeTokenCredentials\"     
                 TruAge Website - Verifier App->>Riley's Wallet - Holder Service:rileyswallet.com/credentails/refreshed?\"NewAgeTokenCredentials\"m 
               </pre>
@@ -361,8 +370,10 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
                 Shipping Co. Website - Issuer App->>Generic Verifier SAAS - Verifier Service:genericverifier.com/presentations/verify?\"ChallengeResponseVP\"     
                 Generic Verifier SAAS - Verifier Service->>Generic Verifier SAAS - Verifier Service:Evaluate Challenge Response     
                 Generic Verifier SAAS - Verifier Service->>Shipping Co. Website - Issuer App:shippinco.com/presentations/verified?\"VerificationResultVP\"     
-                Shipping Co. Website - Issuer App->>Shipping Co. Website - Issuer App:Check business rules     Shipping Co. Website - Issuer App->>Shipping Co Database:Register Shiptment info     
-                Shipping Co Database->>Shipping Co. Website - Issuer App:info registered     Shipping Co. Website - Issuer App->>Kirk Company Enterprise Resource Planning App - Holder and Holder Service:Request for DID Atuh + Hazmat Info + HTTP Callback location #2     
+                Shipping Co. Website - Issuer App->>Shipping Co. Website - Issuer App:Check business rules     
+                Shipping Co. Website - Issuer App->>Shipping Co Database:Register Shiptment info     
+                Shipping Co Database->>Shipping Co. Website - Issuer App:info registered     
+                Shipping Co. Website - Issuer App->>Kirk Company Enterprise Resource Planning App - Holder and Holder Service:Request for DID Atuh + Hazmat Info + HTTP Callback location #2     
                 Kirk Company Enterprise Resource Planning App - Holder and Holder Service->>Kirk Company Enterprise Resource Planning App - Holder and Holder Service:Generate VP containing Hazmat Info     
                 Kirk Company Enterprise Resource Planning App - Holder and Holder Service->>Shipping Co. Website - Issuer App:shippingco.com/presenations/submissions/HTTPCallback2?\"HazmatVP\"     
                 Shipping Co. Website - Issuer App->>Generic Verifier SAAS - Verifier Service:genericverifier.com/presentations/verify?\"HazmatVP\"     
@@ -430,7 +441,8 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
                 Kenzie's Wallet - Holder Service->>backgroundcheck.com - Issuer App:backgroundcheck.com/getBackgrounCheck/credentials/issue?\"RequestedInfo\"     
                 backgroundcheck.com - Issuer App->>backgroundcheck.com - Issuer App:evaluate requested info     
                 backgroundcheck.com - Issuer App->>Generic Issuer - Issuer Service:genericissuer.com/credentials/issue?\"backgrounCheckCredential+info\"     
-                Generic Issuer - Issuer Service->>backgroundcheck.com - Issuer App:issued VC     backgroundcheck.com - Issuer App->>Kenzie's Wallet - Holder Service:kenzieswallet.com/credentials/recieve?\"VC\"     
+                Generic Issuer - Issuer Service->>backgroundcheck.com - Issuer App:issued VC     
+                backgroundcheck.com - Issuer App->>Kenzie's Wallet - Holder Service:kenzieswallet.com/credentials/recieve?\"VC\"     
                 Kenzie's Wallet - Holder Service->>Kenzie - Holder:Notify B Ready     
                 Kenzie - Holder->>jobapplications.com - Verifier App:jobapplications.com/presenations/submit?\"application\"     
                 jobapplications.com - Verifier App->>Kenzie - Holder:Request Credentials A and B     
