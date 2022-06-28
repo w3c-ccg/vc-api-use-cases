@@ -169,477 +169,7 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
   <section>
     <h2>Use Cases</h2>
 
-    <section>
-      <h3>Get Digital Permanent Resident Card</h3>
-      <p>Lana is an IT administrator for the United States Citizenship and Immigration Services (USCIS) 
-        Digital Permanent Resident Card (PRC) program. She configures the USCIS website to issue digital 
-        Permanent Resident Cards by utilizing industry standard issuer software and setting up the appropriate 
-        HTTP API Authorizations between systems. Legal Permanent Residents, upon receiving their physical card 
-        in the mail, are given the USCIS website URL, a login account, and PIN code that they may use to manage 
-        their account and pick up their digital Permanent Resident Card. When Louis, a Legal Permanent Resident, 
-        requests a digital Permanent Resident Card via the USCIS website, he authenticates using his login account 
-        and once authenticated, provides a DID associated with his client-side digital wallet against which the 
-        website will issue VCs. The USCIS website then connects to the digital card issuing server, which builds 
-        the Verifiable Credential Permanent Resident Card using Louis' account data, and then utilizes industry 
-        standard HTTP APIs to issue the Permanent Resident Card as a Verifiable Credential. Louis can then use his 
-        Digital Permanent Resident Card in online scenarios when he needs to prove his resident status, such as 
-        when applying for a job.</p>
-        <p><b>Requirements: </b><ul>
-            <li>1. Verify DID Authentication Presentation,</li>
-            <li>2. API Authorization,</li>
-            <li>3. Issue Verifiable Credential,</li>
-            <li>X. Website as Consumer</li>
-          </ul></p>
-        <p><b>Sequence Diagram</b>
-          <figure>
-            <img alt="2.1 Sequence Diagram" 
-                 style="display:block; margin:auto"
-                 src="2.1 - Get Digital Permanent Resident Card.png" />
-            <figcaption>
-              Get Digital Permanent Resident Card Sequence Diagram
-            </figcaption>
-         </figure>
-        </p>
-        <p><i>Contributed by: </i>Digital Bazaar</p>
-        <p><b>Mermaid</b>
-          <figure>
-            <pre class="diagram mermaid">
-          sequenceDiagram             
-            autonumber  
-              Lana - Issuer Admin->>uscis.gov - Issuer App:Configure to properly use Generic Issuer SAAS    
-              uscis.gov - Issuer App->>uscis.gov - Issuer App:Process configuration    
-              uscis.gov - Issuer App->>Generic Issuer SAAS - Issuer Service:Status check    
-              Generic Issuer SAAS - Issuer Service->>Generic Issuer SAAS - Issuer Service:Verify Authorization    
-              Generic Issuer SAAS - Issuer Service->>Generic Issuer SAAS - Issuer Service:Check business rules    
-              Generic Issuer SAAS - Issuer Service->>uscis.gov - Issuer App:All good    
-              uscis.gov - Issuer App->>Lana - Issuer Admin:Configuration complete    
-              authn.io - Holder Service->>Louis's Browser - Holder App:Holder-App/registerCredentialHandler    
-              Louis - Holder->>Louis's Browser - Holder App:uscis.gov    
-              Louis's Browser - Holder App->>uscis.gov - Issuer App:uscis.gov    
-              uscis.gov - Issuer App->>Louis's Browser - Holder App:uscis.gov/index.html    
-              Louis's Browser - Holder App->>Louis - Holder:uscis.gov/index.html    
-              Louis - Holder->>Louis's Browser - Holder App:Click \"Get PRC\"    
-              Louis's Browser - Holder App->>uscis.gov - Issuer App:uscis.gov/getPRC    
-              uscis.gov - Issuer App->>Louis's Browser - Holder App:request authentication   
-              Louis's Browser - Holder App->>Louis - Holder:request authentication    
-              Louis - Holder->>Louis's Browser - Holder App:provide authentication details   
-              Louis's Browser - Holder App->>uscis.gov - Issuer App:uscis.gov/authenticate?louiss-details   
-              uscis.gov - Issuer App->>uscis.gov - Issuer App:process provided authentication details   
-              uscis.gov - Issuer App->>Louis's Browser - Holder App:authentication succus    
-              Louis's Browser - Holder App->>Louis - Holder:authentication succuss  
-              uscis.gov - Issuer App->>Louis's Browser - Holder App:Holder-App/requestPresentation
-              Louis's Browser - Holder App->>Louis - Holder:Holder/selectHolderService 
-              Louis - Holder->>Louis's Browser - Holder App:holderServiceSelection
-              Louis's Browser - Holder App->>authn.io - Holder Service:HolderService/requestPresentation   
-              authn.io - Holder Service->>Louis - Holder:Holder/selectWallet    
-              Louis - Holder->>authn.io - Holder Service:walletSelection    
-              authn.io - Holder Service->>Louis - Holder:Holder/selectProfile  
-              Louis - Holder->>authn.io - Holder Service:profileSelection   
-              authn.io - Holder Service->>Louis's Browser - Holder App:HolderApp/requestedPresentation   
-              Louis's Browser - Holder App->>uscis.gov - Issuer App:IssuerApp/requestedPresentation   
-              uscis.gov - Issuer App->>Generic Issuer SAAS - Issuer Service:IssuerService/credentials/issue?\"providedVP\"   
-              Generic Issuer SAAS - Issuer Service->>uscis.gov - Issuer App:IssuerApp/credentials/issued?\"issuedCredentailsWrappedByIssuerApp\"    
-              uscis.gov - Issuer App->>Louis's Browser - Holder App:HolderApp/newCredential?\"issuedCredentialUnwrappedByIssuerApp\"    
-              Louis's Browser - Holder App->>Louis - Holder:Holder/selectHolderService 
-              Louis - Holder->>Louis's Browser - Holder App:holderServiceSelection   
-              Louis's Browser - Holder App->>authn.io - Holder Service:HolderService/storeCredentials?\"credentials\"    
-              authn.io - Holder Service->>Louis - Holder:Holder/selectWallet 
-              Louis - Holder->>authn.io - Holder Service:walletSelection   
-              authn.io - Holder Service->>Louis - Holder:Holder/selectProfile  
-              Louis - Holder->>authn.io - Holder Service:profileSelection   
-              authn.io - Holder Service->>authn.io - Holder Service:Store credentials 
-              authn.io - Holder Service->>Louis's Browser - Holder App:HolderApp/credentialsStored
-            </pre>
-            <figcaption>UC2.1 Mermaid</figcaption>
-          </figure>
-        </p>
-    </section>
-    <section>
-      <h3>Refresh Expired Over Age Token</h3>
-      <p>Riley has onboarded into the TruAge digital age verification system, which has provided her 
-        with a set of Verifiable Credentials that she stores in her digital wallet. A subset of the 
-        Verifiable Credentials that she has received are digitally signed single-use age tokens that 
-        only assert that she is above the age of 21 and are marked as "used" by the TruAge system 
-        when they are submitted as a part of an age-restricted goods purchase, such as buying a 
-        bottle of wine. Eventually, Riley runs out of single use age tokens in her digital wallet. 
-        The digital wallet keeps track of which tokens have been used and once all tokens have been 
-        consumed, contacts a refresh service endpoint listed in one of the TruAge credentials that 
-        provides new over-age tokens. The digital wallet requests a new set of tokens by hitting the 
-        HTTP API of this VC-refresh service listed in the “refreshService” array and POSTing the 
-        original Verifiable Credential containing the refresh service description. The HTTP API 
-        ensures that it has received a valid credential and reissues a set of new digitally signed 
-        single-use age tokens in the response.
-      </p>
-        <p><b>Requirements: </b><ul>
-          <li>1. Start Presentation Flow,</li>
-          <li>2. Verify Presentation, </li>
-          <li>3. Issue Verifiable Credential, </li>
-          <li>4. Refresh Credential</li>
-          </ul></p>
-          <p><b>Sequence Diagram</b>
-            <figure>
-              <img alt="2.2 Sequence Diagram" 
-                   style="display:block; margin:auto"
-                   src="2.2 - Refresh Expired Over Age Token.png" />
-              <figcaption>
-                Refresh Expired Over Age Token Sequence Diagram
-              </figcaption>
-           </figure>
-          </p>
-          <p><b>Mermaid</b>
-            <figure>
-              <pre class="diagram mermaid">
-            sequenceDiagram               
-              autonumber     
-                Riley's Wallet - Holder Service->>Riley's Wallet - Holder Service:Notice out of Age Tokens     
-                Riley's Wallet - Holder Service->>TruAge Website - Verifier App:truage.com/credentials/refresh     
-                TruAge Website - Verifier App->>Riley's Wallet - Holder Service:Domain&Challenge w/ request for expired VC     
-                Riley's Wallet - Holder Service->>Riley's Wallet - Holder Service:Generate VP containing Over Age VC     
-                Riley's Wallet - Holder Service->>Riley's Wallet - Holder Service:Sign generated VP     
-                Riley's Wallet - Holder Service->>TruAge Website - Verifier App:truage.com//presentations/submissions?\"OverAgeVP\"     
-                TruAge Website - Verifier App->>TruAge Website - Verifier App:Extract contained VC     
-                TruAge Website - Verifier App->>TruAge Website - Verifier App:Check if subject of contained VC is signer of VP     
-                TruAge Website - Verifier App->>Generic Verifier SAAS - Verifier Service:genericverifier.com/presentations/verify?\"OverAgeVP\"     
-                Generic Verifier SAAS - Verifier Service->>Generic Verifier SAAS - Verifier Service:Process provided VP     
-                Generic Verifier SAAS - Verifier Service->>TruAge Website - Verifier App:truage.com/presentations/verified?\"VerificationResult\"     
-                TruAge Website - Verifier App->>TruAge Website - Verifier App:Evaluate VP verification result     
-                TruAge Website - Verifier App->>Generic Verifier SAAS - Verifier Service:genericverifier.com/credentials/verify?\"OverAgeVC\"     
-                Generic Verifier SAAS - Verifier Service->>Generic Verifier SAAS - Verifier Service:Process provided VC     
-                Generic Verifier SAAS - Verifier Service->>TruAge Website - Verifier App:truage.com/credentials/verified?\"VerificationResult\"     
-                TruAge Website - Verifier App->>TruAge Website - Verifier App:Evaluate business rules     
-                TruAge Website - Verifier App->>Generic Issuer SAAS - Issuer Service:genericissuer.com/credentials/issue?\"OverAgeVC\"     
-                Generic Issuer SAAS - Issuer Service->>Generic Issuer SAAS - Issuer Service:Generate new Age Tokens     
-                Generic Issuer SAAS - Issuer Service->>TruAge Website - Verifier App:truage.com/credentials/issued?\"NewAgeTokenCredentials\"     
-                TruAge Website - Verifier App->>Riley's Wallet - Holder Service:rileyswallet.com/credentails/refreshed?\"NewAgeTokenCredentials\"m 
-              </pre>
-              <figcaption>UC2.2 Mermaid</figcaption>
-            </figure>
-          </p>
-        <p><i>Contributed by: </i>Digital Bazaar</p>
-    </section>
 
-    <section>
-      <h3>Execute Multi-stage Presentation Workflow</h3>
-      <p>Description: Ignio, a logistics manager for "Kirk Company", would like to submit all necessary paperwork 
-        to send his company's products across international boundaries. These products are considered hazardous 
-        chemicals and thus are regulated, requiring extra paperwork to be filed before transportation is approved 
-        across boundaries. Some hazardous material shipments are different resulting in different required paperwork, 
-        and Ignio wants to automate as much of the process as possible with Shippers, 
-        their 3rd Party Logistics company (3PL). There are a set of verifiable credentials that Ignio is willing to 
-        share with Customs as well as the transportation company. 
-      </p>
-      <p>When Kirk starts a shipping workflow, his company's systems initiate the workflow by contacting a known 
-        location on the Shipper's Website. A presentation exchange occurs to first DIDAuth the company and send 
-        generic mandatory information for any shipment; if and only if the information provided requires additional 
-        information‒in this case a hazmat certification‒a second exchange is initiated to request this outstanding/required 
-        hazmat info.  Once this is received, Shippers can send back a Bill of Lading in VC form. The two (or more) 
-        credential exchanges are composable and idempotent, ending in a valid BoL if successful.
-      </p>
-        <p><b>Requirements: </b><ul>
-          <li>1. Verify DID Authentication Presentation, </li>
-          <li>2. API Authorization, </li>
-          <li>3. Issue Verifiable Credential, </li>
-          <li>X. Website as Consumer, </li>
-          <li>X. continuous workflow</li>
-          </ul></p>
-          <p><b>Sequence Diagram</b>
-            <figure>
-              <img alt="2.3 Sequence Diagram" 
-                   style="display:block; margin:auto"
-                   src="2.3 - Execute Multi-stage Presentation Workflow.png" />
-              <figcaption>
-                Execute Multi-stage Presentation Workflow Sequence Diagram
-              </figcaption>
-           </figure>
-          </p>
-          <p><b>Mermaid</b>
-            <figure>
-              <pre class="diagram mermaid">
-            sequenceDiagram               
-              autonumber     
-                Ignio - Logistic Manager->>Kirk Company Enterprise Resource Planning App - Holder and Holder Service:Verify all necessary info ready to request Bill of Lading (BoL)     
-                Kirk Company Enterprise Resource Planning App - Holder and Holder Service->>Ignio - Logistic Manager:Display requested data     
-                Ignio - Logistic Manager->>Ignio - Logistic Manager:Evaluate data     Ignio - Logistic Manager->>Ignio - Logistic Manager:Decide ready to get BoL     
-                Ignio - Logistic Manager->>Kirk Company Enterprise Resource Planning App - Holder and Holder Service:Trigger request for BoL     
-                Kirk Company Enterprise Resource Planning App - Holder and Holder Service->>Shipping Co. Website - Issuer App:shippingco.com/credentails/issue?\"BillOfLading\"     
-                Shipping Co. Website - Issuer App->>Generic Verifier SAAS - Verifier Service:genericverifier.com/presentations/available     
-                Generic Verifier SAAS - Verifier Service->>Shipping Co. Website - Issuer App:Challenge for DID Auth     
-                Shipping Co. Website - Issuer App->>Kirk Company Enterprise Resource Planning App - Holder and Holder Service:Domain&Challenge + Shipping Info + HTTP Callback location     
-                Kirk Company Enterprise Resource Planning App - Holder and Holder Service->>Kirk Company Enterprise Resource Planning App - Holder and Holder Service:Generate challenge response VP which contains requested Shipping Info VCs     
-                Kirk Company Enterprise Resource Planning App - Holder and Holder Service->>Shipping Co. Website - Issuer App:shippingco.com/presentations/submissions/HTTPCallback?\"ChallengeResponseVP\"     
-                Shipping Co. Website - Issuer App->>Generic Verifier SAAS - Verifier Service:genericverifier.com/presentations/verify?\"ChallengeResponseVP\"     
-                Generic Verifier SAAS - Verifier Service->>Generic Verifier SAAS - Verifier Service:Evaluate Challenge Response     
-                Generic Verifier SAAS - Verifier Service->>Shipping Co. Website - Issuer App:shippinco.com/presentations/verified?\"VerificationResultVP\"     
-                Shipping Co. Website - Issuer App->>Shipping Co. Website - Issuer App:Check business rules     
-                Shipping Co. Website - Issuer App->>Shipping Co Database:Register Shiptment info     
-                Shipping Co Database->>Shipping Co. Website - Issuer App:info registered     
-                Shipping Co. Website - Issuer App->>Kirk Company Enterprise Resource Planning App - Holder and Holder Service:Request for DID Atuh + Hazmat Info + HTTP Callback location #2     
-                Kirk Company Enterprise Resource Planning App - Holder and Holder Service->>Kirk Company Enterprise Resource Planning App - Holder and Holder Service:Generate VP containing Hazmat Info     
-                Kirk Company Enterprise Resource Planning App - Holder and Holder Service->>Shipping Co. Website - Issuer App:shippingco.com/presenations/submissions/HTTPCallback2?\"HazmatVP\"     
-                Shipping Co. Website - Issuer App->>Generic Verifier SAAS - Verifier Service:genericverifier.com/presentations/verify?\"HazmatVP\"     
-                Generic Verifier SAAS - Verifier Service->>Generic Verifier SAAS - Verifier Service:Evaluate Hazmat VP     
-                Generic Verifier SAAS - Verifier Service->>Shipping Co. Website - Issuer App:shippinco.com/presentations/verified?\"VerificationResultVP\"     
-                Shipping Co. Website - Issuer App->>Shipping Co. Website - Issuer App:Check business rules     
-                Shipping Co. Website - Issuer App->>Shipping Co Database:Register Hazmat Info     
-                Shipping Co Database->>Shipping Co. Website - Issuer App:info registered     
-                Shipping Co. Website - Issuer App->>Shipping Co Database:Request Shipment and Hazmat info     
-                Shipping Co Database->>Shipping Co. Website - Issuer App:requested info     
-                Shipping Co. Website - Issuer App->>Shipping Co. Website - Issuer App:Generate BoLRequestVP     
-                Shipping Co. Website - Issuer App->>Generic Issuer SAAS - Issuer Service:genericissuer.com/credentials/issue?\"BoLRequestVP\"     
-                Generic Issuer SAAS - Issuer Service->>Generic Issuer SAAS - Issuer Service:Check business rules     
-                Generic Issuer SAAS - Issuer Service->>Shipping Co. Website - Issuer App:shippingco.com/credentials/issued?\"BoL\"     
-                Shipping Co. Website - Issuer App->>Kirk Company Enterprise Resource Planning App - Holder and Holder Service:kirkcompany.com/credentails/newCredential?\"BoL\"     
-                Kirk Company Enterprise Resource Planning App - Holder and Holder Service->>Ignio - Logistic Manager:BoL Ready notice 
-              </pre>
-              <figcaption>UC2.3 Mermaid</figcaption>
-            </figure>
-          </p>
-        <p><i>Contributed by: </i>Digital Bazaar</p>
-    </section>
-
-    <section>
-      <h3>Aggregated Credential Workflow</h3>
-      <p>Tod is using digital credentials to apply for a service/qualify for a job/gain access to a programme. 
-        Some of his credentials are available today, some will need to be provided when they are ready 
-        (for example, a criminal background check can take 24-48 hrs to process). He would like these credentials to 
-        be presented to the Verifier (service provider) when ready, without having to constantly return to the Verifier 
-        (service provider) and deliver them "by hand". He should be able to have them released from his Holder directly 
-        as they become available.</p>
-        <p><b>Requirements: </b><ul>
-          <li>X. Verifiable Presentation by policy, </li>
-          <li>X. Automated notifications, </li>
-          <li>X. Asynchronous release, </li>
-          <li>X. Authorized/pre-consented authorization, </li>
-          <li>X. VP formed with future VCs ("stateful VP")</li>
-          <li>X. Present Credentials issued by third party?, </li>
-          </ul></p>
-          <p><b>Sequence Diagram</b>
-            <figure>
-              <img alt="2.4 Sequence Diagram" 
-                   style="display:block; margin:auto"
-                   src="2.4 - Aggregated Credential Workflow.png" />
-              <figcaption>
-                Aggregated Credential Workflow Sequence Diagram
-              </figcaption>
-           </figure>
-          </p>
-          <p><b>Mermaid</b>
-            <figure>
-              <pre class="diagram mermaid">
-            sequenceDiagram               
-              autonumber     
-                Kenzie - Holder->>jobapplications.com - Verifier App:jobapplications.com/presenations/submit?\"application\"     
-                jobapplications.com - Verifier App->>jobapplications.com - Verifier App:process application     
-                jobapplications.com - Verifier App->>Kenzie - Holder:Request credentials A and B     
-                Kenzie - Holder->>Kenzie's Wallet - Holder Service:Check for A and B     
-                Kenzie's Wallet - Holder Service->>Kenzie - Holder:Display A, B not found     
-                Kenzie - Holder->>Kenzie's Wallet - Holder Service:Need B     
-                Kenzie's Wallet - Holder Service->>backgroundcheck.com - Issuer App:backgroundcheck.com/index.html     
-                backgroundcheck.com - Issuer App->>Kenzie's Wallet - Holder Service:index.html     
-                Kenzie's Wallet - Holder Service->>backgroundcheck.com - Issuer App:backgroundcheck.com/getBackgroundCheck     
-                backgroundcheck.com - Issuer App->>Kenzie's Wallet - Holder Service:getBackgoundCheck.html     
-                Kenzie's Wallet - Holder Service->>backgroundcheck.com - Issuer App:backgroundcheck.com/getBackgrounCheck/credentials/issue?\"RequestedInfo\"     
-                backgroundcheck.com - Issuer App->>backgroundcheck.com - Issuer App:evaluate requested info     
-                backgroundcheck.com - Issuer App->>Generic Issuer - Issuer Service:genericissuer.com/credentials/issue?\"backgrounCheckCredential+info\"     
-                Generic Issuer - Issuer Service->>backgroundcheck.com - Issuer App:issued VC     
-                backgroundcheck.com - Issuer App->>Kenzie's Wallet - Holder Service:kenzieswallet.com/credentials/recieve?\"VC\"     
-                Kenzie's Wallet - Holder Service->>Kenzie - Holder:Notify B Ready     
-                Kenzie - Holder->>jobapplications.com - Verifier App:jobapplications.com/presenations/submit?\"application\"     
-                jobapplications.com - Verifier App->>Kenzie - Holder:Request Credentials A and B     
-                Kenzie - Holder->>Kenzie's Wallet - Holder Service:Send A and B to jobapplications.com     
-                Kenzie's Wallet - Holder Service->>jobapplications.com - Verifier App:jobapplications.com/presentations/submit?\"application with A and B\"     
-                jobapplications.com - Verifier App->>Generic Verifier - Verifier Service:genericVerifer.com/presentations/verify?\"applicationwith A and B\"     
-                Generic Verifier - Verifier Service->>jobapplications.com - Verifier App:Verification Result     
-                jobapplications.com - Verifier App->>jobapplications.com - Verifier App:process application     
-                jobapplications.com - Verifier App->>Kenzie's Wallet - Holder Service:Application Accepted     
-                Kenzie's Wallet - Holder Service->>Kenzie - Holder:Application Accepted 
-              </pre>
-              <figcaption>UC2.4 Mermaid</figcaption>
-            </figure>
-          </p>
-        <p><i>Contributed by:</i>SecureKey Technologies Inc.</p>
-    </section>
-
-    <section>
-      <h3>Submit/Sign/Verify a test credential to a licensure system</h3>
-      <p>A student, Shabazz, wants to publish their MBLEx test results from an education test provider, 
-        Massage Therapy Test Corp. Massage Therapy Test Corp proxies their authority to sign to a service provider, 
-        SSI Ventures.  SSI Ventures issues Shabazz a VC when he logs into his Massage Therapy Test Corp account 
-        and enables his browser-based SSI Wallet, Billfold.  The signed VC is then stored in Shabazz’ Billfold™ Wallet 
-        to be presented elsewhere.
-      </p>
-      <p>In a separate session, Shabazz logs into a web portal of a State Massage Therapy licensure system to 
-        apply for his Massage Therapy license. The licensure specialist at the State checks the issuer using a 
-        State accreditation system, then checks the signature on the test results VC and ingests the 
-        credential’s payload. The licensure specialist then finalizes their workflow and issues 
-        Shabazz a Massage Therapy license.
-      </p>
-       <p><b>Requirements: </b></li>
-          <li>1. VC Issuance</li>
-          <li>2. VC Presentation</li>
-          <li><i> 3. Issuer Lookup (is that business logic?),</i></li>
-          <li>4. VP Verification</li>
-          <li>5. VC Verification</li>
-          <li>X. Website as Consumer.</li>
-          <li>X. Issuance-as-a-Service, </li>
-         </ul></p>
-         <p><b>Sequence Diagram</b>
-          <figure>
-            <img alt="2.5 Sequence Diagram" 
-                 style="display:block; margin:auto"
-                 src="2.5 - Submit_Sign_Verify a test credential to a licensure system.png" />
-            <figcaption>
-              Submit_Sign_Verify a test credential to a licensure system Sequence Diagram
-            </figcaption>
-         </figure>
-        </p>
-        <p><b>Mermaid</b>
-          <figure>
-            <pre class="diagram mermaid">
-          sequenceDiagram               
-            autonumber     
-              Shabazz  (Student) - Holder->>Shabazz's Browser - Holder App:massagetherapytestcorp.com     
-              Shabazz's Browser - Holder App->>Massage Therapy Test Corp Webpage - Issuer App:messagetherapytestcorp.com/index.html  
-              Massage Therapy Test Corp Webpage - Issuer App->>Shabazz's Browser - Holder App:index.html     
-              Shabazz's Browser - Holder App->>Shabazz  (Student) - Holder:display webpage     
-              Shabazz  (Student) - Holder->>Shabazz's Browser - Holder App:Authnticate     
-              Shabazz's Browser - Holder App->>Massage Therapy Test Corp Webpage - Issuer App:messagetherapytestcorp.com/authenticate 
-              Massage Therapy Test Corp Webpage - Issuer App->>Shabazz's Browser - Holder App:authentication challenge     
-              Shabazz's Browser - Holder App->>Shabazz  (Student) - Holder:challenge     
-              Shabazz  (Student) - Holder->>Shabazz's Browser - Holder App:authentication information     
-              Shabazz's Browser - Holder App->>Massage Therapy Test Corp Webpage - Issuer App:messagetherapytestcorp.com/authenticate?\"info\"   
-              Massage Therapy Test Corp Webpage - Issuer App->>Massage Therapy Test Corp Webpage - Issuer App:process authentication information     
-              Massage Therapy Test Corp Webpage - Issuer App->>Shabazz's Browser - Holder App:authentication success     
-              Shabazz's Browser - Holder App->>Shabazz  (Student) - Holder:authentication success     
-              Shabazz  (Student) - Holder->>Shabazz's Browser - Holder App:get Message Therapy Credential     
-              Shabazz's Browser - Holder App->>Massage Therapy Test Corp Webpage - Issuer App:messagetherapytestcorp.com/getTherapyCredential     
-              Massage Therapy Test Corp Webpage - Issuer App->>Shabazz's Browser - Holder App:DID Auth Challenge     
-              Shabazz's Browser - Holder App->>Shabazz  (Student) - Holder:Select a wallet     
-              Shabazz  (Student) - Holder->>Shabazz's Browser - Holder App:Select Wallet     
-              Shabazz's Browser - Holder App->>Shabazz's Wallet - Holder Service:Request DID Auth Challenge Response     
-              Shabazz's Wallet - Holder Service->>Shabazz's Wallet - Holder Service:generate DID Auth response     
-              Shabazz's Wallet - Holder Service->>Shabazz's Browser - Holder App:DID Auth response     
-              Shabazz's Browser - Holder App->>Massage Therapy Test Corp Webpage - Issuer App:messagetherapytestcorp.com/getTherapyCredential/didAuth?\"DIDAuthResponse\"     
-              Massage Therapy Test Corp Webpage - Issuer App->>Massage Therapy Test Corp Webpage - Issuer App:Process response     
-              Massage Therapy Test Corp Webpage - Issuer App->>SSI Venture - Issuer Service:ssiventures.com/messagetestcorp/credentials/issue?\"VPfromDIDAuth\"     
-              SSI Venture - Issuer Service->>Massage Therapy Test Corp Webpage - Issuer App:messagetherapytestcorp.com/credentials/issued?\"issuedCredentailsWrappedByIssuerApp\"     
-              Massage Therapy Test Corp Webpage - Issuer App->>Shabazz's Browser - Holder App:HolderApp/newCredential?\"issuedCredentialUnwrappedByIssuerApp\"     
-              Shabazz's Browser - Holder App->>Shabazz's Wallet - Holder Service:store credential     
-              Shabazz's Wallet - Holder Service->>Shabazz's Browser - Holder App:sucess     
-              Shabazz's Browser - Holder App->>Shabazz  (Student) - Holder:Credential successfully stored in wallet     
-              Shabazz  (Student) - Holder->>Shabazz's Browser - Holder App:Go to Floyd's Message Therapy Webpage     
-              Shabazz's Browser - Holder App->>floydsmassagetheray.com - Verifier App:floydsmessagetherapy.com/index.html     
-              floydsmassagetheray.com - Verifier App->>Shabazz's Browser - Holder App:index.html     
-              Shabazz's Browser - Holder App->>Shabazz  (Student) - Holder:display page     
-              Shabazz  (Student) - Holder->>Shabazz's Browser - Holder App:Submit employment application     
-              Shabazz's Browser - Holder App->>floydsmassagetheray.com - Verifier App:floydsmessagetherapy.com/employmentApp     
-              floydsmassagetheray.com - Verifier App->>Shabazz's Browser - Holder App:Domain&Challenge     
-              Shabazz's Browser - Holder App->>Shabazz  (Student) - Holder:Select a wallet     
-              Shabazz  (Student) - Holder->>Shabazz's Browser - Holder App:wallet selection     
-              Shabazz's Browser - Holder App->>Shabazz's Wallet - Holder Service:Domain&Challenge     
-              Shabazz's Wallet - Holder Service->>Shabazz's Wallet - Holder Service:generate VP     
-              Shabazz's Wallet - Holder Service->>Shabazz's Browser - Holder App:Challenge response VP     
-              Shabazz's Browser - Holder App->>floydsmassagetheray.com - Verifier App:floydsmessagetherapy.com/empoymentApp/challengeResponse?\"VP\"     
-              floydsmassagetheray.com - Verifier App->>floydsmassagetheray.com - Verifier App:Process response     
-              floydsmassagetheray.com - Verifier App->>Shabazz's Browser - Holder App:request application with State License VC     
-              Shabazz's Browser - Holder App->>Shabazz's Wallet - Holder Service:Request VP     
-              Shabazz's Wallet - Holder Service->>Shabazz's Wallet - Holder Service:Generate VP     
-              Shabazz's Wallet - Holder Service->>Shabazz's Browser - Holder App:VP w/Application and State License     
-              Shabazz's Browser - Holder App->>floydsmassagetheray.com - Verifier App:floydsmessagetherapy.com/presenatations/submit?\"Application wtih State License VP\"     
-              floydsmassagetheray.com - Verifier App->>State Verifier - Verifier Service:stateverifier.com/credentials/verify?\"StateLicenseVC\"     
-              State Verifier - Verifier Service->>floydsmassagetheray.com - Verifier App:Verification Result     
-              floydsmassagetheray.com - Verifier App->>floydsmassagetheray.com - Verifier App:process application     
-              floydsmassagetheray.com - Verifier App->>Shabazz's Browser - Holder App:Application submitted     
-              Shabazz's Browser - Holder App->>Shabazz  (Student) - Holder:Application submitted 
-            </pre>
-            <figcaption>UC2.5 Mermaid</figcaption>
-          </figure>
-        </p>
-       <p><i>Contributed by:</i>RANDA Solutions</p>
-    </section>
-
-    <section>
-      <h3>Supply Chain Import</h3>
-      <p>In order to export steel products to the global market, Steel Mills Global must prove 
-        the quality of their products. For this, they rely on Inspectors & Co, an internationally 
-        recognized steel testing company. Upon inspection, Inspectors & Co issues a 
-        Mill Test Report VC to Steel Mills Global.</p>
-      <p>Steel, Inc. imports and distributes steel products domestically. Negotiating a shipment 
-        Steel Mills Global presents the MTR as proof of product quality. Steel Inc. verifies the
-        MTR VP and accepts the shipment. </p>
-      <p>Steel, Inc. initiates the importing procedures, starting out self-issuing an 
-        Import Declaration Form VC. The MTR and IDF are jointly presented to the Customs 
-        authority which verifies the VP. Upon verification the customs release is granted for goods import. </p>
-        </p>
-      <p><i>Note: These VC types are taken from the <a class="self-link" aria-label="§" href="">Traceability Vocabulary</a>, a W3C-CCG work item for supply chain use-cases.</i></p>
-        <p><b>Requirements:</b><ul>
-          <li>1. VC Issuance,</li>
-          <li><i>X. Self-Issuance,</i></li>
-          <li>X. Re-Presentation and VC+VP Verification across a common supply chain process.</li>
-          </ul></p>
-        <p><b>Sequence Diagram</b>
-          <figure>
-            <img alt="2.6 Sequence Diagram" 
-                 style="display:block; margin:auto"
-                 src="2.6 - Supply Chain Import.png" />
-            <figcaption>
-              Supply Chain Import Sequence Diagram
-            </figcaption>
-         </figure>
-        </p>
-        <p><b>Mermaid</b>
-          <figure>
-            <pre class="diagram mermaid">
-              sequenceDiagram               
-              autonumber     
-                Holder - Steel Mills Global (SMG)->>Holder App -  SMG Enterprise API:getMillTestReportVC     
-                Holder App -  SMG Enterprise API->>Issuer App - Inspectors & Co Enterprise Software:inspectorandco.com/credentials/issue     
-                Issuer App - Inspectors & Co Enterprise Software->>Lacy - Inspectors & Co Inspector:New inspection requested     
-                Lacy - Inspectors & Co Inspector->>Lacy - Inspectors & Co Inspector:Completes SMG Inspection     
-                Lacy - Inspectors & Co Inspector->>Issuer App - Inspectors & Co Enterprise Software:Issue Mill Test Report to SMG     
-                Issuer App - Inspectors & Co Enterprise Software->>Issuer Service - Inspectors & Co Issuer:IandCoIssuer.com/credentials/issue     
-                Issuer Service - Inspectors & Co Issuer->>Issuer Service - Inspectors & Co Issuer:Process request     
-                Issuer Service - Inspectors & Co Issuer->>Issuer App - Inspectors & Co Enterprise Software:Issued Credentials     
-                Issuer App - Inspectors & Co Enterprise Software->>Holder App -  SMG Enterprise API:smgApi.com/credentials/recieve?\"MillTestReportVP\"     
-                Holder App -  SMG Enterprise API->>Holder App -  SMG Enterprise API:Process returned VP     
-                Holder App -  SMG Enterprise API->>Holder Service - SMG Wallet:smgWallet.com/credentials/store?\"MTRVP\"     
-                Holder Service - SMG Wallet->>Holder Storage - SMG EDV/KMS:smgEdv.com/credentials/store?\"MTRVP\"     
-                Holder Storage - SMG EDV/KMS->>Holder Storage - SMG EDV/KMS:Store credentials     
-                Holder Storage - SMG EDV/KMS->>Holder Service - SMG Wallet:Storage success and access info     
-                Holder Service - SMG Wallet->>Holder App -  SMG Enterprise API:Storage acknowledged     
-                Holder App -  SMG Enterprise API->>Holder - Steel Mills Global (SMG):Mill Test Report recieved     
-                Steel, Inc->>Holder - Steel Mills Global (SMG):Purchase Inquiry     
-                Holder - Steel Mills Global (SMG)->>Holder - Steel Mills Global (SMG):Process Inquiry    
-                Holder - Steel Mills Global (SMG)->>Steel, Inc:Agree to sell     
-                Steel, Inc->>Holder - Steel Mills Global (SMG):Request Mill Test Report     
-                Holder - Steel Mills Global (SMG)->>Holder App -  SMG Enterprise API:sendMillTestReportVC     
-                Holder App -  SMG Enterprise API->>Verifier App - Steel, Inc. Business API:steelincapi.com/presentations/available     
-                Verifier App - Steel, Inc. Business API->>Holder App -  SMG Enterprise API:Domain&Challenge     
-                Holder App -  SMG Enterprise API->>Holder Service - SMG Wallet:smgWallet.com/presentations/issue?\"Domain&Challenge\"     
-                Holder Service - SMG Wallet->>Holder Service - SMG Wallet:Generate VP containing the MTR     
-                Holder Service - SMG Wallet->>Holder Storage - SMG EDV/KMS:smgEdv.com/credentials/sign?\"GeneratedVP\"     
-                Holder Storage - SMG EDV/KMS->>Holder Storage - SMG EDV/KMS:Sign VP     
-                Holder Storage - SMG EDV/KMS->>Holder Service - SMG Wallet:SignedVP     
-                Holder Service - SMG Wallet->>Holder App -  SMG Enterprise API:SignedVP     
-                Holder App -  SMG Enterprise API->>Verifier App - Steel, Inc. Business API:steelincapi.com/presentations/submissions?\"SignedVP\"     
-                Verifier App - Steel, Inc. Business API->>Verifier App - Steel, Inc. Business API:Check business rules     
-                Verifier App - Steel, Inc. Business API->>Verifier Service - Steel Industry Verifier:steelindustryverifier.com/presentations/verify     
-                Verifier Service - Steel Industry Verifier->>Verifier Service - Steel Industry Verifier:Check proofs     
-                Verifier Service - Steel Industry Verifier->>Issuer Service - Inspectors & Co Issuer:IandCoIssuer.com/credentials/revocationList?\"MTRVC\"     
-                Issuer Service - Inspectors & Co Issuer->>Issuer Service - Inspectors & Co Issuer:Check revocation list     
-                Issuer Service - Inspectors & Co Issuer->>Verifier Service - Steel Industry Verifier:revocationStatus=notRevoked     
-                Verifier Service - Steel Industry Verifier->>Verifier App - Steel, Inc. Business API:steelincapi.com/presentations/verified?\"MTRVC\"     
-                Verifier App - Steel, Inc. Business API->>Verifier App - Steel, Inc. Business API:Check business rules     
-                Verifier App - Steel, Inc. Business API->>Verifier App - Steel, Inc. Business API:Record verification result     
-                Verifier App - Steel, Inc. Business API->>Steel, Inc:New Verification Result Notification     
-                Verifier App - Steel, Inc. Business API->>Holder App -  SMG Enterprise API:steelincapi.com/presentations/verified?\"SignedVP\"     
-                Holder App -  SMG Enterprise API->>Holder - Steel Mills Global (SMG):Mill Test Report Verified 
-            </pre>
-            <figcaption>UC2.6 Mermaid</figcaption>
-          </figure>
-        </p>
-        <p><i>Contributed by:</i>Transmute Industries</p>
-    </section>
 </section>
 <section>
   <h2>Requirements</h2>
@@ -664,7 +194,417 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
 <section>
   <!-- Editor - @eric-schuh -->
   <h2>Focal Use Cases</h2>
+  <section>
+    <h3>Get Digital Permanent Resident Card</h3>
+    <p>Lana is an IT administrator for the United States Citizenship and Immigration Services (USCIS) 
+      Digital Permanent Resident Card (PRC) program. She configures the USCIS website to issue digital 
+      Permanent Resident Cards by utilizing industry standard issuer software and setting up the appropriate 
+      HTTP API Authorizations between systems. Legal Permanent Residents, upon receiving their physical card 
+      in the mail, are given the USCIS website URL, a login account, and PIN code that they may use to manage 
+      their account and pick up their digital Permanent Resident Card. When Louis, a Legal Permanent Resident, 
+      requests a digital Permanent Resident Card via the USCIS website, he authenticates using his login account 
+      and once authenticated, provides a DID associated with his client-side digital wallet against which the 
+      website will issue VCs. The USCIS website then connects to the digital card issuing server, which builds 
+      the Verifiable Credential Permanent Resident Card using Louis' account data, and then utilizes industry 
+      standard HTTP APIs to issue the Permanent Resident Card as a Verifiable Credential. Louis can then use his 
+      Digital Permanent Resident Card in online scenarios when he needs to prove his resident status, such as 
+      when applying for a job.</p>
+      <p><b>Requirements: </b><ul>
+          <li>1. Verify DID Authentication Presentation,</li>
+          <li>2. API Authorization,</li>
+          <li>3. Issue Verifiable Credential,</li>
+          <li>X. Website as Consumer</li>
+        </ul></p>
+      <p><i>Contributed by: </i>Digital Bazaar</p>
+      <p><b>Mermaid</b>
+        <figure>
+          <pre class="diagram mermaid">
+        sequenceDiagram             
+          autonumber  
+            Lana - Issuer Admin->>uscis.gov - Issuer App:Configure to properly use Generic Issuer SAAS    
+            uscis.gov - Issuer App->>uscis.gov - Issuer App:Process configuration    
+            uscis.gov - Issuer App->>Generic Issuer SAAS - Issuer Service:Status check    
+            Generic Issuer SAAS - Issuer Service->>Generic Issuer SAAS - Issuer Service:Verify Authorization    
+            Generic Issuer SAAS - Issuer Service->>Generic Issuer SAAS - Issuer Service:Check business rules    
+            Generic Issuer SAAS - Issuer Service->>uscis.gov - Issuer App:All good    
+            uscis.gov - Issuer App->>Lana - Issuer Admin:Configuration complete    
+            authn.io - Holder Service->>Louis's Browser - Holder App:Holder-App/registerCredentialHandler    
+            Louis - Holder->>Louis's Browser - Holder App:uscis.gov    
+            Louis's Browser - Holder App->>uscis.gov - Issuer App:uscis.gov    
+            uscis.gov - Issuer App->>Louis's Browser - Holder App:uscis.gov/index.html    
+            Louis's Browser - Holder App->>Louis - Holder:uscis.gov/index.html    
+            Louis - Holder->>Louis's Browser - Holder App:Click \"Get PRC\"    
+            Louis's Browser - Holder App->>uscis.gov - Issuer App:uscis.gov/getPRC    
+            uscis.gov - Issuer App->>Louis's Browser - Holder App:request authentication   
+            Louis's Browser - Holder App->>Louis - Holder:request authentication    
+            Louis - Holder->>Louis's Browser - Holder App:provide authentication details   
+            Louis's Browser - Holder App->>uscis.gov - Issuer App:uscis.gov/authenticate?louiss-details   
+            uscis.gov - Issuer App->>uscis.gov - Issuer App:process provided authentication details   
+            uscis.gov - Issuer App->>Louis's Browser - Holder App:authentication succus    
+            Louis's Browser - Holder App->>Louis - Holder:authentication succuss  
+            uscis.gov - Issuer App->>Louis's Browser - Holder App:Holder-App/requestPresentation
+            Louis's Browser - Holder App->>Louis - Holder:Holder/selectHolderService 
+            Louis - Holder->>Louis's Browser - Holder App:holderServiceSelection
+            Louis's Browser - Holder App->>authn.io - Holder Service:HolderService/requestPresentation   
+            authn.io - Holder Service->>Louis - Holder:Holder/selectWallet    
+            Louis - Holder->>authn.io - Holder Service:walletSelection    
+            authn.io - Holder Service->>Louis - Holder:Holder/selectProfile  
+            Louis - Holder->>authn.io - Holder Service:profileSelection   
+            authn.io - Holder Service->>Louis's Browser - Holder App:HolderApp/requestedPresentation   
+            Louis's Browser - Holder App->>uscis.gov - Issuer App:IssuerApp/requestedPresentation   
+            uscis.gov - Issuer App->>Generic Issuer SAAS - Issuer Service:IssuerService/credentials/issue?\"providedVP\"   
+            Generic Issuer SAAS - Issuer Service->>uscis.gov - Issuer App:IssuerApp/credentials/issued?\"issuedCredentailsWrappedByIssuerApp\"    
+            uscis.gov - Issuer App->>Louis's Browser - Holder App:HolderApp/newCredential?\"issuedCredentialUnwrappedByIssuerApp\"    
+            Louis's Browser - Holder App->>Louis - Holder:Holder/selectHolderService 
+            Louis - Holder->>Louis's Browser - Holder App:holderServiceSelection   
+            Louis's Browser - Holder App->>authn.io - Holder Service:HolderService/storeCredentials?\"credentials\"    
+            authn.io - Holder Service->>Louis - Holder:Holder/selectWallet 
+            Louis - Holder->>authn.io - Holder Service:walletSelection   
+            authn.io - Holder Service->>Louis - Holder:Holder/selectProfile  
+            Louis - Holder->>authn.io - Holder Service:profileSelection   
+            authn.io - Holder Service->>authn.io - Holder Service:Store credentials 
+            authn.io - Holder Service->>Louis's Browser - Holder App:HolderApp/credentialsStored
+          </pre>
+          <figcaption>UC2.1 Mermaid</figcaption>
+        </figure>
+      </p>
+  </section>
+  <section>
+    <h3>Refresh Expired Over Age Token</h3>
+    <p>Riley has onboarded into the TruAge digital age verification system, which has provided her 
+      with a set of Verifiable Credentials that she stores in her digital wallet. A subset of the 
+      Verifiable Credentials that she has received are digitally signed single-use age tokens that 
+      only assert that she is above the age of 21 and are marked as "used" by the TruAge system 
+      when they are submitted as a part of an age-restricted goods purchase, such as buying a 
+      bottle of wine. Eventually, Riley runs out of single use age tokens in her digital wallet. 
+      The digital wallet keeps track of which tokens have been used and once all tokens have been 
+      consumed, contacts a refresh service endpoint listed in one of the TruAge credentials that 
+      provides new over-age tokens. The digital wallet requests a new set of tokens by hitting the 
+      HTTP API of this VC-refresh service listed in the “refreshService” array and POSTing the 
+      original Verifiable Credential containing the refresh service description. The HTTP API 
+      ensures that it has received a valid credential and reissues a set of new digitally signed 
+      single-use age tokens in the response.
+    </p>
+      <p><b>Requirements: </b><ul>
+        <li>1. Start Presentation Flow,</li>
+        <li>2. Verify Presentation, </li>
+        <li>3. Issue Verifiable Credential, </li>
+        <li>4. Refresh Credential</li>
+        </ul></p>
+        <p><b>Mermaid</b>
+          <figure>
+            <pre class="diagram mermaid">
+          sequenceDiagram               
+            autonumber     
+              Riley's Wallet - Holder Service->>Riley's Wallet - Holder Service:Notice out of Age Tokens     
+              Riley's Wallet - Holder Service->>TruAge Website - Verifier App:truage.com/credentials/refresh     
+              TruAge Website - Verifier App->>Riley's Wallet - Holder Service:Domain&Challenge w/ request for expired VC     
+              Riley's Wallet - Holder Service->>Riley's Wallet - Holder Service:Generate VP containing Over Age VC     
+              Riley's Wallet - Holder Service->>Riley's Wallet - Holder Service:Sign generated VP     
+              Riley's Wallet - Holder Service->>TruAge Website - Verifier App:truage.com//presentations/submissions?\"OverAgeVP\"     
+              TruAge Website - Verifier App->>TruAge Website - Verifier App:Extract contained VC     
+              TruAge Website - Verifier App->>TruAge Website - Verifier App:Check if subject of contained VC is signer of VP     
+              TruAge Website - Verifier App->>Generic Verifier SAAS - Verifier Service:genericverifier.com/presentations/verify?\"OverAgeVP\"     
+              Generic Verifier SAAS - Verifier Service->>Generic Verifier SAAS - Verifier Service:Process provided VP     
+              Generic Verifier SAAS - Verifier Service->>TruAge Website - Verifier App:truage.com/presentations/verified?\"VerificationResult\"     
+              TruAge Website - Verifier App->>TruAge Website - Verifier App:Evaluate VP verification result     
+              TruAge Website - Verifier App->>Generic Verifier SAAS - Verifier Service:genericverifier.com/credentials/verify?\"OverAgeVC\"     
+              Generic Verifier SAAS - Verifier Service->>Generic Verifier SAAS - Verifier Service:Process provided VC     
+              Generic Verifier SAAS - Verifier Service->>TruAge Website - Verifier App:truage.com/credentials/verified?\"VerificationResult\"     
+              TruAge Website - Verifier App->>TruAge Website - Verifier App:Evaluate business rules     
+              TruAge Website - Verifier App->>Generic Issuer SAAS - Issuer Service:genericissuer.com/credentials/issue?\"OverAgeVC\"     
+              Generic Issuer SAAS - Issuer Service->>Generic Issuer SAAS - Issuer Service:Generate new Age Tokens     
+              Generic Issuer SAAS - Issuer Service->>TruAge Website - Verifier App:truage.com/credentials/issued?\"NewAgeTokenCredentials\"     
+              TruAge Website - Verifier App->>Riley's Wallet - Holder Service:rileyswallet.com/credentails/refreshed?\"NewAgeTokenCredentials\"m 
+            </pre>
+            <figcaption>UC2.2 Mermaid</figcaption>
+          </figure>
+        </p>
+      <p><i>Contributed by: </i>Digital Bazaar</p>
+  </section>
 
+  <section>
+    <h3>Execute Multi-stage Presentation Workflow</h3>
+    <p>Description: Ignio, a logistics manager for "Kirk Company", would like to submit all necessary paperwork 
+      to send his company's products across international boundaries. These products are considered hazardous 
+      chemicals and thus are regulated, requiring extra paperwork to be filed before transportation is approved 
+      across boundaries. Some hazardous material shipments are different resulting in different required paperwork, 
+      and Ignio wants to automate as much of the process as possible with Shippers, 
+      their 3rd Party Logistics company (3PL). There are a set of verifiable credentials that Ignio is willing to 
+      share with Customs as well as the transportation company. 
+    </p>
+    <p>When Kirk starts a shipping workflow, his company's systems initiate the workflow by contacting a known 
+      location on the Shipper's Website. A presentation exchange occurs to first DIDAuth the company and send 
+      generic mandatory information for any shipment; if and only if the information provided requires additional 
+      information‒in this case a hazmat certification‒a second exchange is initiated to request this outstanding/required 
+      hazmat info.  Once this is received, Shippers can send back a Bill of Lading in VC form. The two (or more) 
+      credential exchanges are composable and idempotent, ending in a valid BoL if successful.
+    </p>
+      <p><b>Requirements: </b><ul>
+        <li>1. Verify DID Authentication Presentation, </li>
+        <li>2. API Authorization, </li>
+        <li>3. Issue Verifiable Credential, </li>
+        <li>X. Website as Consumer, </li>
+        <li>X. continuous workflow</li>
+        </ul></p>
+        <p><b>Mermaid</b>
+          <figure>
+            <pre class="diagram mermaid">
+          sequenceDiagram               
+            autonumber     
+              Ignio - Logistic Manager->>Kirk Company Enterprise Resource Planning App - Holder and Holder Service:Verify all necessary info ready to request Bill of Lading (BoL)     
+              Kirk Company Enterprise Resource Planning App - Holder and Holder Service->>Ignio - Logistic Manager:Display requested data     
+              Ignio - Logistic Manager->>Ignio - Logistic Manager:Evaluate data     Ignio - Logistic Manager->>Ignio - Logistic Manager:Decide ready to get BoL     
+              Ignio - Logistic Manager->>Kirk Company Enterprise Resource Planning App - Holder and Holder Service:Trigger request for BoL     
+              Kirk Company Enterprise Resource Planning App - Holder and Holder Service->>Shipping Co. Website - Issuer App:shippingco.com/credentails/issue?\"BillOfLading\"     
+              Shipping Co. Website - Issuer App->>Generic Verifier SAAS - Verifier Service:genericverifier.com/presentations/available     
+              Generic Verifier SAAS - Verifier Service->>Shipping Co. Website - Issuer App:Challenge for DID Auth     
+              Shipping Co. Website - Issuer App->>Kirk Company Enterprise Resource Planning App - Holder and Holder Service:Domain&Challenge + Shipping Info + HTTP Callback location     
+              Kirk Company Enterprise Resource Planning App - Holder and Holder Service->>Kirk Company Enterprise Resource Planning App - Holder and Holder Service:Generate challenge response VP which contains requested Shipping Info VCs     
+              Kirk Company Enterprise Resource Planning App - Holder and Holder Service->>Shipping Co. Website - Issuer App:shippingco.com/presentations/submissions/HTTPCallback?\"ChallengeResponseVP\"     
+              Shipping Co. Website - Issuer App->>Generic Verifier SAAS - Verifier Service:genericverifier.com/presentations/verify?\"ChallengeResponseVP\"     
+              Generic Verifier SAAS - Verifier Service->>Generic Verifier SAAS - Verifier Service:Evaluate Challenge Response     
+              Generic Verifier SAAS - Verifier Service->>Shipping Co. Website - Issuer App:shippinco.com/presentations/verified?\"VerificationResultVP\"     
+              Shipping Co. Website - Issuer App->>Shipping Co. Website - Issuer App:Check business rules     
+              Shipping Co. Website - Issuer App->>Shipping Co Database:Register Shiptment info     
+              Shipping Co Database->>Shipping Co. Website - Issuer App:info registered     
+              Shipping Co. Website - Issuer App->>Kirk Company Enterprise Resource Planning App - Holder and Holder Service:Request for DID Atuh + Hazmat Info + HTTP Callback location #2     
+              Kirk Company Enterprise Resource Planning App - Holder and Holder Service->>Kirk Company Enterprise Resource Planning App - Holder and Holder Service:Generate VP containing Hazmat Info     
+              Kirk Company Enterprise Resource Planning App - Holder and Holder Service->>Shipping Co. Website - Issuer App:shippingco.com/presenations/submissions/HTTPCallback2?\"HazmatVP\"     
+              Shipping Co. Website - Issuer App->>Generic Verifier SAAS - Verifier Service:genericverifier.com/presentations/verify?\"HazmatVP\"     
+              Generic Verifier SAAS - Verifier Service->>Generic Verifier SAAS - Verifier Service:Evaluate Hazmat VP     
+              Generic Verifier SAAS - Verifier Service->>Shipping Co. Website - Issuer App:shippinco.com/presentations/verified?\"VerificationResultVP\"     
+              Shipping Co. Website - Issuer App->>Shipping Co. Website - Issuer App:Check business rules     
+              Shipping Co. Website - Issuer App->>Shipping Co Database:Register Hazmat Info     
+              Shipping Co Database->>Shipping Co. Website - Issuer App:info registered     
+              Shipping Co. Website - Issuer App->>Shipping Co Database:Request Shipment and Hazmat info     
+              Shipping Co Database->>Shipping Co. Website - Issuer App:requested info     
+              Shipping Co. Website - Issuer App->>Shipping Co. Website - Issuer App:Generate BoLRequestVP     
+              Shipping Co. Website - Issuer App->>Generic Issuer SAAS - Issuer Service:genericissuer.com/credentials/issue?\"BoLRequestVP\"     
+              Generic Issuer SAAS - Issuer Service->>Generic Issuer SAAS - Issuer Service:Check business rules     
+              Generic Issuer SAAS - Issuer Service->>Shipping Co. Website - Issuer App:shippingco.com/credentials/issued?\"BoL\"     
+              Shipping Co. Website - Issuer App->>Kirk Company Enterprise Resource Planning App - Holder and Holder Service:kirkcompany.com/credentails/newCredential?\"BoL\"     
+              Kirk Company Enterprise Resource Planning App - Holder and Holder Service->>Ignio - Logistic Manager:BoL Ready notice 
+            </pre>
+            <figcaption>UC2.3 Mermaid</figcaption>
+          </figure>
+        </p>
+      <p><i>Contributed by: </i>Digital Bazaar</p>
+  </section>
+
+  <section>
+    <h3>Aggregated Credential Workflow</h3>
+    <p>Tod is using digital credentials to apply for a service/qualify for a job/gain access to a programme. 
+      Some of his credentials are available today, some will need to be provided when they are ready 
+      (for example, a criminal background check can take 24-48 hrs to process). He would like these credentials to 
+      be presented to the Verifier (service provider) when ready, without having to constantly return to the Verifier 
+      (service provider) and deliver them "by hand". He should be able to have them released from his Holder directly 
+      as they become available.</p>
+      <p><b>Requirements: </b><ul>
+        <li>X. Verifiable Presentation by policy, </li>
+        <li>X. Automated notifications, </li>
+        <li>X. Asynchronous release, </li>
+        <li>X. Authorized/pre-consented authorization, </li>
+        <li>X. VP formed with future VCs ("stateful VP")</li>
+        <li>X. Present Credentials issued by third party?, </li>
+        </ul></p>
+        <p><b>Mermaid</b>
+          <figure>
+            <pre class="diagram mermaid">
+          sequenceDiagram               
+            autonumber     
+              Kenzie - Holder->>jobapplications.com - Verifier App:jobapplications.com/presenations/submit?\"application\"     
+              jobapplications.com - Verifier App->>jobapplications.com - Verifier App:process application     
+              jobapplications.com - Verifier App->>Kenzie - Holder:Request credentials A and B     
+              Kenzie - Holder->>Kenzie's Wallet - Holder Service:Check for A and B     
+              Kenzie's Wallet - Holder Service->>Kenzie - Holder:Display A, B not found     
+              Kenzie - Holder->>Kenzie's Wallet - Holder Service:Need B     
+              Kenzie's Wallet - Holder Service->>backgroundcheck.com - Issuer App:backgroundcheck.com/index.html     
+              backgroundcheck.com - Issuer App->>Kenzie's Wallet - Holder Service:index.html     
+              Kenzie's Wallet - Holder Service->>backgroundcheck.com - Issuer App:backgroundcheck.com/getBackgroundCheck     
+              backgroundcheck.com - Issuer App->>Kenzie's Wallet - Holder Service:getBackgoundCheck.html     
+              Kenzie's Wallet - Holder Service->>backgroundcheck.com - Issuer App:backgroundcheck.com/getBackgrounCheck/credentials/issue?\"RequestedInfo\"     
+              backgroundcheck.com - Issuer App->>backgroundcheck.com - Issuer App:evaluate requested info     
+              backgroundcheck.com - Issuer App->>Generic Issuer - Issuer Service:genericissuer.com/credentials/issue?\"backgrounCheckCredential+info\"     
+              Generic Issuer - Issuer Service->>backgroundcheck.com - Issuer App:issued VC     
+              backgroundcheck.com - Issuer App->>Kenzie's Wallet - Holder Service:kenzieswallet.com/credentials/recieve?\"VC\"     
+              Kenzie's Wallet - Holder Service->>Kenzie - Holder:Notify B Ready     
+              Kenzie - Holder->>jobapplications.com - Verifier App:jobapplications.com/presenations/submit?\"application\"     
+              jobapplications.com - Verifier App->>Kenzie - Holder:Request Credentials A and B     
+              Kenzie - Holder->>Kenzie's Wallet - Holder Service:Send A and B to jobapplications.com     
+              Kenzie's Wallet - Holder Service->>jobapplications.com - Verifier App:jobapplications.com/presentations/submit?\"application with A and B\"     
+              jobapplications.com - Verifier App->>Generic Verifier - Verifier Service:genericVerifer.com/presentations/verify?\"applicationwith A and B\"     
+              Generic Verifier - Verifier Service->>jobapplications.com - Verifier App:Verification Result     
+              jobapplications.com - Verifier App->>jobapplications.com - Verifier App:process application     
+              jobapplications.com - Verifier App->>Kenzie's Wallet - Holder Service:Application Accepted     
+              Kenzie's Wallet - Holder Service->>Kenzie - Holder:Application Accepted 
+            </pre>
+            <figcaption>UC2.4 Mermaid</figcaption>
+          </figure>
+        </p>
+      <p><i>Contributed by:</i>SecureKey Technologies Inc.</p>
+  </section>
+
+  <section>
+    <h3>Submit/Sign/Verify a test credential to a licensure system</h3>
+    <p>A student, Shabazz, wants to publish their MBLEx test results from an education test provider, 
+      Massage Therapy Test Corp. Massage Therapy Test Corp proxies their authority to sign to a service provider, 
+      SSI Ventures.  SSI Ventures issues Shabazz a VC when he logs into his Massage Therapy Test Corp account 
+      and enables his browser-based SSI Wallet, Billfold.  The signed VC is then stored in Shabazz’ Billfold™ Wallet 
+      to be presented elsewhere.
+    </p>
+    <p>In a separate session, Shabazz logs into a web portal of a State Massage Therapy licensure system to 
+      apply for his Massage Therapy license. The licensure specialist at the State checks the issuer using a 
+      State accreditation system, then checks the signature on the test results VC and ingests the 
+      credential’s payload. The licensure specialist then finalizes their workflow and issues 
+      Shabazz a Massage Therapy license.
+    </p>
+     <p><b>Requirements: </b></li>
+        <li>1. VC Issuance</li>
+        <li>2. VC Presentation</li>
+        <li><i> 3. Issuer Lookup (is that business logic?),</i></li>
+        <li>4. VP Verification</li>
+        <li>5. VC Verification</li>
+        <li>X. Website as Consumer.</li>
+        <li>X. Issuance-as-a-Service, </li>
+       </ul></p>
+      <p><b>Mermaid</b>
+        <figure>
+          <pre class="diagram mermaid">
+        sequenceDiagram               
+          autonumber     
+            Shabazz  (Student) - Holder->>Shabazz's Browser - Holder App:massagetherapytestcorp.com     
+            Shabazz's Browser - Holder App->>Massage Therapy Test Corp Webpage - Issuer App:messagetherapytestcorp.com/index.html  
+            Massage Therapy Test Corp Webpage - Issuer App->>Shabazz's Browser - Holder App:index.html     
+            Shabazz's Browser - Holder App->>Shabazz  (Student) - Holder:display webpage     
+            Shabazz  (Student) - Holder->>Shabazz's Browser - Holder App:Authnticate     
+            Shabazz's Browser - Holder App->>Massage Therapy Test Corp Webpage - Issuer App:messagetherapytestcorp.com/authenticate 
+            Massage Therapy Test Corp Webpage - Issuer App->>Shabazz's Browser - Holder App:authentication challenge     
+            Shabazz's Browser - Holder App->>Shabazz  (Student) - Holder:challenge     
+            Shabazz  (Student) - Holder->>Shabazz's Browser - Holder App:authentication information     
+            Shabazz's Browser - Holder App->>Massage Therapy Test Corp Webpage - Issuer App:messagetherapytestcorp.com/authenticate?\"info\"   
+            Massage Therapy Test Corp Webpage - Issuer App->>Massage Therapy Test Corp Webpage - Issuer App:process authentication information     
+            Massage Therapy Test Corp Webpage - Issuer App->>Shabazz's Browser - Holder App:authentication success     
+            Shabazz's Browser - Holder App->>Shabazz  (Student) - Holder:authentication success     
+            Shabazz  (Student) - Holder->>Shabazz's Browser - Holder App:get Message Therapy Credential     
+            Shabazz's Browser - Holder App->>Massage Therapy Test Corp Webpage - Issuer App:messagetherapytestcorp.com/getTherapyCredential     
+            Massage Therapy Test Corp Webpage - Issuer App->>Shabazz's Browser - Holder App:DID Auth Challenge     
+            Shabazz's Browser - Holder App->>Shabazz  (Student) - Holder:Select a wallet     
+            Shabazz  (Student) - Holder->>Shabazz's Browser - Holder App:Select Wallet     
+            Shabazz's Browser - Holder App->>Shabazz's Wallet - Holder Service:Request DID Auth Challenge Response     
+            Shabazz's Wallet - Holder Service->>Shabazz's Wallet - Holder Service:generate DID Auth response     
+            Shabazz's Wallet - Holder Service->>Shabazz's Browser - Holder App:DID Auth response     
+            Shabazz's Browser - Holder App->>Massage Therapy Test Corp Webpage - Issuer App:messagetherapytestcorp.com/getTherapyCredential/didAuth?\"DIDAuthResponse\"     
+            Massage Therapy Test Corp Webpage - Issuer App->>Massage Therapy Test Corp Webpage - Issuer App:Process response     
+            Massage Therapy Test Corp Webpage - Issuer App->>SSI Venture - Issuer Service:ssiventures.com/messagetestcorp/credentials/issue?\"VPfromDIDAuth\"     
+            SSI Venture - Issuer Service->>Massage Therapy Test Corp Webpage - Issuer App:messagetherapytestcorp.com/credentials/issued?\"issuedCredentailsWrappedByIssuerApp\"     
+            Massage Therapy Test Corp Webpage - Issuer App->>Shabazz's Browser - Holder App:HolderApp/newCredential?\"issuedCredentialUnwrappedByIssuerApp\"     
+            Shabazz's Browser - Holder App->>Shabazz's Wallet - Holder Service:store credential     
+            Shabazz's Wallet - Holder Service->>Shabazz's Browser - Holder App:sucess     
+            Shabazz's Browser - Holder App->>Shabazz  (Student) - Holder:Credential successfully stored in wallet     
+            Shabazz  (Student) - Holder->>Shabazz's Browser - Holder App:Go to Floyd's Message Therapy Webpage     
+            Shabazz's Browser - Holder App->>floydsmassagetheray.com - Verifier App:floydsmessagetherapy.com/index.html     
+            floydsmassagetheray.com - Verifier App->>Shabazz's Browser - Holder App:index.html     
+            Shabazz's Browser - Holder App->>Shabazz  (Student) - Holder:display page     
+            Shabazz  (Student) - Holder->>Shabazz's Browser - Holder App:Submit employment application     
+            Shabazz's Browser - Holder App->>floydsmassagetheray.com - Verifier App:floydsmessagetherapy.com/employmentApp     
+            floydsmassagetheray.com - Verifier App->>Shabazz's Browser - Holder App:Domain&Challenge     
+            Shabazz's Browser - Holder App->>Shabazz  (Student) - Holder:Select a wallet     
+            Shabazz  (Student) - Holder->>Shabazz's Browser - Holder App:wallet selection     
+            Shabazz's Browser - Holder App->>Shabazz's Wallet - Holder Service:Domain&Challenge     
+            Shabazz's Wallet - Holder Service->>Shabazz's Wallet - Holder Service:generate VP     
+            Shabazz's Wallet - Holder Service->>Shabazz's Browser - Holder App:Challenge response VP     
+            Shabazz's Browser - Holder App->>floydsmassagetheray.com - Verifier App:floydsmessagetherapy.com/empoymentApp/challengeResponse?\"VP\"     
+            floydsmassagetheray.com - Verifier App->>floydsmassagetheray.com - Verifier App:Process response     
+            floydsmassagetheray.com - Verifier App->>Shabazz's Browser - Holder App:request application with State License VC     
+            Shabazz's Browser - Holder App->>Shabazz's Wallet - Holder Service:Request VP     
+            Shabazz's Wallet - Holder Service->>Shabazz's Wallet - Holder Service:Generate VP     
+            Shabazz's Wallet - Holder Service->>Shabazz's Browser - Holder App:VP w/Application and State License     
+            Shabazz's Browser - Holder App->>floydsmassagetheray.com - Verifier App:floydsmessagetherapy.com/presenatations/submit?\"Application wtih State License VP\"     
+            floydsmassagetheray.com - Verifier App->>State Verifier - Verifier Service:stateverifier.com/credentials/verify?\"StateLicenseVC\"     
+            State Verifier - Verifier Service->>floydsmassagetheray.com - Verifier App:Verification Result     
+            floydsmassagetheray.com - Verifier App->>floydsmassagetheray.com - Verifier App:process application     
+            floydsmassagetheray.com - Verifier App->>Shabazz's Browser - Holder App:Application submitted     
+            Shabazz's Browser - Holder App->>Shabazz  (Student) - Holder:Application submitted 
+          </pre>
+          <figcaption>UC2.5 Mermaid</figcaption>
+        </figure>
+      </p>
+     <p><i>Contributed by:</i>RANDA Solutions</p>
+  </section>
+
+  <section>
+    <h3>Supply Chain Import</h3>
+    <p>In order to export steel products to the global market, Steel Mills Global must prove 
+      the quality of their products. For this, they rely on Inspectors & Co, an internationally 
+      recognized steel testing company. Upon inspection, Inspectors & Co issues a 
+      Mill Test Report VC to Steel Mills Global.</p>
+    <p>Steel, Inc. imports and distributes steel products domestically. Negotiating a shipment 
+      Steel Mills Global presents the MTR as proof of product quality. Steel Inc. verifies the
+      MTR VP and accepts the shipment. </p>
+    <p>Steel, Inc. initiates the importing procedures, starting out self-issuing an 
+      Import Declaration Form VC. The MTR and IDF are jointly presented to the Customs 
+      authority which verifies the VP. Upon verification the customs release is granted for goods import. </p>
+      </p>
+    <p><i>Note: These VC types are taken from the <a class="self-link" aria-label="§" href="">Traceability Vocabulary</a>, a W3C-CCG work item for supply chain use-cases.</i></p>
+      <p><b>Requirements:</b><ul>
+        <li>1. VC Issuance,</li>
+        <li><i>X. Self-Issuance,</i></li>
+        <li>X. Re-Presentation and VC+VP Verification across a common supply chain process.</li>
+        </ul></p>
+      <p><b>Mermaid</b>
+        <figure>
+          <pre class="diagram mermaid">
+            sequenceDiagram               
+            autonumber     
+              Holder - Steel Mills Global (SMG)->>Holder App -  SMG Enterprise API:getMillTestReportVC     
+              Holder App -  SMG Enterprise API->>Issuer App - Inspectors & Co Enterprise Software:inspectorandco.com/credentials/issue     
+              Issuer App - Inspectors & Co Enterprise Software->>Lacy - Inspectors & Co Inspector:New inspection requested     
+              Lacy - Inspectors & Co Inspector->>Lacy - Inspectors & Co Inspector:Completes SMG Inspection     
+              Lacy - Inspectors & Co Inspector->>Issuer App - Inspectors & Co Enterprise Software:Issue Mill Test Report to SMG     
+              Issuer App - Inspectors & Co Enterprise Software->>Issuer Service - Inspectors & Co Issuer:IandCoIssuer.com/credentials/issue     
+              Issuer Service - Inspectors & Co Issuer->>Issuer Service - Inspectors & Co Issuer:Process request     
+              Issuer Service - Inspectors & Co Issuer->>Issuer App - Inspectors & Co Enterprise Software:Issued Credentials     
+              Issuer App - Inspectors & Co Enterprise Software->>Holder App -  SMG Enterprise API:smgApi.com/credentials/recieve?\"MillTestReportVP\"     
+              Holder App -  SMG Enterprise API->>Holder App -  SMG Enterprise API:Process returned VP     
+              Holder App -  SMG Enterprise API->>Holder Service - SMG Wallet:smgWallet.com/credentials/store?\"MTRVP\"     
+              Holder Service - SMG Wallet->>Holder Storage - SMG EDV/KMS:smgEdv.com/credentials/store?\"MTRVP\"     
+              Holder Storage - SMG EDV/KMS->>Holder Storage - SMG EDV/KMS:Store credentials     
+              Holder Storage - SMG EDV/KMS->>Holder Service - SMG Wallet:Storage success and access info     
+              Holder Service - SMG Wallet->>Holder App -  SMG Enterprise API:Storage acknowledged     
+              Holder App -  SMG Enterprise API->>Holder - Steel Mills Global (SMG):Mill Test Report recieved     
+              Steel, Inc->>Holder - Steel Mills Global (SMG):Purchase Inquiry     
+              Holder - Steel Mills Global (SMG)->>Holder - Steel Mills Global (SMG):Process Inquiry    
+              Holder - Steel Mills Global (SMG)->>Steel, Inc:Agree to sell     
+              Steel, Inc->>Holder - Steel Mills Global (SMG):Request Mill Test Report     
+              Holder - Steel Mills Global (SMG)->>Holder App -  SMG Enterprise API:sendMillTestReportVC     
+              Holder App -  SMG Enterprise API->>Verifier App - Steel, Inc. Business API:steelincapi.com/presentations/available     
+              Verifier App - Steel, Inc. Business API->>Holder App -  SMG Enterprise API:Domain&Challenge     
+              Holder App -  SMG Enterprise API->>Holder Service - SMG Wallet:smgWallet.com/presentations/issue?\"Domain&Challenge\"     
+              Holder Service - SMG Wallet->>Holder Service - SMG Wallet:Generate VP containing the MTR     
+              Holder Service - SMG Wallet->>Holder Storage - SMG EDV/KMS:smgEdv.com/credentials/sign?\"GeneratedVP\"     
+              Holder Storage - SMG EDV/KMS->>Holder Storage - SMG EDV/KMS:Sign VP     
+              Holder Storage - SMG EDV/KMS->>Holder Service - SMG Wallet:SignedVP     
+              Holder Service - SMG Wallet->>Holder App -  SMG Enterprise API:SignedVP     
+              Holder App -  SMG Enterprise API->>Verifier App - Steel, Inc. Business API:steelincapi.com/presentations/submissions?\"SignedVP\"     
+              Verifier App - Steel, Inc. Business API->>Verifier App - Steel, Inc. Business API:Check business rules     
+              Verifier App - Steel, Inc. Business API->>Verifier Service - Steel Industry Verifier:steelindustryverifier.com/presentations/verify     
+              Verifier Service - Steel Industry Verifier->>Verifier Service - Steel Industry Verifier:Check proofs     
+              Verifier Service - Steel Industry Verifier->>Issuer Service - Inspectors & Co Issuer:IandCoIssuer.com/credentials/revocationList?\"MTRVC\"     
+              Issuer Service - Inspectors & Co Issuer->>Issuer Service - Inspectors & Co Issuer:Check revocation list     
+              Issuer Service - Inspectors & Co Issuer->>Verifier Service - Steel Industry Verifier:revocationStatus=notRevoked     
+              Verifier Service - Steel Industry Verifier->>Verifier App - Steel, Inc. Business API:steelincapi.com/presentations/verified?\"MTRVC\"     
+              Verifier App - Steel, Inc. Business API->>Verifier App - Steel, Inc. Business API:Check business rules     
+              Verifier App - Steel, Inc. Business API->>Verifier App - Steel, Inc. Business API:Record verification result     
+              Verifier App - Steel, Inc. Business API->>Steel, Inc:New Verification Result Notification     
+              Verifier App - Steel, Inc. Business API->>Holder App -  SMG Enterprise API:steelincapi.com/presentations/verified?\"SignedVP\"     
+              Holder App -  SMG Enterprise API->>Holder - Steel Mills Global (SMG):Mill Test Report Verified 
+          </pre>
+          <figcaption>UC2.6 Mermaid</figcaption>
+        </figure>
+      </p>
+      <p><i>Contributed by:</i>Transmute Industries</p>
+  </section>
 </section>
 
   <section class="appendix">
