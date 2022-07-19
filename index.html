@@ -216,6 +216,8 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
           <li>X. Website as Consumer</li>
         </ul></p>
       <p><i>Contributed by: </i>Digital Bazaar</p>
+      <p><i>Author Email: </i>msporny@digitalbazaar.com</p>
+      <p><i>Author Github: </i>msporny</p>
       <p><b>Mermaid</b>
         <figure>
           <pre class="diagram mermaid">
@@ -265,8 +267,6 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
             authn.io - Holder Service->>authn.io - Holder Service:Store credentials 
             authn.io - Holder Service->>Louis's Browser - Holder App:HolderApp/credentialsStored
           </pre>
-          <figcaption>UC2.1 Mermaid</figcaption>
-        </figure>
       </p>
   </section>
   <section>
@@ -317,10 +317,10 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
               Generic Issuer SAAS - Issuer Service->>TruAge Website - Verifier App:truage.com/credentials/issued?\"NewAgeTokenCredentials\"     
               TruAge Website - Verifier App->>Riley's Wallet - Holder Service:rileyswallet.com/credentails/refreshed?\"NewAgeTokenCredentials\"m 
             </pre>
-            <figcaption>UC2.2 Mermaid</figcaption>
-          </figure>
         </p>
       <p><i>Contributed by: </i>Digital Bazaar</p>
+      <p><i>Author Email: </i>msporny@digitalbazaar.com</p>
+      <p><i>Author Github: </i>msporny</p>
   </section>
 
   <section>
@@ -350,46 +350,64 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
         <p><b>Mermaid</b>
           <figure>
             <pre class="diagram mermaid">
-          sequenceDiagram               
-            autonumber     
-              Ignio - Logistic Manager->>Kirk Company Enterprise Resource Planning App - Holder and Holder Service:Verify all necessary info ready to request Bill of Lading (BoL)     
-              Kirk Company Enterprise Resource Planning App - Holder and Holder Service->>Ignio - Logistic Manager:Display requested data     
-              Ignio - Logistic Manager->>Ignio - Logistic Manager:Evaluate data     Ignio - Logistic Manager->>Ignio - Logistic Manager:Decide ready to get BoL     
-              Ignio - Logistic Manager->>Kirk Company Enterprise Resource Planning App - Holder and Holder Service:Trigger request for BoL     
-              Kirk Company Enterprise Resource Planning App - Holder and Holder Service->>Shipping Co. Website - Issuer App:shippingco.com/credentails/issue?\"BillOfLading\"     
-              Shipping Co. Website - Issuer App->>Generic Verifier SAAS - Verifier Service:genericverifier.com/presentations/available     
-              Generic Verifier SAAS - Verifier Service->>Shipping Co. Website - Issuer App:Challenge for DID Auth     
-              Shipping Co. Website - Issuer App->>Kirk Company Enterprise Resource Planning App - Holder and Holder Service:Domain&Challenge + Shipping Info + HTTP Callback location     
-              Kirk Company Enterprise Resource Planning App - Holder and Holder Service->>Kirk Company Enterprise Resource Planning App - Holder and Holder Service:Generate challenge response VP which contains requested Shipping Info VCs     
-              Kirk Company Enterprise Resource Planning App - Holder and Holder Service->>Shipping Co. Website - Issuer App:shippingco.com/presentations/submissions/HTTPCallback?\"ChallengeResponseVP\"     
-              Shipping Co. Website - Issuer App->>Generic Verifier SAAS - Verifier Service:genericverifier.com/presentations/verify?\"ChallengeResponseVP\"     
-              Generic Verifier SAAS - Verifier Service->>Generic Verifier SAAS - Verifier Service:Evaluate Challenge Response     
-              Generic Verifier SAAS - Verifier Service->>Shipping Co. Website - Issuer App:shippinco.com/presentations/verified?\"VerificationResultVP\"     
-              Shipping Co. Website - Issuer App->>Shipping Co. Website - Issuer App:Check business rules     
-              Shipping Co. Website - Issuer App->>Shipping Co Database:Register Shiptment info     
-              Shipping Co Database->>Shipping Co. Website - Issuer App:info registered     
-              Shipping Co. Website - Issuer App->>Kirk Company Enterprise Resource Planning App - Holder and Holder Service:Request for DID Atuh + Hazmat Info + HTTP Callback location #2     
-              Kirk Company Enterprise Resource Planning App - Holder and Holder Service->>Kirk Company Enterprise Resource Planning App - Holder and Holder Service:Generate VP containing Hazmat Info     
-              Kirk Company Enterprise Resource Planning App - Holder and Holder Service->>Shipping Co. Website - Issuer App:shippingco.com/presenations/submissions/HTTPCallback2?\"HazmatVP\"     
-              Shipping Co. Website - Issuer App->>Generic Verifier SAAS - Verifier Service:genericverifier.com/presentations/verify?\"HazmatVP\"     
-              Generic Verifier SAAS - Verifier Service->>Generic Verifier SAAS - Verifier Service:Evaluate Hazmat VP     
-              Generic Verifier SAAS - Verifier Service->>Shipping Co. Website - Issuer App:shippinco.com/presentations/verified?\"VerificationResultVP\"     
-              Shipping Co. Website - Issuer App->>Shipping Co. Website - Issuer App:Check business rules     
-              Shipping Co. Website - Issuer App->>Shipping Co Database:Register Hazmat Info     
-              Shipping Co Database->>Shipping Co. Website - Issuer App:info registered     
-              Shipping Co. Website - Issuer App->>Shipping Co Database:Request Shipment and Hazmat info     
-              Shipping Co Database->>Shipping Co. Website - Issuer App:requested info     
-              Shipping Co. Website - Issuer App->>Shipping Co. Website - Issuer App:Generate BoLRequestVP     
-              Shipping Co. Website - Issuer App->>Generic Issuer SAAS - Issuer Service:genericissuer.com/credentials/issue?\"BoLRequestVP\"     
-              Generic Issuer SAAS - Issuer Service->>Generic Issuer SAAS - Issuer Service:Check business rules     
-              Generic Issuer SAAS - Issuer Service->>Shipping Co. Website - Issuer App:shippingco.com/credentials/issued?\"BoL\"     
-              Shipping Co. Website - Issuer App->>Kirk Company Enterprise Resource Planning App - Holder and Holder Service:kirkcompany.com/credentails/newCredential?\"BoL\"     
-              Kirk Company Enterprise Resource Planning App - Holder and Holder Service->>Ignio - Logistic Manager:BoL Ready notice 
+              sequenceDiagram
+                autonumber
+              Ignio (Logistic Manager)->>Kirk Company Enterprise Resource Planning App (Holder and Holder Service):Verify all necessary info ready to ship
+              Kirk Company Enterprise Resource Planning App (Holder and Holder Service)->>Ignio (Logistic Manager):Display requested data
+              Ignio (Logistic Manager)->>Ignio (Logistic Manager):Evaluate data
+              Ignio (Logistic Manager)->>Ignio (Logistic Manager):Decide ready to ship
+              Ignio (Logistic Manager)->>Kirk Company Enterprise Resource Planning App (Holder and Holder Service):Trigger shipment
+              Kirk Company Enterprise Resource Planning App (Holder and Holder Service)->>Shipping Co. Website (Issuer App):shippingco.com/createShipment?"KirkCallbackURL"
+              Shipping Co. Website (Issuer App)->>Kirk Company Enterprise Resource Planning App (Holder and Holder Service):Ack Request
+              Shipping Co. Website (Issuer App)->>Shipping Co. Website (Issuer App):Evaluate business rules
+              Shipping Co. Website (Issuer App)->>Shipping Co. Website (Issuer App):Generate nonce for VP Challenge
+              Shipping Co. Website (Issuer App)->>Shipping Co. Website (Issuer App):Generate VP Request
+              Shipping Co. Website (Issuer App)->>Kirk Company Enterprise Resource Planning App (Holder and Holder Service):KirkCallbackURL?"Domain&Challenge + Shipping Info + ShippingCoCallbackURL1"
+              Kirk Company Enterprise Resource Planning App (Holder and Holder Service)->>Shipping Co. Website (Issuer App):Ack Request
+              Kirk Company Enterprise Resource Planning App (Holder and Holder Service)->>Kirk Company Enterprise Resource Planning App (Holder and Holder Service):Evaluate Business Rules for requested Shipping Info
+              Kirk Company Enterprise Resource Planning App (Holder and Holder Service)->>Kirk Company Enterprise Resource Planning App (Holder and Holder Service):Generate challenge response VP which contains requested Shipping Info VCs
+              Kirk Company Enterprise Resource Planning App (Holder and Holder Service)->>Shipping Co. Website (Issuer App):ShippingCoCallbackURL1?"ChallengeResponseVP + KirkCallbackURL2"
+              Shipping Co. Website (Issuer App)->>Kirk Company Enterprise Resource Planning App (Holder and Holder Service):Ack Response
+              Shipping Co. Website (Issuer App)->>Generic Verifier SAAS (Verifier Service):genericverifier.com/presentations/verify?"ChallengeResponseVP"
+              Generic Verifier SAAS (Verifier Service)->>Shipping Co. Website (Issuer App):ackRequest
+              Generic Verifier SAAS (Verifier Service)->>Generic Verifier SAAS (Verifier Service):Evaluate Challenge Response
+              Generic Verifier SAAS (Verifier Service)->>Shipping Co. Website (Issuer App):shippinco.com/presentations/verified?"VerificationResultVP"
+              Shipping Co. Website (Issuer App)->>Generic Verifier SAAS (Verifier Service):ackResponse
+              Shipping Co. Website (Issuer App)->>Shipping Co. Website (Issuer App):Evaluate business rules
+              Shipping Co. Website (Issuer App)->>Shipping Co Database:Register Shiptment info
+              Shipping Co Database->>Shipping Co. Website (Issuer App):info registered
+              Shipping Co. Website (Issuer App)->>Shipping Co. Website (Issuer App):Generate nonce for VP Challenge
+              Shipping Co. Website (Issuer App)->>Shipping Co. Website (Issuer App):Generate VP Request
+              Shipping Co. Website (Issuer App)->>Kirk Company Enterprise Resource Planning App (Holder and Holder Service):KirkCallbackURL2?"Request for DID Atuh + Hazmat Info + ShippingCoCallbackURL2"
+              Kirk Company Enterprise Resource Planning App (Holder and Holder Service)->>Shipping Co. Website (Issuer App):Ack Request
+              Kirk Company Enterprise Resource Planning App (Holder and Holder Service)->>Kirk Company Enterprise Resource Planning App (Holder and Holder Service):Evaluate business rules for requested Hazmat Info
+              Kirk Company Enterprise Resource Planning App (Holder and Holder Service)->>Kirk Company Enterprise Resource Planning App (Holder and Holder Service):Generate VP containing Hazmat Info
+              Kirk Company Enterprise Resource Planning App (Holder and Holder Service)->>Shipping Co. Website (Issuer App):ShippingCoCallbackURL2?"HazmatVP + KirkCallbackURL3"
+              Shipping Co. Website (Issuer App)->>Kirk Company Enterprise Resource Planning App (Holder and Holder Service):Ack Response
+              Shipping Co. Website (Issuer App)->>Generic Verifier SAAS (Verifier Service):genericverifier.com/presentations/verify?"HazmatVP"
+              Generic Verifier SAAS (Verifier Service)->>Shipping Co. Website (Issuer App):ackRequest
+              Generic Verifier SAAS (Verifier Service)->>Generic Verifier SAAS (Verifier Service):Evaluate Hazmat VP
+              Generic Verifier SAAS (Verifier Service)->>Shipping Co. Website (Issuer App):shippinco.com/presentations/verified?"VerificationResultVP"
+              Shipping Co. Website (Issuer App)->>Generic Verifier SAAS (Verifier Service):askResponse
+              Shipping Co. Website (Issuer App)->>Shipping Co. Website (Issuer App):Check business rules
+              Shipping Co. Website (Issuer App)->>Shipping Co Database:Register Hazmat Info
+              Shipping Co Database->>Shipping Co. Website (Issuer App):info registered
+              Shipping Co. Website (Issuer App)->>Shipping Co Database:Request Shipment and Hazmat info
+              Shipping Co Database->>Shipping Co. Website (Issuer App):requested info
+              Shipping Co. Website (Issuer App)->>Shipping Co. Website (Issuer App):Generate BoLRequestVP
+              Shipping Co. Website (Issuer App)->>Generic Issuer SAAS (Issuer Service):genericissuer.com/credentials/issue?"BoLRequestVP"
+              Generic Issuer SAAS (Issuer Service)->>Shipping Co. Website (Issuer App):ackRequest
+              Generic Issuer SAAS (Issuer Service)->>Generic Issuer SAAS (Issuer Service):Check business rules
+              Generic Issuer SAAS (Issuer Service)->>Shipping Co. Website (Issuer App):shippingco.com/credentials/issued?"BoL"
+              Shipping Co. Website (Issuer App)->>Generic Issuer SAAS (Issuer Service):ackResponse
+              Shipping Co. Website (Issuer App)->>Kirk Company Enterprise Resource Planning App (Holder and Holder Service):KirkCallbackURL3?"BoL"
+              Kirk Company Enterprise Resource Planning App (Holder and Holder Service)->>Shipping Co. Website (Issuer App):Ack Response
+              Kirk Company Enterprise Resource Planning App (Holder and Holder Service)->>Ignio (Logistic Manager):BoL Ready notice
             </pre>
-            <figcaption>UC2.3 Mermaid</figcaption>
-          </figure>
         </p>
       <p><i>Contributed by: </i>Digital Bazaar</p>
+      <p><i>Author Email: </i>msporny@digitalbazaar.com</p>
+      <p><i>Author Github: </i>msporny</p>
   </section>
 
   <section>
@@ -439,10 +457,10 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
               jobapplications.com - Verifier App->>Kenzie's Wallet - Holder Service:Application Accepted     
               Kenzie's Wallet - Holder Service->>Kenzie - Holder:Application Accepted 
             </pre>
-            <figcaption>UC2.4 Mermaid</figcaption>
-          </figure>
         </p>
       <p><i>Contributed by:</i>SecureKey Technologies Inc.</p>
+      <p><i>Author Email: </i>mike.varley@securekey.com</p>
+      <p><i>Author Github: </i>mavarley</p>
   </section>
 
   <section>
@@ -527,10 +545,10 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
             floydsmassagetheray.com - Verifier App->>Shabazz's Browser - Holder App:Application submitted     
             Shabazz's Browser - Holder App->>Shabazz  (Student) - Holder:Application submitted 
           </pre>
-          <figcaption>UC2.5 Mermaid</figcaption>
-        </figure>
       </p>
      <p><i>Contributed by:</i>RANDA Solutions</p>
+     <p><i>Author Email: </i>marty.reed@randasolutions.com</p>
+     <p><i>Author Github: </i>martyr160</p>
   </section>
 
   <section>
@@ -600,10 +618,10 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
               Verifier App - Steel, Inc. Business API->>Holder App -  SMG Enterprise API:steelincapi.com/presentations/verified?\"SignedVP\"     
               Holder App -  SMG Enterprise API->>Holder - Steel Mills Global (SMG):Mill Test Report Verified 
           </pre>
-          <figcaption>UC2.6 Mermaid</figcaption>
-        </figure>
       </p>
       <p><i>Contributed by:</i>Transmute Industries</p>
+      <p><i>Author Email: </i>nis@transmute.industries</p>
+      <p><i>Author Github: </i>nissimsan</p>
   </section>
 </section>
 
