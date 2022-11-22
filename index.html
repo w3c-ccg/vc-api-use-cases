@@ -292,28 +292,39 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
         <p><b>Mermaid</b>
           <figure>
             <pre class="diagram mermaid">
-          sequenceDiagram               
-            autonumber     
-              Riley's Wallet - Holder Service->>Riley's Wallet - Holder Service:Notice out of Age Tokens     
-              Riley's Wallet - Holder Service->>TruAge Website - Verifier App:truage.com/credentials/refresh     
-              TruAge Website - Verifier App->>Riley's Wallet - Holder Service:Domain&Challenge w/ request for expired VC     
-              Riley's Wallet - Holder Service->>Riley's Wallet - Holder Service:Generate VP containing Over Age VC     
-              Riley's Wallet - Holder Service->>Riley's Wallet - Holder Service:Sign generated VP     
-              Riley's Wallet - Holder Service->>TruAge Website - Verifier App:truage.com//presentations/submissions?\"OverAgeVP\"     
-              TruAge Website - Verifier App->>TruAge Website - Verifier App:Extract contained VC     
-              TruAge Website - Verifier App->>TruAge Website - Verifier App:Check if subject of contained VC is signer of VP     
-              TruAge Website - Verifier App->>Generic Verifier SAAS - Verifier Service:genericverifier.com/presentations/verify?\"OverAgeVP\"     
-              Generic Verifier SAAS - Verifier Service->>Generic Verifier SAAS - Verifier Service:Process provided VP     
-              Generic Verifier SAAS - Verifier Service->>TruAge Website - Verifier App:truage.com/presentations/verified?\"VerificationResult\"     
-              TruAge Website - Verifier App->>TruAge Website - Verifier App:Evaluate VP verification result     
-              TruAge Website - Verifier App->>Generic Verifier SAAS - Verifier Service:genericverifier.com/credentials/verify?\"OverAgeVC\"     
-              Generic Verifier SAAS - Verifier Service->>Generic Verifier SAAS - Verifier Service:Process provided VC     
-              Generic Verifier SAAS - Verifier Service->>TruAge Website - Verifier App:truage.com/credentials/verified?\"VerificationResult\"     
-              TruAge Website - Verifier App->>TruAge Website - Verifier App:Evaluate business rules     
-              TruAge Website - Verifier App->>Generic Issuer SAAS - Issuer Service:genericissuer.com/credentials/issue?\"OverAgeVC\"     
-              Generic Issuer SAAS - Issuer Service->>Generic Issuer SAAS - Issuer Service:Generate new Age Tokens     
-              Generic Issuer SAAS - Issuer Service->>TruAge Website - Verifier App:truage.com/credentials/issued?\"NewAgeTokenCredentials\"     
-              TruAge Website - Verifier App->>Riley's Wallet - Holder Service:rileyswallet.com/credentails/refreshed?\"NewAgeTokenCredentials\"m 
+
+              sequenceDiagram
+                autonumber
+                  Riley's Wallet <br/>(Holder Service)->>Riley's Wallet <br/>(Holder Service):Notice out of Age Tokens
+                  Riley's Wallet <br/>(Holder Service)->>TruAge Website <br/>(Verifier App):truage.com/credentials/refresh?"HolderCallbackURL1"
+                  TruAge Website <br/>(Verifier App)->>Riley's Wallet <br/>(Holder Service):ackRequest
+                  TruAge Website <br/>(Verifier App)->>Riley's Wallet <br/>(Holder Service):HolderCallbackURL1/"Domain&Challenge w/ request for expired VC + TruAgeCallbackURL1"
+                  Riley's Wallet <br/>(Holder Service)->>TruAge Website <br/>(Verifier App):ackResponse
+                  Riley's Wallet <br/>(Holder Service)->>Riley's Wallet <br/>(Holder Service):Generate VP containing Age Verification VC
+                  Riley's Wallet <br/>(Holder Service)->>Riley's Wallet <br/>(Holder Service):Sign generated VP
+                  Riley's Wallet <br/>(Holder Service)->>TruAge Website <br/>(Verifier App):TruAgeCallbackURL1?"AgeVerificationVP + HolderWalletCallback1"
+                  TruAge Website <br/>(Verifier App)->>Riley's Wallet <br/>(Holder Service):ackResponse
+                  TruAge Website <br/>(Verifier App)->>TruAge Website <br/>(Verifier App):Extract contained VC
+                  TruAge Website <br/>(Verifier App)->>TruAge Website <br/>(Verifier App):Check if subject of contained VC is signer of VP
+                  TruAge Website <br/>(Verifier App)->>Generic Verifier SAAS <br/>(Verifier Service):genericverifier.com/presentations/verify?"AgeVerificationVP"
+                  Generic Verifier SAAS <br/>(Verifier Service)->>TruAge Website <br/>(Verifier App):ackRequest
+                  Generic Verifier SAAS <br/>(Verifier Service)->>Generic Verifier SAAS <br/>(Verifier Service):Process provided VP
+                  Generic Verifier SAAS <br/>(Verifier Service)->>TruAge Website <br/>(Verifier App):truage.com/presentations/verified?"VerificationResult"
+                  TruAge Website <br/>(Verifier App)->>Generic Verifier SAAS <br/>(Verifier Service):ackResponse
+                  TruAge Website <br/>(Verifier App)->>TruAge Website <br/>(Verifier App):Evaluate VP verification result
+                  TruAge Website <br/>(Verifier App)->>Generic Verifier SAAS <br/>(Verifier Service):genericverifier.com/credentials/verify?"AgeVerificationVC"
+                  Generic Verifier SAAS <br/>(Verifier Service)->>TruAge Website <br/>(Verifier App):ackRequest
+                  Generic Verifier SAAS <br/>(Verifier Service)->>Generic Verifier SAAS <br/>(Verifier Service):Process provided VC
+                  Generic Verifier SAAS <br/>(Verifier Service)->>TruAge Website <br/>(Verifier App):truage.com/credentials/verified?"VerificationResult"
+                  TruAge Website <br/>(Verifier App)->>Generic Verifier SAAS <br/>(Verifier Service):ackResponse
+                  TruAge Website <br/>(Verifier App)->>TruAge Website <br/>(Verifier App):Evaluate business rules
+                  TruAge Website <br/>(Verifier App)->>Generic Issuer SAAS <br/>(Issuer Service):genericissuer.com/credentials/issue?"AgeVerificationVC"
+                  Generic Issuer SAAS <br/>(Issuer Service)->>TruAge Website <br/>(Verifier App):ackRequest
+                  Generic Issuer SAAS <br/>(Issuer Service)->>Generic Issuer SAAS <br/>(Issuer Service):Generate new Age Tokens
+                  Generic Issuer SAAS <br/>(Issuer Service)->>TruAge Website <br/>(Verifier App):truage.com/credentials/issued?"Container Credential + Age Verification VC + NewSingleUseAgeTokenCredentials"
+                  TruAge Website <br/>(Verifier App)->>Generic Issuer SAAS <br/>(Issuer Service):ackResponse
+                  TruAge Website <br/>(Verifier App)->>Riley's Wallet <br/>(Holder Service):holderWalletCallback2?"NewAgeTokenCredentials"
+                  Riley's Wallet <br/>(Holder Service)->>TruAge Website <br/>(Verifier App):ackRecieve
             </pre>
             <figcaption>UC6.2 Mermaid</figcaption>
           </figure>
@@ -559,8 +570,8 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
       <p><b>Mermaid</b>
         <figure>
           <pre class="diagram mermaid">
-            sequenceDiagram               
-            autonumber     
+            sequenceDiagram
+                 autonumber
               Holder - Steel Mills Global (SMG)->>Holder App -  SMG Enterprise API:getMillTestReportVC     
               Holder App -  SMG Enterprise API->>Issuer App - Inspectors & Co Enterprise Software:inspectorandco.com/credentials/issue     
               Issuer App - Inspectors & Co Enterprise Software->>Lacy - Inspectors & Co Inspector:New inspection requested     
