@@ -426,33 +426,33 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
         <p><b>Mermaid</b>
           <figure>
             <pre class="diagram mermaid">
-          sequenceDiagram               
-            autonumber     
-              Kenzie - Holder->>jobapplications.com - Verifier App:jobapplications.com/presenations/submit?\"application\"     
-              jobapplications.com - Verifier App->>jobapplications.com - Verifier App:process application     
-              jobapplications.com - Verifier App->>Kenzie - Holder:Request credentials A and B     
-              Kenzie - Holder->>Kenzie's Wallet - Holder Service:Check for A and B     
-              Kenzie's Wallet - Holder Service->>Kenzie - Holder:Display A, B not found     
-              Kenzie - Holder->>Kenzie's Wallet - Holder Service:Need B     
-              Kenzie's Wallet - Holder Service->>backgroundcheck.com - Issuer App:backgroundcheck.com/index.html     
-              backgroundcheck.com - Issuer App->>Kenzie's Wallet - Holder Service:index.html     
-              Kenzie's Wallet - Holder Service->>backgroundcheck.com - Issuer App:backgroundcheck.com/getBackgroundCheck     
-              backgroundcheck.com - Issuer App->>Kenzie's Wallet - Holder Service:getBackgoundCheck.html     
-              Kenzie's Wallet - Holder Service->>backgroundcheck.com - Issuer App:backgroundcheck.com/getBackgrounCheck/credentials/issue?\"RequestedInfo\"     
-              backgroundcheck.com - Issuer App->>backgroundcheck.com - Issuer App:evaluate requested info     
-              backgroundcheck.com - Issuer App->>Generic Issuer - Issuer Service:genericissuer.com/credentials/issue?\"backgrounCheckCredential+info\"     
-              Generic Issuer - Issuer Service->>backgroundcheck.com - Issuer App:issued VC     
-              backgroundcheck.com - Issuer App->>Kenzie's Wallet - Holder Service:kenzieswallet.com/credentials/recieve?\"VC\"     
-              Kenzie's Wallet - Holder Service->>Kenzie - Holder:Notify B Ready     
-              Kenzie - Holder->>jobapplications.com - Verifier App:jobapplications.com/presenations/submit?\"application\"     
-              jobapplications.com - Verifier App->>Kenzie - Holder:Request Credentials A and B     
-              Kenzie - Holder->>Kenzie's Wallet - Holder Service:Send A and B to jobapplications.com     
-              Kenzie's Wallet - Holder Service->>jobapplications.com - Verifier App:jobapplications.com/presentations/submit?\"application with A and B\"     
-              jobapplications.com - Verifier App->>Generic Verifier - Verifier Service:genericVerifer.com/presentations/verify?\"applicationwith A and B\"     
-              Generic Verifier - Verifier Service->>jobapplications.com - Verifier App:Verification Result     
-              jobapplications.com - Verifier App->>jobapplications.com - Verifier App:process application     
-              jobapplications.com - Verifier App->>Kenzie's Wallet - Holder Service:Application Accepted     
-              Kenzie's Wallet - Holder Service->>Kenzie - Holder:Application Accepted 
+              sequenceDiagram
+                  autonumber
+                      Kenzie <br/>(Holder)->>jobapplications.com <br/>(Verifier App):jobapplications.com/presenations/submit?"application"
+                      jobapplications.com <br/>(Verifier App)->>jobapplications.com <br/>(Verifier App):process application
+                      jobapplications.com <br/>(Verifier App)->>Kenzie <br/>(Holder):Request credentials A and B
+                      Kenzie <br/>(Holder)->>Kenzie's Wallet <br/>(Holder Service):Check for A and B
+                      Kenzie's Wallet <br/>(Holder Service)->>Kenzie <br/>(Holder):Display A, B not found
+                      Kenzie <br/>(Holder)->>Kenzie's Wallet <br/>(Holder Service):Need B
+                      Kenzie's Wallet <br/>(Holder Service)->>backgroundcheck.com <br/>(Issuer App):backgroundcheck.com/index.html
+                      backgroundcheck.com <br/>(Issuer App)->>Kenzie's Wallet <br/>(Holder Service):index.html
+                      Kenzie's Wallet <br/>(Holder Service)->>backgroundcheck.com <br/>(Issuer App):backgroundcheck.com/getBackgroundCheck
+                      backgroundcheck.com <br/>(Issuer App)->>Kenzie's Wallet <br/>(Holder Service):getBackgoundCheck.html
+                      Kenzie's Wallet <br/>(Holder Service)->>backgroundcheck.com <br/>(Issuer App):backgroundcheck.com/getBackgrounCheck/credentials/issue?"RequestedInfo"
+                      backgroundcheck.com <br/>(Issuer App)->>backgroundcheck.com <br/>(Issuer App):evaluate requested info
+                      backgroundcheck.com <br/>(Issuer App)->>Generic Issuer <br/>(Issuer Service):genericissuer.com/credentials/issue?"backgrounCheckCredential+info"
+                      Generic Issuer <br/>(Issuer Service)->>backgroundcheck.com <br/>(Issuer App):issued VC
+                      backgroundcheck.com <br/>(Issuer App)->>Kenzie's Wallet <br/>(Holder Service):kenzieswallet.com/credentials/recieve?"VC"
+                      Kenzie's Wallet <br/>(Holder Service)->>Kenzie <br/>(Holder):Notify B Ready
+                      Kenzie <br/>(Holder)->>jobapplications.com <br/>(Verifier App):jobapplications.com/presenations/submit?"application"
+                      jobapplications.com <br/>(Verifier App)->>Kenzie <br/>(Holder):Request Credentials A and B
+                      Kenzie <br/>(Holder)->>Kenzie's Wallet <br/>(Holder Service):Send A and B to jobapplications.com
+                      Kenzie's Wallet <br/>(Holder Service)->>jobapplications.com <br/>(Verifier App):jobapplications.com/presentations/submit?"application with A and B"
+                      jobapplications.com <br/>(Verifier App)->>Generic Verifier <br/>(Verifier Service):genericVerifer.com/presentations/verify?"applicationwith A and B"
+                      Generic Verifier <br/>(Verifier Service)->>jobapplications.com <br/>(Verifier App):Verification Result
+                      jobapplications.com <br/>(Verifier App)->>jobapplications.com <br/>(Verifier App):process application
+                      jobapplications.com <br/>(Verifier App)->>Kenzie's Wallet <br/>(Holder Service):Application Accepted
+                      Kenzie's Wallet <br/>(Holder Service)->>Kenzie <br/>(Holder):Application Accepted
             </pre>
             <figcaption>UC6.4 Mermaid</figcaption>
           </figure>
