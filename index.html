@@ -168,8 +168,6 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
 
   <section>
     <h2>Use Cases</h2>
-
-
 </section>
 <section>
   <h2>Requirements</h2>
@@ -221,52 +219,51 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
           <pre class="diagram mermaid">
             sequenceDiagram
               autonumber
-            Lana (Issuer Admin)->>uscis.gov (Issuer App):Configure to properly use Generic Issuer SAAS
-            uscis.gov (Issuer App)->>uscis.gov (Issuer App):Process configuration
-            uscis.gov (Issuer App)->>Generic Issuer SAAS (Issuer Service):Status check
-            Generic Issuer SAAS (Issuer Service)->>Generic Issuer SAAS (Issuer Service):Verify Authorization
-            Generic Issuer SAAS (Issuer Service)->>Generic Issuer SAAS (Issuer Service):Check business rules
-            Generic Issuer SAAS (Issuer Service)->>uscis.gov (Issuer App):All good
-            uscis.gov (Issuer App)->>Lana (Issuer Admin):Configuration complete
-            authn.io (Holder Service)->>Louis's Browser (Holder App):Holder-App/registerCredentialHandler
-            Louis (Holder)->>Louis's Browser (Holder App):uscis.gov
-            Louis's Browser (Holder App)->>uscis.gov (Issuer App):uscis.gov
-            uscis.gov (Issuer App)->>Louis's Browser (Holder App):uscis.gov/index.html
-            Louis's Browser (Holder App)->>Louis (Holder):uscis.gov/index.html
-            Louis (Holder)->>Louis's Browser (Holder App):Click "Get PRC"
-            Louis's Browser (Holder App)->>uscis.gov (Issuer App):uscis.gov/getPRC
-            uscis.gov (Issuer App)->>Louis's Browser (Holder App):request authentication
-            Louis's Browser (Holder App)->>Louis (Holder):request authentication
-            Louis (Holder)->>Louis's Browser (Holder App):provide authentication details
-            Louis's Browser (Holder App)->>uscis.gov (Issuer App):uscis.gov/authenticate?louiss-details
-            uscis.gov (Issuer App)->>uscis.gov (Issuer App):process provided authentication details
-            uscis.gov (Issuer App)->>Louis's Browser (Holder App):authentication succuss
-            Louis's Browser (Holder App)->>Louis (Holder):authentication succuss
-            uscis.gov (Issuer App)->>Louis's Browser (Holder App):Holder-App/requestPresentation
-            Louis's Browser (Holder App)->>Louis (Holder):Holder/selectHolderService
-            Louis (Holder)->>Louis's Browser (Holder App):holderServiceSelection
-            Louis's Browser (Holder App)->>authn.io (Holder Service):HolderService/requestPresentation
-            authn.io (Holder Service)->>Louis (Holder):Holder/selectWallet
-            Louis (Holder)->>authn.io (Holder Service):walletSelection
-            authn.io (Holder Service)->>Louis (Holder):Holder/selectProfile
-            Louis (Holder)->>authn.io (Holder Service):profileSelection
-            authn.io (Holder Service)->>Louis's Browser (Holder App):HolderApp/requestedPresentation
-            Louis's Browser (Holder App)->>uscis.gov (Issuer App):IssuerApp/requestedPresentation
-            uscis.gov (Issuer App)->>Generic Issuer SAAS (Issuer Service):IssuerService/credentials/issue?"providedVP"
-            Generic Issuer SAAS (Issuer Service)->>uscis.gov (Issuer App):IssuerApp/credentials/issued?"issuedCredentailsWrappedByIssuerApp"
-            uscis.gov (Issuer App)->>Louis's Browser (Holder App):HolderApp/newCredential?"issuedCredentialUnwrappedByIssuerApp"
-            Louis's Browser (Holder App)->>Louis (Holder):Holder/selectHolderService
-            Louis (Holder)->>Louis's Browser (Holder App):holderServiceSelection
-            Louis's Browser (Holder App)->>authn.io (Holder Service):HolderService/storeCredentials?"credentials"
-            authn.io (Holder Service)->>Louis (Holder):Holder/selectWallet
-            Louis (Holder)->>authn.io (Holder Service):walletSelection
-            authn.io (Holder Service)->>Louis (Holder):Holder/selectProfile
-            Louis (Holder)->>authn.io (Holder Service):profileSelection
-            authn.io (Holder Service)->>authn.io (Holder Service):Store credentials
-            authn.io (Holder Service)->>Louis's Browser (Holder App):HolderApp/credentialsStored
-
+                Lana (Issuer Admin)->>uscis.gov (Issuer App):Configure to properly use Generic Issuer SAAS
+                uscis.gov (Issuer App)->>uscis.gov (Issuer App):Process configuration
+                uscis.gov (Issuer App)->>Generic Issuer SAAS (Issuer Service):Status check
+                Generic Issuer SAAS (Issuer Service)->>Generic Issuer SAAS (Issuer Service):Verify Authorization
+                Generic Issuer SAAS (Issuer Service)->>Generic Issuer SAAS (Issuer Service):Check business rules
+                Generic Issuer SAAS (Issuer Service)->>uscis.gov (Issuer App):All good
+                uscis.gov (Issuer App)->>Lana (Issuer Admin):Configuration complete
+                authn.io (Holder Service)->>Louis's Browser (Holder App):Holder-App/registerCredentialHandler
+                Louis (Holder)->>Louis's Browser (Holder App):uscis.gov
+                Louis's Browser (Holder App)->>uscis.gov (Issuer App):uscis.gov
+                uscis.gov (Issuer App)->>Louis's Browser (Holder App):uscis.gov/index.html
+                Louis's Browser (Holder App)->>Louis (Holder):uscis.gov/index.html
+                Louis (Holder)->>Louis's Browser (Holder App):Click "Get PRC"
+                Louis's Browser (Holder App)->>uscis.gov (Issuer App):uscis.gov/getPRC
+                uscis.gov (Issuer App)->>Louis's Browser (Holder App):request authentication
+                Louis's Browser (Holder App)->>Louis (Holder):request authentication
+                Louis (Holder)->>Louis's Browser (Holder App):provide authentication details
+                Louis's Browser (Holder App)->>uscis.gov (Issuer App):uscis.gov/authenticate?louiss-details
+                uscis.gov (Issuer App)->>uscis.gov (Issuer App):process provided authentication details
+                uscis.gov (Issuer App)->>Louis's Browser (Holder App):authentication succuss
+                Louis's Browser (Holder App)->>Louis (Holder):authentication succuss
+                uscis.gov (Issuer App)->>Louis's Browser (Holder App):Holder-App/requestPresentation
+                Louis's Browser (Holder App)->>Louis (Holder):Holder/selectHolderService
+                Louis (Holder)->>Louis's Browser (Holder App):holderServiceSelection
+                Louis's Browser (Holder App)->>authn.io (Holder Service):HolderService/requestPresentation
+                authn.io (Holder Service)->>Louis (Holder):Holder/selectWallet
+                Louis (Holder)->>authn.io (Holder Service):walletSelection
+                authn.io (Holder Service)->>Louis (Holder):Holder/selectProfile
+                Louis (Holder)->>authn.io (Holder Service):profileSelection
+                authn.io (Holder Service)->>Louis's Browser (Holder App):HolderApp/requestedPresentation
+                Louis's Browser (Holder App)->>uscis.gov (Issuer App):IssuerApp/requestedPresentation
+                uscis.gov (Issuer App)->>Generic Issuer SAAS (Issuer Service):IssuerService/credentials/issue?"providedVP"
+                Generic Issuer SAAS (Issuer Service)->>uscis.gov (Issuer App):IssuerApp/credentials/issued?"issuedCredentailsWrappedByIssuerApp"
+                uscis.gov (Issuer App)->>Louis's Browser (Holder App):HolderApp/newCredential?"issuedCredentialUnwrappedByIssuerApp"
+                Louis's Browser (Holder App)->>Louis (Holder):Holder/selectHolderService
+                Louis (Holder)->>Louis's Browser (Holder App):holderServiceSelection
+                Louis's Browser (Holder App)->>authn.io (Holder Service):HolderService/storeCredentials?"credentials"
+                authn.io (Holder Service)->>Louis (Holder):Holder/selectWallet
+                Louis (Holder)->>authn.io (Holder Service):walletSelection
+                authn.io (Holder Service)->>Louis (Holder):Holder/selectProfile
+                Louis (Holder)->>authn.io (Holder Service):profileSelection
+                authn.io (Holder Service)->>authn.io (Holder Service):Store credentials
+                authn.io (Holder Service)->>Louis's Browser (Holder App):HolderApp/credentialsStored
           </pre>
-          <figcaption>UC2.1 Mermaid</figcaption>
+          <figcaption>UC6.1 Mermaid</figcaption>
         </figure>
       </p>
   </section>
@@ -329,7 +326,7 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
                   TruAge Website <br/>(Verifier App)->>Riley's Wallet <br/>(Holder Service):holderWalletCallback2?"NewAgeTokenCredentials"
                   Riley's Wallet <br/>(Holder Service)->>TruAge Website <br/>(Verifier App):ackRecieve
             </pre>
-            <figcaption>UC2.2 Mermaid</figcaption>
+            <figcaption>UC6.2 Mermaid</figcaption>
           </figure>
         </p>
       <p><i>Contributed by: </i>Digital Bazaar</p>
@@ -398,7 +395,7 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
               Shipping Co. Website - Issuer App->>Kirk Company Enterprise Resource Planning App - Holder and Holder Service:kirkcompany.com/credentails/newCredential?\"BoL\"     
               Kirk Company Enterprise Resource Planning App - Holder and Holder Service->>Ignio - Logistic Manager:BoL Ready notice 
             </pre>
-            <figcaption>UC2.3 Mermaid</figcaption>
+            <figcaption>UC6.3 Mermaid</figcaption>
           </figure>
         </p>
       <p><i>Contributed by: </i>Digital Bazaar</p>
@@ -406,7 +403,13 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
 
   <section>
     <h3>Aggregated Credential Workflow</h3>
-    <p>Tod is using digital credentials to apply for a service/qualify for a job/gain access to a programme. 
+    <p>Kenzie is using digital credentials to apply for a job at as a teacher. 
+      Her teaching certification is already in her digital wallet but the school also requires a 
+      criminal background check for which Kenzie does not currently have a credential. The process
+      of getting the background check can take 24&ndash;48 hours. Kenzie goes to the job application
+      website and submits her application; the website responds requesting both her teaching credential
+      and a criminal background check credential --issued by some set of known issuers?--
+
       Some of his credentials are available today, some will need to be provided when they are ready 
       (for example, a criminal background check can take 24-48 hrs to process). He would like these credentials to 
       be presented to the Verifier (service provider) when ready, without having to constantly return to the Verifier 
@@ -451,7 +454,7 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
               jobapplications.com - Verifier App->>Kenzie's Wallet - Holder Service:Application Accepted     
               Kenzie's Wallet - Holder Service->>Kenzie - Holder:Application Accepted 
             </pre>
-            <figcaption>UC2.4 Mermaid</figcaption>
+            <figcaption>UC6.4 Mermaid</figcaption>
           </figure>
         </p>
       <p><i>Contributed by:</i>SecureKey Technologies Inc.</p>
@@ -539,7 +542,7 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
             floydsmassagetheray.com - Verifier App->>Shabazz's Browser - Holder App:Application submitted     
             Shabazz's Browser - Holder App->>Shabazz  (Student) - Holder:Application submitted 
           </pre>
-          <figcaption>UC2.5 Mermaid</figcaption>
+          <figcaption>UC6.5 Mermaid</figcaption>
         </figure>
       </p>
      <p><i>Contributed by:</i>RANDA Solutions</p>
@@ -612,7 +615,7 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
               Verifier App - Steel, Inc. Business API->>Holder App -  SMG Enterprise API:steelincapi.com/presentations/verified?\"SignedVP\"     
               Holder App -  SMG Enterprise API->>Holder - Steel Mills Global (SMG):Mill Test Report Verified 
           </pre>
-          <figcaption>UC2.6 Mermaid</figcaption>
+          <figcaption>UC6.6 Mermaid</figcaption>
         </figure>
       </p>
       <p><i>Contributed by:</i>Transmute Industries</p>
