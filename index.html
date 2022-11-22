@@ -297,36 +297,36 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
 
               sequenceDiagram
                 autonumber
-                  Riley's Wallet <br/>(Holder Service)->>Riley's Wallet <br/>(Holder Service):Notice out of Age Tokens
-                  Riley's Wallet <br/>(Holder Service)->>TruAge Website <br/>(Verifier App):truage.com/credentials/refresh?"HolderCallbackURL1"
-                  TruAge Website <br/>(Verifier App)->>Riley's Wallet <br/>(Holder Service):ackRequest
-                  TruAge Website <br/>(Verifier App)->>Riley's Wallet <br/>(Holder Service):HolderCallbackURL1/"Domain&Challenge w/ request for expired VC + TruAgeCallbackURL1"
-                  Riley's Wallet <br/>(Holder Service)->>TruAge Website <br/>(Verifier App):ackResponse
-                  Riley's Wallet <br/>(Holder Service)->>Riley's Wallet <br/>(Holder Service):Generate VP containing Age Verification VC
-                  Riley's Wallet <br/>(Holder Service)->>Riley's Wallet <br/>(Holder Service):Sign generated VP
-                  Riley's Wallet <br/>(Holder Service)->>TruAge Website <br/>(Verifier App):TruAgeCallbackURL1?"AgeVerificationVP + HolderWalletCallback1"
-                  TruAge Website <br/>(Verifier App)->>Riley's Wallet <br/>(Holder Service):ackResponse
-                  TruAge Website <br/>(Verifier App)->>TruAge Website <br/>(Verifier App):Extract contained VC
-                  TruAge Website <br/>(Verifier App)->>TruAge Website <br/>(Verifier App):Check if subject of contained VC is signer of VP
-                  TruAge Website <br/>(Verifier App)->>Generic Verifier SAAS <br/>(Verifier Service):genericverifier.com/presentations/verify?"AgeVerificationVP"
-                  Generic Verifier SAAS <br/>(Verifier Service)->>TruAge Website <br/>(Verifier App):ackRequest
-                  Generic Verifier SAAS <br/>(Verifier Service)->>Generic Verifier SAAS <br/>(Verifier Service):Process provided VP
-                  Generic Verifier SAAS <br/>(Verifier Service)->>TruAge Website <br/>(Verifier App):truage.com/presentations/verified?"VerificationResult"
-                  TruAge Website <br/>(Verifier App)->>Generic Verifier SAAS <br/>(Verifier Service):ackResponse
-                  TruAge Website <br/>(Verifier App)->>TruAge Website <br/>(Verifier App):Evaluate VP verification result
-                  TruAge Website <br/>(Verifier App)->>Generic Verifier SAAS <br/>(Verifier Service):genericverifier.com/credentials/verify?"AgeVerificationVC"
-                  Generic Verifier SAAS <br/>(Verifier Service)->>TruAge Website <br/>(Verifier App):ackRequest
-                  Generic Verifier SAAS <br/>(Verifier Service)->>Generic Verifier SAAS <br/>(Verifier Service):Process provided VC
-                  Generic Verifier SAAS <br/>(Verifier Service)->>TruAge Website <br/>(Verifier App):truage.com/credentials/verified?"VerificationResult"
-                  TruAge Website <br/>(Verifier App)->>Generic Verifier SAAS <br/>(Verifier Service):ackResponse
-                  TruAge Website <br/>(Verifier App)->>TruAge Website <br/>(Verifier App):Evaluate business rules
-                  TruAge Website <br/>(Verifier App)->>Generic Issuer SAAS <br/>(Issuer Service):genericissuer.com/credentials/issue?"AgeVerificationVC"
-                  Generic Issuer SAAS <br/>(Issuer Service)->>TruAge Website <br/>(Verifier App):ackRequest
-                  Generic Issuer SAAS <br/>(Issuer Service)->>Generic Issuer SAAS <br/>(Issuer Service):Generate new Age Tokens
-                  Generic Issuer SAAS <br/>(Issuer Service)->>TruAge Website <br/>(Verifier App):truage.com/credentials/issued?"Container Credential + Age Verification VC + NewSingleUseAgeTokenCredentials"
-                  TruAge Website <br/>(Verifier App)->>Generic Issuer SAAS <br/>(Issuer Service):ackResponse
-                  TruAge Website <br/>(Verifier App)->>Riley's Wallet <br/>(Holder Service):holderWalletCallback2?"NewAgeTokenCredentials"
-                  Riley's Wallet <br/>(Holder Service)->>TruAge Website <br/>(Verifier App):ackRecieve
+                  Riley's Wallet (Holder Service)->>Riley's Wallet (Holder Service):Notice out of Age Tokens
+                  Riley's Wallet (Holder Service)->>TruAge Website (Verifier App):truage.com/credentials/refresh?"HolderCallbackURL1"
+                  TruAge Website (Verifier App)->>Riley's Wallet (Holder Service):ackRequest
+                  TruAge Website (Verifier App)->>Riley's Wallet (Holder Service):HolderCallbackURL1/"Domain&Challenge w/ request for expired VC + TruAgeCallbackURL1"
+                  Riley's Wallet (Holder Service)->>TruAge Website (Verifier App):ackResponse
+                  Riley's Wallet (Holder Service)->>Riley's Wallet (Holder Service):Generate VP containing Age Verification VC
+                  Riley's Wallet (Holder Service)->>Riley's Wallet (Holder Service):Sign generated VP
+                  Riley's Wallet (Holder Service)->>TruAge Website (Verifier App):TruAgeCallbackURL1?"AgeVerificationVP + HolderWalletCallback1"
+                  TruAge Website (Verifier App)->>Riley's Wallet (Holder Service):ackResponse
+                  TruAge Website (Verifier App)->>TruAge Website (Verifier App):Extract contained VC
+                  TruAge Website (Verifier App)->>TruAge Website (Verifier App):Check if subject of contained VC is signer of VP
+                  TruAge Website (Verifier App)->>Generic Verifier SAAS (Verifier Service):genericverifier.com/presentations/verify?"AgeVerificationVP"
+                  Generic Verifier SAAS (Verifier Service)->>TruAge Website (Verifier App):ackRequest
+                  Generic Verifier SAAS (Verifier Service)->>Generic Verifier SAAS (Verifier Service):Process provided VP
+                  Generic Verifier SAAS (Verifier Service)->>TruAge Website (Verifier App):truage.com/presentations/verified?"VerificationResult"
+                  TruAge Website (Verifier App)->>Generic Verifier SAAS (Verifier Service):ackResponse
+                  TruAge Website (Verifier App)->>TruAge Website (Verifier App):Evaluate VP verification result
+                  TruAge Website (Verifier App)->>Generic Verifier SAAS (Verifier Service):genericverifier.com/credentials/verify?"AgeVerificationVC"
+                  Generic Verifier SAAS (Verifier Service)->>TruAge Website (Verifier App):ackRequest
+                  Generic Verifier SAAS (Verifier Service)->>Generic Verifier SAAS (Verifier Service):Process provided VC
+                  Generic Verifier SAAS (Verifier Service)->>TruAge Website (Verifier App):truage.com/credentials/verified?"VerificationResult"
+                  TruAge Website (Verifier App)->>Generic Verifier SAAS (Verifier Service):ackResponse
+                  TruAge Website (Verifier App)->>TruAge Website (Verifier App):Evaluate business rules
+                  TruAge Website (Verifier App)->>Generic Issuer SAAS (Issuer Service):genericissuer.com/credentials/issue?"AgeVerificationVC"
+                  Generic Issuer SAAS (Issuer Service)->>TruAge Website (Verifier App):ackRequest
+                  Generic Issuer SAAS (Issuer Service)->>Generic Issuer SAAS (Issuer Service):Generate new Age Tokens
+                  Generic Issuer SAAS (Issuer Service)->>TruAge Website (Verifier App):truage.com/credentials/issued?"Container Credential + Age Verification VC + NewSingleUseAgeTokenCredentials"
+                  TruAge Website (Verifier App)->>Generic Issuer SAAS (Issuer Service):ackResponse
+                  TruAge Website (Verifier App)->>Riley's Wallet (Holder Service):holderWalletCallback2?"NewAgeTokenCredentials"
+                  Riley's Wallet (Holder Service)->>TruAge Website (Verifier App):ackRecieve
             </pre>
             <figcaption>UC6.2 Mermaid</figcaption>
           </figure>
@@ -430,31 +430,31 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
             <pre class="diagram mermaid">
               sequenceDiagram
                   autonumber
-                      Kenzie <br/>(Holder)->>jobapplications.com <br/>(Verifier App):jobapplications.com/presenations/submit?"application"
-                      jobapplications.com <br/>(Verifier App)->>jobapplications.com <br/>(Verifier App):process application
-                      jobapplications.com <br/>(Verifier App)->>Kenzie <br/>(Holder):Request credentials A and B
-                      Kenzie <br/>(Holder)->>Kenzie's Wallet <br/>(Holder Service):Check for A and B
-                      Kenzie's Wallet <br/>(Holder Service)->>Kenzie <br/>(Holder):Display A, B not found
-                      Kenzie <br/>(Holder)->>Kenzie's Wallet <br/>(Holder Service):Need B
-                      Kenzie's Wallet <br/>(Holder Service)->>backgroundcheck.com <br/>(Issuer App):backgroundcheck.com/index.html
-                      backgroundcheck.com <br/>(Issuer App)->>Kenzie's Wallet <br/>(Holder Service):index.html
-                      Kenzie's Wallet <br/>(Holder Service)->>backgroundcheck.com <br/>(Issuer App):backgroundcheck.com/getBackgroundCheck
-                      backgroundcheck.com <br/>(Issuer App)->>Kenzie's Wallet <br/>(Holder Service):getBackgoundCheck.html
-                      Kenzie's Wallet <br/>(Holder Service)->>backgroundcheck.com <br/>(Issuer App):backgroundcheck.com/getBackgrounCheck/credentials/issue?"RequestedInfo"
-                      backgroundcheck.com <br/>(Issuer App)->>backgroundcheck.com <br/>(Issuer App):evaluate requested info
-                      backgroundcheck.com <br/>(Issuer App)->>Generic Issuer <br/>(Issuer Service):genericissuer.com/credentials/issue?"backgrounCheckCredential+info"
-                      Generic Issuer <br/>(Issuer Service)->>backgroundcheck.com <br/>(Issuer App):issued VC
-                      backgroundcheck.com <br/>(Issuer App)->>Kenzie's Wallet <br/>(Holder Service):kenzieswallet.com/credentials/recieve?"VC"
-                      Kenzie's Wallet <br/>(Holder Service)->>Kenzie <br/>(Holder):Notify B Ready
-                      Kenzie <br/>(Holder)->>jobapplications.com <br/>(Verifier App):jobapplications.com/presenations/submit?"application"
-                      jobapplications.com <br/>(Verifier App)->>Kenzie <br/>(Holder):Request Credentials A and B
-                      Kenzie <br/>(Holder)->>Kenzie's Wallet <br/>(Holder Service):Send A and B to jobapplications.com
-                      Kenzie's Wallet <br/>(Holder Service)->>jobapplications.com <br/>(Verifier App):jobapplications.com/presentations/submit?"application with A and B"
-                      jobapplications.com <br/>(Verifier App)->>Generic Verifier <br/>(Verifier Service):genericVerifer.com/presentations/verify?"applicationwith A and B"
-                      Generic Verifier <br/>(Verifier Service)->>jobapplications.com <br/>(Verifier App):Verification Result
-                      jobapplications.com <br/>(Verifier App)->>jobapplications.com <br/>(Verifier App):process application
-                      jobapplications.com <br/>(Verifier App)->>Kenzie's Wallet <br/>(Holder Service):Application Accepted
-                      Kenzie's Wallet <br/>(Holder Service)->>Kenzie <br/>(Holder):Application Accepted
+                      Kenzie (Holder)->>jobapplications.com (Verifier App):jobapplications.com/presenations/submit?"application"
+                      jobapplications.com (Verifier App)->>jobapplications.com (Verifier App):process application
+                      jobapplications.com (Verifier App)->>Kenzie (Holder):Request credentials A and B
+                      Kenzie (Holder)->>Kenzie's Wallet (Holder Service):Check for A and B
+                      Kenzie's Wallet (Holder Service)->>Kenzie (Holder):Display A, B not found
+                      Kenzie (Holder)->>Kenzie's Wallet (Holder Service):Need B
+                      Kenzie's Wallet (Holder Service)->>backgroundcheck.com (Issuer App):backgroundcheck.com/index.html
+                      backgroundcheck.com (Issuer App)->>Kenzie's Wallet (Holder Service):index.html
+                      Kenzie's Wallet (Holder Service)->>backgroundcheck.com (Issuer App):backgroundcheck.com/getBackgroundCheck
+                      backgroundcheck.com (Issuer App)->>Kenzie's Wallet (Holder Service):getBackgoundCheck.html
+                      Kenzie's Wallet (Holder Service)->>backgroundcheck.com (Issuer App):backgroundcheck.com/getBackgrounCheck/credentials/issue?"RequestedInfo"
+                      backgroundcheck.com (Issuer App)->>backgroundcheck.com (Issuer App):evaluate requested info
+                      backgroundcheck.com (Issuer App)->>Generic Issuer (Issuer Service):genericissuer.com/credentials/issue?"backgrounCheckCredential+info"
+                      Generic Issuer (Issuer Service)->>backgroundcheck.com (Issuer App):issued VC
+                      backgroundcheck.com (Issuer App)->>Kenzie's Wallet (Holder Service):kenzieswallet.com/credentials/recieve?"VC"
+                      Kenzie's Wallet (Holder Service)->>Kenzie (Holder):Notify B Ready
+                      Kenzie (Holder)->>jobapplications.com (Verifier App):jobapplications.com/presenations/submit?"application"
+                      jobapplications.com (Verifier App)->>Kenzie (Holder):Request Credentials A and B
+                      Kenzie (Holder)->>Kenzie's Wallet (Holder Service):Send A and B to jobapplications.com
+                      Kenzie's Wallet (Holder Service)->>jobapplications.com (Verifier App):jobapplications.com/presentations/submit?"application with A and B"
+                      jobapplications.com (Verifier App)->>Generic Verifier (Verifier Service):genericVerifer.com/presentations/verify?"applicationwith A and B"
+                      Generic Verifier (Verifier Service)->>jobapplications.com (Verifier App):Verification Result
+                      jobapplications.com (Verifier App)->>jobapplications.com (Verifier App):process application
+                      jobapplications.com (Verifier App)->>Kenzie's Wallet (Holder Service):Application Accepted
+                      Kenzie's Wallet (Holder Service)->>Kenzie (Holder):Application Accepted
             </pre>
             <figcaption>UC6.4 Mermaid</figcaption>
           </figure>
@@ -490,63 +490,63 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
           <pre class="diagram mermaid">
             sequenceDiagram
                 autonumber
-                    Shabazz <br/>(Holder)->>Shabazz's Billfold <br/>(Holder App - includes browser):massagetherapytestcorp.com
-                    Shabazz's Billfold <br/>(Holder App - includes browser)->>Massage Therapy Test Corp Webpage <br/>(Issuer App):messagetherapytestcorp.com/index.html
-                    Massage Therapy Test Corp Webpage <br/>(Issuer App)->>Shabazz's Billfold <br/>(Holder App - includes browser):index.html
-                    Shabazz's Billfold <br/>(Holder App - includes browser)->>Shabazz <br/>(Holder):display webpage
-                    Shabazz <br/>(Holder)->>Shabazz's Billfold <br/>(Holder App - includes browser):Authenticate
-                    Shabazz's Billfold <br/>(Holder App - includes browser)->>Massage Therapy Test Corp Webpage <br/>(Issuer App):messagetherapytestcorp.com/authenticate
-                    Massage Therapy Test Corp Webpage <br/>(Issuer App)->>Shabazz's Billfold <br/>(Holder App - includes browser):authentication challenge
-                    Shabazz's Billfold <br/>(Holder App - includes browser)->>Shabazz <br/>(Holder):challenge
-                    Shabazz <br/>(Holder)->>Shabazz's Billfold <br/>(Holder App - includes browser):authentication information
-                    Shabazz's Billfold <br/>(Holder App - includes browser)->>Massage Therapy Test Corp Webpage <br/>(Issuer App):messagetherapytestcorp.com/authenticate?"info"
-                    Massage Therapy Test Corp Webpage <br/>(Issuer App)->>Massage Therapy Test Corp Webpage <br/>(Issuer App):process authentication information
-                    Massage Therapy Test Corp Webpage <br/>(Issuer App)->>Shabazz's Billfold <br/>(Holder App - includes browser):authentication success
-                    Shabazz's Billfold <br/>(Holder App - includes browser)->>Shabazz <br/>(Holder):authentication success
-                    Shabazz <br/>(Holder)->>Shabazz's Billfold <br/>(Holder App - includes browser):get Message Therapy Credential
-                    Shabazz's Billfold <br/>(Holder App - includes browser)->>Massage Therapy Test Corp Webpage <br/>(Issuer App):messagetherapytestcorp.com/getTherapyCredential
-                    Massage Therapy Test Corp Webpage <br/>(Issuer App)->>Shabazz's Billfold <br/>(Holder App - includes browser):DID Auth Challenge
-                    Shabazz's Billfold <br/>(Holder App - includes browser)->>Shabazz <br/>(Holder):Display wallet selector
-                    Shabazz <br/>(Holder)->>Shabazz's Billfold <br/>(Holder App - includes browser):Selected Wallet
-                    Shabazz's Billfold <br/>(Holder App - includes browser)->>Shabazz <br/>(Holder):Display profile selector
-                    Shabazz <br/>(Holder)->>Shabazz's Billfold <br/>(Holder App - includes browser):Selected Profile
-                    Shabazz's Billfold <br/>(Holder App - includes browser)->>Shabazz's Wallet <br/>(Holder Service):Request DID Auth Challenge Responsew
-                    Shabazz's Wallet <br/>(Holder Service)->>Shabazz's Wallet <br/>(Holder Service):generate DID Auth response
-                    Shabazz's Wallet <br/>(Holder Service)->>Shabazz's Billfold <br/>(Holder App - includes browser):DID Auth response
-                    Shabazz's Billfold <br/>(Holder App - includes browser)->>Massage Therapy Test Corp Webpage <br/>(Issuer App):messagetherapytestcorp.com/getTherapyCredential/didAuth?"DIDAuthResponse"
-                    Massage Therapy Test Corp Webpage <br/>(Issuer App)->>Massage Therapy Test Corp Webpage <br/>(Issuer App):Process response
-                    Massage Therapy Test Corp Webpage <br/>(Issuer App)->>SSI Venture <br/>(Issuer Service):ssiventures.com/messagetestcorp/credentials/issue?"VPfromDIDAuth"
-                    SSI Venture <br/>(Issuer Service)->>Massage Therapy Test Corp Webpage <br/>(Issuer App):messagetherapytestcorp.com/credentials/issued?"issuedCredentailsWrappedByIssuerApp"
-                    Massage Therapy Test Corp Webpage <br/>(Issuer App)->>Shabazz's Billfold <br/>(Holder App - includes browser):HolderApp/newCredential?"issuedCredentialUnwrappedByIssuerApp"
-                    Shabazz's Billfold <br/>(Holder App - includes browser)->>Shabazz's Wallet <br/>(Holder Service):store credential
-                    Shabazz's Wallet <br/>(Holder Service)->>Shabazz's Billfold <br/>(Holder App - includes browser):success
-                    Shabazz's Billfold <br/>(Holder App - includes browser)->>Shabazz <br/>(Holder):Credential successfully stored in wallet
-                    Shabazz <br/>(Holder)->>Shabazz's Billfold <br/>(Holder App - includes browser):Go to Floyd's Message Therapy Webpage
-                    Shabazz's Billfold <br/>(Holder App - includes browser)->>floydsmassagetheray.com <br/>(Verifier App):floydsmessagetherapy.com/index.html
-                    floydsmassagetheray.com <br/>(Verifier App)->>Shabazz's Billfold <br/>(Holder App - includes browser):index.html
-                    Shabazz's Billfold <br/>(Holder App - includes browser)->>Shabazz <br/>(Holder):display page
-                    Shabazz <br/>(Holder)->>Shabazz's Billfold <br/>(Holder App - includes browser):Submit employment application
-                    Shabazz's Billfold <br/>(Holder App - includes browser)->>floydsmassagetheray.com <br/>(Verifier App):floydsmessagetherapy.com/employmentApp
-                    floydsmassagetheray.com <br/>(Verifier App)->>Shabazz's Billfold <br/>(Holder App - includes browser):Domain&Challenge
-                    Shabazz's Billfold <br/>(Holder App - includes browser)->>Shabazz <br/>(Holder):Display wallet selector
-                    Shabazz <br/>(Holder)->>Shabazz's Billfold <br/>(Holder App - includes browser):wallet selection
-                    Shabazz's Billfold <br/>(Holder App - includes browser)->>Shabazz <br/>(Holder):Display profile selector
-                    Shabazz <br/>(Holder)->>Shabazz's Billfold <br/>(Holder App - includes browser):Selected Profile
-                    Shabazz's Billfold <br/>(Holder App - includes browser)->>Shabazz's Wallet <br/>(Holder Service):Domain&Challenge
-                    Shabazz's Wallet <br/>(Holder Service)->>Shabazz's Wallet <br/>(Holder Service):generate VP
-                    Shabazz's Wallet <br/>(Holder Service)->>Shabazz's Billfold <br/>(Holder App - includes browser):Challenge response VP
-                    Shabazz's Billfold <br/>(Holder App - includes browser)->>floydsmassagetheray.com <br/>(Verifier App):floydsmessagetherapy.com/empoymentApp/challengeResponse?"VP"
-                    floydsmassagetheray.com <br/>(Verifier App)->>floydsmassagetheray.com <br/>(Verifier App):Process response
-                    floydsmassagetheray.com <br/>(Verifier App)->>Shabazz's Billfold <br/>(Holder App - includes browser):request application with State License VC
-                    Shabazz's Billfold <br/>(Holder App - includes browser)->>Shabazz's Wallet <br/>(Holder Service):Request VP
-                    Shabazz's Wallet <br/>(Holder Service)->>Shabazz's Wallet <br/>(Holder Service):Generate VP
-                    Shabazz's Wallet <br/>(Holder Service)->>Shabazz's Billfold <br/>(Holder App - includes browser):VP w/Application and State License
-                    Shabazz's Billfold <br/>(Holder App - includes browser)->>floydsmassagetheray.com <br/>(Verifier App):floydsmessagetherapy.com/presenatations/submit?"Application wtih State License VP"
-                    floydsmassagetheray.com <br/>(Verifier App)->>State Verifier (Verifier Service):stateverifier.com/credentials/verify?"StateLicenseVC"
-                    State Verifier (Verifier Service)->>floydsmassagetheray.com <br/>(Verifier App):Verification Result
-                    floydsmassagetheray.com <br/>(Verifier App)->>floydsmassagetheray.com <br/>(Verifier App):process application
-                    floydsmassagetheray.com <br/>(Verifier App)->>Shabazz's Billfold <br/>(Holder App - includes browser):Application submitted
-                    Shabazz's Billfold <br/>(Holder App - includes browser)->>Shabazz <br/>(Holder):Application submitted
+                    Shabazz (Holder)->>Shabazz's Billfold (Holder App - includes browser):massagetherapytestcorp.com
+                    Shabazz's Billfold (Holder App - includes browser)->>Massage Therapy Test Corp Webpage (Issuer App):messagetherapytestcorp.com/index.html
+                    Massage Therapy Test Corp Webpage (Issuer App)->>Shabazz's Billfold (Holder App - includes browser):index.html
+                    Shabazz's Billfold (Holder App - includes browser)->>Shabazz (Holder):display webpage
+                    Shabazz (Holder)->>Shabazz's Billfold (Holder App - includes browser):Authenticate
+                    Shabazz's Billfold (Holder App - includes browser)->>Massage Therapy Test Corp Webpage (Issuer App):messagetherapytestcorp.com/authenticate
+                    Massage Therapy Test Corp Webpage (Issuer App)->>Shabazz's Billfold (Holder App - includes browser):authentication challenge
+                    Shabazz's Billfold (Holder App - includes browser)->>Shabazz (Holder):challenge
+                    Shabazz (Holder)->>Shabazz's Billfold (Holder App - includes browser):authentication information
+                    Shabazz's Billfold (Holder App - includes browser)->>Massage Therapy Test Corp Webpage (Issuer App):messagetherapytestcorp.com/authenticate?"info"
+                    Massage Therapy Test Corp Webpage (Issuer App)->>Massage Therapy Test Corp Webpage (Issuer App):process authentication information
+                    Massage Therapy Test Corp Webpage (Issuer App)->>Shabazz's Billfold (Holder App - includes browser):authentication success
+                    Shabazz's Billfold (Holder App - includes browser)->>Shabazz (Holder):authentication success
+                    Shabazz (Holder)->>Shabazz's Billfold (Holder App - includes browser):get Message Therapy Credential
+                    Shabazz's Billfold (Holder App - includes browser)->>Massage Therapy Test Corp Webpage (Issuer App):messagetherapytestcorp.com/getTherapyCredential
+                    Massage Therapy Test Corp Webpage (Issuer App)->>Shabazz's Billfold (Holder App - includes browser):DID Auth Challenge
+                    Shabazz's Billfold (Holder App - includes browser)->>Shabazz (Holder):Display wallet selector
+                    Shabazz (Holder)->>Shabazz's Billfold (Holder App - includes browser):Selected Wallet
+                    Shabazz's Billfold (Holder App - includes browser)->>Shabazz (Holder):Display profile selector
+                    Shabazz (Holder)->>Shabazz's Billfold (Holder App - includes browser):Selected Profile
+                    Shabazz's Billfold (Holder App - includes browser)->>Shabazz's Wallet (Holder Service):Request DID Auth Challenge Responsew
+                    Shabazz's Wallet (Holder Service)->>Shabazz's Wallet (Holder Service):generate DID Auth response
+                    Shabazz's Wallet (Holder Service)->>Shabazz's Billfold (Holder App - includes browser):DID Auth response
+                    Shabazz's Billfold (Holder App - includes browser)->>Massage Therapy Test Corp Webpage (Issuer App):messagetherapytestcorp.com/getTherapyCredential/didAuth?"DIDAuthResponse"
+                    Massage Therapy Test Corp Webpage (Issuer App)->>Massage Therapy Test Corp Webpage (Issuer App):Process response
+                    Massage Therapy Test Corp Webpage (Issuer App)->>SSI Venture (Issuer Service):ssiventures.com/messagetestcorp/credentials/issue?"VPfromDIDAuth"
+                    SSI Venture (Issuer Service)->>Massage Therapy Test Corp Webpage (Issuer App):messagetherapytestcorp.com/credentials/issued?"issuedCredentailsWrappedByIssuerApp"
+                    Massage Therapy Test Corp Webpage (Issuer App)->>Shabazz's Billfold (Holder App - includes browser):HolderApp/newCredential?"issuedCredentialUnwrappedByIssuerApp"
+                    Shabazz's Billfold (Holder App - includes browser)->>Shabazz's Wallet (Holder Service):store credential
+                    Shabazz's Wallet (Holder Service)->>Shabazz's Billfold (Holder App - includes browser):success
+                    Shabazz's Billfold (Holder App - includes browser)->>Shabazz (Holder):Credential successfully stored in wallet
+                    Shabazz (Holder)->>Shabazz's Billfold (Holder App - includes browser):Go to Floyd's Message Therapy Webpage
+                    Shabazz's Billfold (Holder App - includes browser)->>floydsmassagetheray.com (Verifier App):floydsmessagetherapy.com/index.html
+                    floydsmassagetheray.com (Verifier App)->>Shabazz's Billfold (Holder App - includes browser):index.html
+                    Shabazz's Billfold (Holder App - includes browser)->>Shabazz (Holder):display page
+                    Shabazz (Holder)->>Shabazz's Billfold (Holder App - includes browser):Submit employment application
+                    Shabazz's Billfold (Holder App - includes browser)->>floydsmassagetheray.com (Verifier App):floydsmessagetherapy.com/employmentApp
+                    floydsmassagetheray.com (Verifier App)->>Shabazz's Billfold (Holder App - includes browser):Domain&Challenge
+                    Shabazz's Billfold (Holder App - includes browser)->>Shabazz (Holder):Display wallet selector
+                    Shabazz (Holder)->>Shabazz's Billfold (Holder App - includes browser):wallet selection
+                    Shabazz's Billfold (Holder App - includes browser)->>Shabazz (Holder):Display profile selector
+                    Shabazz (Holder)->>Shabazz's Billfold (Holder App - includes browser):Selected Profile
+                    Shabazz's Billfold (Holder App - includes browser)->>Shabazz's Wallet (Holder Service):Domain&Challenge
+                    Shabazz's Wallet (Holder Service)->>Shabazz's Wallet (Holder Service):generate VP
+                    Shabazz's Wallet (Holder Service)->>Shabazz's Billfold (Holder App - includes browser):Challenge response VP
+                    Shabazz's Billfold (Holder App - includes browser)->>floydsmassagetheray.com (Verifier App):floydsmessagetherapy.com/empoymentApp/challengeResponse?"VP"
+                    floydsmassagetheray.com (Verifier App)->>floydsmassagetheray.com (Verifier App):Process response
+                    floydsmassagetheray.com (Verifier App)->>Shabazz's Billfold (Holder App - includes browser):request application with State License VC
+                    Shabazz's Billfold (Holder App - includes browser)->>Shabazz's Wallet (Holder Service):Request VP
+                    Shabazz's Wallet (Holder Service)->>Shabazz's Wallet (Holder Service):Generate VP
+                    Shabazz's Wallet (Holder Service)->>Shabazz's Billfold (Holder App - includes browser):VP w/Application and State License
+                    Shabazz's Billfold (Holder App - includes browser)->>floydsmassagetheray.com (Verifier App):floydsmessagetherapy.com/presenatations/submit?"Application wtih State License VP"
+                    floydsmassagetheray.com (Verifier App)->>State Verifier (Verifier Service):stateverifier.com/credentials/verify?"StateLicenseVC"
+                    State Verifier (Verifier Service)->>floydsmassagetheray.com (Verifier App):Verification Result
+                    floydsmassagetheray.com (Verifier App)->>floydsmassagetheray.com (Verifier App):process application
+                    floydsmassagetheray.com (Verifier App)->>Shabazz's Billfold (Holder App - includes browser):Application submitted
+                    Shabazz's Billfold (Holder App - includes browser)->>Shabazz (Holder):Application submitted
           </pre>
           <figcaption>UC6.5 Mermaid</figcaption>
         </figure>
