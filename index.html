@@ -560,10 +560,10 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
       the quality of their products. For this, they rely on Inspectors & Co, an internationally 
       recognized steel testing company. Upon inspection, Inspectors & Co issues a 
       Mill Test Report VC to Steel Mills Global.</p>
-    <p>Steel, Inc. imports and distributes steel products domestically. Negotiating a shipment 
+    <p>Steel Inc. imports and distributes steel products domestically. Negotiating a shipment 
       Steel Mills Global presents the MTR as proof of product quality. Steel Inc. verifies the
       MTR VP and accepts the shipment. </p>
-    <p>Steel, Inc. initiates the importing procedures, starting out self-issuing an 
+    <p>Steel Inc. initiates the importing procedures, starting out self-issuing an 
       Import Declaration Form VC. The MTR and IDF are jointly presented to the Customs 
       authority which verifies the VP. Upon verification the customs release is granted for goods import. </p>
       </p>
@@ -599,26 +599,26 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
                     Holder - Steel Mills Global (SMG)->>Steel, Inc:Agree to sell     
                     Steel, Inc->>Holder - Steel Mills Global (SMG):Request Mill Test Report     
                     Holder - Steel Mills Global (SMG)->>Holder App -  SMG Enterprise API:sendMillTestReportVC     
-                    Holder App -  SMG Enterprise API->>Verifier App - Steel, Inc. Business API:steelincapi.com/presentations/available     
-                    Verifier App - Steel, Inc. Business API->>Holder App -  SMG Enterprise API:Domain&Challenge     
+                    Holder App -  SMG Enterprise API->>Verifier App - Steel Inc. Business API:steelincapi.com/presentations/available     
+                    Verifier App - Steel Inc. Business API->>Holder App -  SMG Enterprise API:Domain&Challenge     
                     Holder App -  SMG Enterprise API->>Holder Service - SMG Wallet:smgWallet.com/presentations/issue?\"Domain&Challenge\"     
                     Holder Service - SMG Wallet->>Holder Service - SMG Wallet:Generate VP containing the MTR     
                     Holder Service - SMG Wallet->>Holder Storage - SMG EDV/KMS:smgEdv.com/credentials/sign?\"GeneratedVP\"     
                     Holder Storage - SMG EDV/KMS->>Holder Storage - SMG EDV/KMS:Sign VP     
                     Holder Storage - SMG EDV/KMS->>Holder Service - SMG Wallet:SignedVP     
                     Holder Service - SMG Wallet->>Holder App -  SMG Enterprise API:SignedVP     
-                    Holder App -  SMG Enterprise API->>Verifier App - Steel, Inc. Business API:steelincapi.com/presentations/submissions?\"SignedVP\"     
-                    Verifier App - Steel, Inc. Business API->>Verifier App - Steel, Inc. Business API:Check business rules     
-                    Verifier App - Steel, Inc. Business API->>Verifier Service - Steel Industry Verifier:steelindustryverifier.com/presentations/verify     
+                    Holder App -  SMG Enterprise API->>Verifier App - Steel Inc. Business API:steelincapi.com/presentations/submissions?\"SignedVP\"     
+                    Verifier App - Steel Inc. Business API->>Verifier App - Steel Inc. Business API:Check business rules     
+                    Verifier App - Steel Inc. Business API->>Verifier Service - Steel Industry Verifier:steelindustryverifier.com/presentations/verify     
                     Verifier Service - Steel Industry Verifier->>Verifier Service - Steel Industry Verifier:Check proofs     
                     Verifier Service - Steel Industry Verifier->>Issuer Service - Inspectors & Co Issuer:IandCoIssuer.com/credentials/revocationList?\"MTRVC\"     
                     Issuer Service - Inspectors & Co Issuer->>Issuer Service - Inspectors & Co Issuer:Check revocation list     
                     Issuer Service - Inspectors & Co Issuer->>Verifier Service - Steel Industry Verifier:revocationStatus=notRevoked     
-                    Verifier Service - Steel Industry Verifier->>Verifier App - Steel, Inc. Business API:steelincapi.com/presentations/verified?\"MTRVC\"     
-                    Verifier App - Steel, Inc. Business API->>Verifier App - Steel, Inc. Business API:Check business rules     
-                    Verifier App - Steel, Inc. Business API->>Verifier App - Steel, Inc. Business API:Record verification result     
-                    Verifier App - Steel, Inc. Business API->>Steel, Inc:New Verification Result Notification     
-                    Verifier App - Steel, Inc. Business API->>Holder App -  SMG Enterprise API:steelincapi.com/presentations/verified?\"SignedVP\"     
+                    Verifier Service - Steel Industry Verifier->>Verifier App - Steel Inc. Business API:steelincapi.com/presentations/verified?\"MTRVC\"     
+                    Verifier App - Steel Inc. Business API->>Verifier App - Steel Inc. Business API:Check business rules     
+                    Verifier App - Steel Inc. Business API->>Verifier App - Steel Inc. Business API:Record verification result     
+                    Verifier App - Steel Inc. Business API->>Steel, Inc:New Verification Result Notification     
+                    Verifier App - Steel Inc. Business API->>Holder App -  SMG Enterprise API:steelincapi.com/presentations/verified?\"SignedVP\"     
                     Holder App -  SMG Enterprise API->>Holder - Steel Mills Global (SMG):Mill Test Report Verified 
           </pre>
           <figcaption>UC6.6 Mermaid</figcaption>
