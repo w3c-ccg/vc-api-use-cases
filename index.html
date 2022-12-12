@@ -240,8 +240,26 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
   <section>
     <h2>User Roles</h2>
       <p>
-        There are four roles supported by <a>verifiable credentials</a>: <a>Issuer</a>,
+        There are four roles supported by <a>Verifiable Credentials</a> as defined by the 
+        VCWG: <a>Issuer</a>,
         <a>Verifier</a>, <a>Subject</a>, and <a>Holder</a>.
+      </p>  
+      <p>
+        The above roles were those defined for the VCWG, however, due to the way most 
+        production software on the internet works, for the purposes of the VC-API there arises
+        the need to delve into some detail as to how the Issuer and Verifier roles are structured.
+        This is due to the fact that there are many use cases where one company is making use of 
+        services to handle part of the technology stack for them. This has lead to both Verifier
+        and Issuer splitting into two entities each: <a>Issuer Service</a>, <a>Issuer Coordinator</a>
+        <a>Verifier Service</a>, and <a>Verifier Coordinator</a>. 
+      </p>
+      <p>
+        This leads to the full set of roles being considered in the VC-API as: 
+        <a>Issuer Service</a>, <a>Issuer Coordinator</a>, <a>Verifier Service</a>, <a>Verifier Coordinator</a>,
+        <a>Subject</a>, and <a>Holder</a>.
+        It is fully expected that software will exist that takes on multiple roles in the
+        set of: <a>Issuer Service</a>, <a>Issuer Coordinator</a>
+        <a>Verifier Service</a>, and <a>Verifier Coordinator</a>. 
       </p>
       <figure>
         <img alt="Verifiable Credential User Roles" 
@@ -254,17 +272,31 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
 
     <dl>
       <dt>
-        Issuer
+        Issuer Service
       </dt>
       <dd>
         The <a>entity</a> that creates a <a>claim</a> and associates it with a
         particular <a>subject</a>.
       </dd>
       <dt>
-        Verifier
+        Issuer Coordinator
       </dt>
       <dd>
-        The <a>entity</a> verifying a <a>claim</a> about a given <a>subject</a>.
+        The <a>entity</a> that deals with business rules and policies around a
+        user's request for a particlar <a>claim</a> to be issued.
+      </dd>
+      <dt>
+        Verifier Service
+      </dt>
+      <dd>
+        The <a>entity</a> performing the verifaction of a <a>claim</a> about a given <a>subject</a>.
+      </dd>
+      <dt>
+        Verifier Coordinator
+      </dt>
+      <dd>
+        The <a>entity</a> that deals with business rules and policies around a
+        user's request for a particular <a>claim</a> to be verified. 
       </dd>
       <dt>
         Subject
@@ -288,7 +320,7 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
   <section>
     <h2>User Needs</h2>
       <p>
-        <a>Verifiable credentials</a> address user needs in a number of key domains:
+        The <a>VC-API</a> address user needs in a number of key domains:
       </p>
 
       <figure>
@@ -296,7 +328,7 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
            style='display:block; margin:auto'
            src="VerifiableCredentialsProblemDomains.png" />
         <figcaption>
-          Verifiable Credentials, Example Domains for User Needs
+          VC-API, Example Domains for User Needs
         </figcaption>
       </figure>
 
