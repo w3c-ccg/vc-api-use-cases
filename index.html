@@ -545,7 +545,10 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
         </dt>
         <dd>
           Barney is a physician, and has recently become board certified in his state.
-          The state's board issues Barney a digital certificate confirming that he is
+          The state's board makes use of the international Medical Certificate Issuer
+          to issue credentials that adhere to the international standards for 
+          medical practitioners. Upon completing his state's board certificate test, 
+          Barney is issued a digital certificate confirming that he is
           certified to practice medicine in that state.  Barney can now use this
           certificate when writing prescriptions and referrals, thereby improving
           accountability and verifiability.
@@ -570,10 +573,12 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
           through her health care network and goes in for treatment. She is a new
           patient, so the clinic needs to know who she is and how she will be paying.
           When checking in, she presents her <a>verifiable credential</a> that
-          demonstrates her identity and her proof of insurance. When the clinic submits
-          this to the insurance company, they can automatically ascertain that she
-          submitted her proof of identity and insurance to the provider and granted the
-          physician the ability to submit the claim for payment.
+          demonstrates her identity and her proof of insurance, which is checked by
+          the clinic using the issuer service provided by the Medical Office Supply
+          Co. When the clinic submits this to the insurance company, 
+          they can automatically ascertain that she submitted her proof of identity 
+          and insurance to the provider, and granted the physician 
+          the ability to submit the claim for payment.
         </dd>
         <dt>
           <udef>H.4 Traveling illness</udef>
@@ -585,7 +590,9 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
           name and address, but elects not to disclose his marital status nor his social
           security number, as those are neither requested nor required at this clinic.
           He further marks the disclosure as expiring in 30 days&mdash;he does not want
-          his information verifiable after that time.
+          his information verifiable after that time. The clinic verifies these credentials,
+          making use of Medical Office Supply Co's verification service after John submits
+          the credentials to their administrative staff at the clinic via QR Code. 
         </dd>
         <dt>
           <udef>H.5 Proving Legal Disability Status</udef>
@@ -596,7 +603,10 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
           this service, she is required to verify that she maintains legal disability
           status. Trina provides her government-issued disability credential to sign up
           for the ride service, and is not required to disclose her specific disability
-          to the ride service, as this could put her at personal risk.
+          to the ride service, as this could put her at personal risk. As the ride 
+          service is only checking very specific credentials, they have created their
+          own verification service to use. Once Trina's credential has been verifies,
+          they issue her a credential which gives full access to their service. 
         </dd>
       </dl>
     </section>
@@ -617,9 +627,12 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
           Jason is looking for a new primary care physician.  His health provider
           includes information on their web site about the physicians they have on
           staff, including <a data-lt="claim">verifiable credentials</a> about their
-          education, board certification, and continuing education.  Jason can verify
-          these credentials and be confident that his new physician satisfies his
-          requirements.
+          education, board certification, and continuing education. Jason would like
+          assurance that these are legit physicians, and so downloads the provided
+          credentials and submits them to the Open Medical Board Verification Service,
+          a national organization that checks the validity of medical claims for the
+          public. Once submitted, and verified, Jason is confident that 
+          his new physician satisfies his requirements.
         </dd>
         <dt>
           <udef>C.2 Busy doctor</udef>
@@ -629,7 +642,14 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
           his continuing education requirements and his certification lapsed. Since the
           board can revoke his certification, <a>credential verifiers</a> will
           automatically be aware that he can no longer issue prescriptions or perform
-          medical procedures.
+          medical procedures. However, Barney finds himself on a cruise where a fellow
+          cruise enjoyer has fallen over, in clear pain. Barney applies first aid until
+          the cruise doctors can get there. As part of the cruise ship's inquiry to the 
+          event, for liability reasons, Barney provides them, via email, 
+          his revoked physician credentials, along side his, still valid, 
+          first aid certificate. The cruise doctor reviews these after they are verified
+          by the Generic Verifier Service that the cruise ship uses, and sends Barney
+          a response email thanking him for the assistance. 
         </dd>
         <dt>
           <udef>C.3 Bad university</udef>
@@ -639,8 +659,9 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
           trained Project Manager.  It was later discovered that BigTraining Co. was not
           actually training anyone, and their organization's certificate was revoked via
           the US Department of Education's Accreditation Database. Jane's credential is
-          therefore invalid, and prospective employers will be aware of this when they
-          check her certifications.
+          therefore invalid, and when Jane goes to submit the credentail received from
+          BigTrainin Co. at her next job, she is notified by the company she is applying
+          to that her credential is not valid. 
         </dd>
         <dt>
           <udef>C.4 New employer</udef>
@@ -663,7 +684,8 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
           certificates, and digital badges. The website requests verification of her
           credential <a>claims</a> in order for her credentials to be visible when she
           posts messages. Josie authorizes the sharing of the relevant <a>claims</a> with
-          the website, and the site verifies them before allowing Josie to expose them.
+          the website, and the site verifies them, making use of their partner, 
+          Workplace Credential Verifier Service, before allowing Josie to expose them.
         </dd>
         <dd>
           "Freedom?" is an online forum that encourages free discussion about issues
@@ -684,8 +706,10 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
           thousands of applications. Cindy has applied for the job. Unlike many
           applicants, she has attached her education credentials&mdash;college degree,
           additional specific software training, etc.  Software Co. evaluates these
-          credentials automatically as they receive her application.  Because her
-          materials are verifiable and verified, her application is immediately
+          credentials, using the international Education Verification Service,
+          which was stood up by a group of international univerisities to make the
+          verification of education credentials easy, as they receive her application.  
+          Because her materials are verifiable and verified, her application is immediately
           forwarded as a viable candidate.
         </dd>
       </dl>
@@ -706,9 +730,11 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
           Asako just passed the final test to receive a drivers license. As she is still
           a new driver, and may be pulled over for a traffic violation, she would like
           to receive a <a>credential</a> that asserts a <a>claim</a> that she has right
-          to drive a car. She requests a credential from the certifying authority
+          to drive a car. She requests a credential on the certifying authority's website,
           (<a>issuer</a>) that she can use to prove to the officer
-          (<a>credential verifier</a>) that her <a>claim</a> is valid.
+          (<a>credential verifier</a>) that her <a>claim</a> is valid. The certifying 
+          authority and officer both make use of the state's issuing and verifier 
+          services, respectively, as they are both state entities. 
         </dd>
         <dt>
           <udef>L.2 Seamless immigration</udef>
@@ -716,7 +742,8 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
         <dd>
           Tom is a frequent international traveler. In order to speed processing
           through immigration check points, he applies for a digital passport from his
-          governmental authority. After satisfying background check requirements, the
+          governmental authority. After satisfying background check requirements, 
+          by submitting a few credentials requested by the government authority, the
           authority issues Tom an electronic version of his passport. This version is
           verifiable and retains a history of all the places he visits so that
           immigration officials can quickly and easily evaluate his suitability as a
@@ -733,8 +760,8 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
           <em>Identity Profile</em>. When Ivan needs to pass through a security
           checkpoint at his airport, he presents this profile before entering the
           line. Because his identification can be immediately and automatically
-          verified, he is permitted to skip the long line and go straight to the
-          metal detector.
+          verified, by the TSA's verification service, he is permitted to skip 
+          the long line and go straight to the metal detector.
         </dd>
         <dt>
           <udef>L.4 Refugee crisis</udef>
@@ -748,7 +775,7 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
           to easily establish their identities. Fortunately, Anoushka had been issued
           a self-sovereign proof of birth, attached to which is the proof of birth and
           marriage for her parents. She is able to retrieve this because it is available
-          from many places often the Internet. Since it is verifiable, the IFRC is
+          from many places, including the Internet. Since it is verifiable, the IFRC is
           comfortable vouching for them and resettling them in a safer area for the
           duration of the conflict.
         </dd>
@@ -769,13 +796,19 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
             <p>
               Bob, the director of production at HVAC Manufacturing, issues a
               device-identifying <a>verifiable credential</a> (e.g. IDevID, IAK) at the
-              factory for an energy-saving fan controller IoT device.
+              factory for an energy-saving fan controller IoT device. HVAC Manufacturing
+              provides Bob with the front end software for this, and has stood up their
+              own, custom, issueing service for use company wide. 
             </p>
             <p>
               Carol, senior quality engineer at Certifications Testing Lab, issues a
               certification of specification-compliance <a>verifiable credential</a> to the
               fan-controller device at the certification lab during the manufacturing
-              process.
+              process. Certifications Testing Lab provides Carol with the front end software
+              to do this but makes use of the international Fan-Controller Standards Group's
+              issueing service, which requires attestations of the engineer making the 
+              final claims about the device, before it will issue the specification-compliance
+              certificate. 
             </p>
             <p>
               When the fan controller is installed at the customer's office at Modern Office
@@ -783,7 +816,8 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
               IT technician, to establish the identity of the controller as part of the
               on-boarding of the new controller. The controller's specification-compliance
               <a>credential</a> is verified to demonstrate the controller's Energy-Star
-              compliance.
+              compliance. Sam's handheld scanner makes use of Scanner Co's verification 
+              service, a package deal with the device. 
             </p>
           </dd>
           <dt>
@@ -794,10 +828,12 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
               As the fan controller leaves the factory, additional
               <a>verifiable credentials</a> are issued by Vince, a systems engineer at VAR
               Resellers, as he verifies the manufacturer's configuration matches the
-              <a>verifiable credentials</a> accompanying the device. He then installs a
-              software package specific to Modern Office Spaces needs and issues
-              <a>verifiable credentials</a> that establish evidence of possession by VAR
-              Resellers and the software additions Vince made to the device.
+              <a>verifiable credentials</a> accompanying the device. For this process,
+              VAR Resellers has stood up their own verification and issueing services
+              to be used within the company. He then installs a software package specific 
+              to Modern Office Spaces needs and issues <a>verifiable credentials</a> 
+              that establish evidence of possession by VAR Resellers and the software 
+              additions Vince made to the device.
             </p>
             <p>
               Finally, upon delivery to Sam, the end customer, the
@@ -813,25 +849,37 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
               Sam, the new device owner, needs to trust the device originated from HVAC
               Manufacturing and was handled correctly at Certifications Testing Lab and
               installed with the correct software package at VAR Resellers. After Sam
-              verifies each of the <a>verifiable credentials</a>, he issues another
-              <a>verifiable credential</a> for fan controller #37 which includes assertions
-              relating to trust: device manufacturer model/version, software manufacturer
+              verifies each of the <a>verifiable credentials</a>, using Generic Online
+              Verifier's online service. He issues another <a>verifiable credential</a> 
+              for fan controller #37 which includes assertions relating to trust: 
+              device manufacturer model/version, software manufacturer
               model/version, security versions of components TCB, and associated devices the
               fan controller is authorized to interact with including thermostat-board-room.
+              To do this, he goes to HVAC Manufacturing's website and requests the new
+              credential by scanning his new device's barcode and submitting an image to
+              HVAC Manufacturing's website. After verifying the device is one of their, HVAC 
+              Manufacturing issuer's Sam the requested credential. 
             </p>
             <p>
               The thermostat-board-room monitors room temperature. When the temperature is
               too hot it switches the fan controller #37 on and later when the temperature
               reaches a comfortable level, off. The device makes sure the control signals
               from thermostat-board-room are authorized (namely, that Sam intended for
-              thermostat-board-room to control the fan controller).
+              thermostat-board-room to control the fan controller). To do this, Sam decides
+              he trust's HVAC Manufacturing to verify these types of credentials for him, and
+              so he puts the end-point provided by HVAC Manufacturing for these types of 
+              purposes into his fan-controller's settings page. 
             </p>
             <p>
               Sam is concerned about the security of the smart board room. He configures
               the autonomously interacting devices to re-verify device trustworthiness
               attributes periodically by re-checking that the device originated from HVAC
               Manufacturing and was handled correctly by Certifications Testing Lab and
-              installed with the correct software package by VAR Resellers.
+              installed with the correct software package by VAR Resellers. For this purpose,
+              Sam does not trust HVAC Manufacturing's verifier service, as there could be
+              a conflict of interest there, so Sam instead decides to use Generic HVAC
+              Verifier's verification service, adding the provided end-point to the approriate
+              configuration files so the devices use his selected verification services. 
             </p>
             <p>
               Sam may update the device’s software occasionally during its lifetime. Even
