@@ -343,14 +343,14 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
           <udef>E.1 Digital transcript</udef>
         </dt>
         <dd>
-          Joleen is the registrar of Mega University and, by virtue of her office, is
-          responsible for the integrity, accuracy, and security of academic records.
-          Joleen has been a pioneering registrar in advocating an "extended transcript"
-          that includes not only the standard set of course grades but also adds
-          supplementary information on learner competencies.  These might include work
-          experiences and non-educational but marketable skills. Upon the request of her
-          students, Joleen issues a digital credential that includes an extended
-          transcript.
+          A couple of years after Joleen succussfully started an "extended transcript"
+          program at the Unniversity she works for, the administration has decided to
+          issue all transcripts digitally. As such they upgrade the system to make use
+          of Education Credential Issuer Inc's issuing service, and put together a new
+          web page to act as their issueing coordinator. Once the system is in place,
+          Joleen pushes an email notification to the student body, both past and present,
+          that they can now receive digital transcripts at the newly created website to 
+          the digital wallet of their choice. 
         </dd>
         <dt>
           <udef>E.2 Taking a test</udef>
@@ -358,9 +358,12 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
         <dd>
           Eunice is about to take her ACT (a test used to evaluate her readiness for
           college). When she arrives at the testing center, she is required to present
-          identification. Her government-issued identity certificate is acceptable, as
-          the <a>verifiable credentials</a> contained in it reflect all of the required
-          attributes and it is difficult to counterfeit.
+          identification. She presents her government-issued identity credential in the
+          form of a QR Code to the test runner, who scans it. The test runner's device
+          acts as the verification coordinator, which makes use of the ACT orginization's
+          verification service to verify the presented identification credential. 
+          Everything checks out with Eunice's identification and she sits down to 
+          take the text. 
         </dd>
         <dt>
           <udef>E.3 Transferring schools</udef>
@@ -380,9 +383,12 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
           In MOOC and other online learning systems, being able to reliably identify
           participants is vital to ensure the individual evaluation and certification.
           Nick is participating in a course online and takes a test. He is required to
-          provide his credentials to prove his identity before the test, and then to
-          allow the system to issue a <a>verifiable credential</a> regarding the
-          results of his test.
+          provide his credentials to prove his identity before the test, which he does
+          in the form of a government-issued idenfication credential. MOOC uses a backend
+          verification service which verifies these, and once they are satisfied that Nick
+          is who he says he is, have Nick take the courses he signed up for. At the end of
+          the courses, MOOC then uses their proprietary issuer service to provide Nick a 
+          <a>verifiable credential</a> to the wallet of his choice regarding the results of his test.
         </dd>
       </dl>
     </section>
@@ -402,7 +408,9 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
           Company wants to be certain that his shipping address is accurate (inaccurate
           addresses are very expensive in terms of customer service). They offer a
           discount for customers who make verifiable addresses available as part of the
-          checkout process. Francis offers his certificate and gets the perfect shoes for
+          checkout process. Francis offers his certificate to Giant Shoe Company's 
+          verifier coordinator, which verifies Francis's address, making use of 
+          Generic Verfifier Service Inc. Francis gets the perfect shoes for
           even less than he expected.
         </dd>
         <dt>
@@ -412,7 +420,9 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
           June goes to her local beer and wine store to buy a bottle of wine. She submits
           her identity credential that lets the liquor store owner know that she is over
           21 without having to reveal her actual date of birth, her address, or her state
-          ID number.
+          ID number. The store makes use of their Point of Sale Vendor's verification service
+          which intigrates into the Point of Sale so the clerk has an easy UI to use during
+          the transaction.
         </dd>
         <dt>
           <udef>R.3 Fraud detection</udef>
@@ -425,7 +435,8 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
           Mondays. So before actually purchasing a gift from the web shop of his choice,
           he requests the shop to provide a credential issued by the chamber of commerce,
           that contains proof of legitimacy. After having verified that the shop is
-          legit, he can purchase his gift.
+          legit, by making use of the Wallet Verifier Service built into his
+          digital wallet which receives the proof of legitimacy, he can purchase his gift.
         </dd>
       </dl>
     </section>
@@ -443,21 +454,25 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
         <dd>
           Jane is opening an account at MidBank in Finland.  As part of that process,
           the bank asks her to provide two from a variety of possible sources to confirm
-          her identity &mdash; a so-called &quot;Know Your Customer&quot; check. She
-          selects government-supplied <a>verifiable credentials</a> that confirm she
-          receives postal mail at a certain address and that she has a national ID card.
-          Confirming these allows the bank to open her account and be confident in her
-          identity when she conducts transactions.
+          her identity &mdash; a so-called &quot;Know Your Customer&quot; check. She goes
+          to the bank website, logs in, and navigates to the KYC page. She then
+          selects the government-supplied <a>verifiable credentials</a> that confirm she
+          receives postal mail at a certain address and that she has a national ID card,
+          submitting these. MidBank has stood up their own verification service, which 
+          checks the provided credentials, and confirms that they are properly issues,
+          and still valid, credentials issued to Jane. Confirming these allows the bank 
+          to open her account and be confident in her identity when she conducts transactions.
         </dd>
         <dd>
-          Now that the account is open, Jane is issued a digitally-signed
-          <a>credential</a> for her checking account at MidBank. This <a>credential</a>
-          verifies that Jane has an account at MidBank and has access to her associated
-          checking account. Since MidBank (and all banks in Finland) are required to
-          perform &quot;Know Your Customer&quot; checks on accounts, this credential
-          can also be used as sufficient verification by other financial institutions.
-          This can help Jane assure destination banks that she is verified, thereby
-          allaying concerns about misdirected transactions and money laundering.
+          Now that the account is open, Jane is issued, by MidBank's Issuer Service,
+          a digitally-signed <a>credential</a> for her checking account at MidBank. 
+          This <a>credential</a> verifies that Jane has an account at MidBank 
+          and has access to her associated checking account. Since MidBank 
+          (and all banks in Finland) are required to perform &quot;Know Your Customer&quot; 
+          checks on accounts, this credential can also be used as sufficient 
+          verification by other financial institutions. This can help Jane assure 
+          destination banks that she is verified, thereby allaying concerns about 
+          misdirected transactions and money laundering.
         </dd>
         <dt>
           <udef>F.2 Money transfer</udef>
@@ -468,7 +483,8 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
           <a>credential repository</a> that can be used to share her
           identity profile. She has also been sent a <a>credential</a> from her
           family verifying their banking information. By sharing these with the money
-          transfer service, they can automatically verify the source and destination of
+          transfer service, which have decided to make use of TopBank's Verification
+          Service, they can automatically verify the source and destination of
           funds, thus being confident in the delivery of those funds and satisfying
           various regulations regarding prevention of money laundering.
         </dd>
@@ -478,10 +494,15 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
         <dd>
           John opens a checking account at Big Bank Co and is issued a
           <a>verifiable credential</a> indicating that the account exists, that the bank
-          verified John's identity, and that John has access to the account.  Some time
-          later, John is moving to a new city and decides to close that account.  Big
-          Bank Co needs to revoke that claim as part of their normal account closing
-          process.
+          verified John's identity, and that John has access to the account. To receive 
+          these credentials, John goes to Big Bank Co's website, selecting his prefered
+          wallet as the destination. Some time later, John is moving to a new city 
+          and decides to close that account.  Big Bank Co needs to revoke that claim 
+          as part of their normal account closing process. When John later goes to
+          do KYC with the New Bank Co, in his new city, he mistakenly submits his old
+          Big Bank Co account credential as part of the KYC process. New Bank Co's 
+          verification service flags this credential as revoked, and New Bank Co's website
+          asks John for additional info. 
         </dd>
         <dt>
           <udef>F.4 Trying out a new service</udef>
@@ -502,7 +523,11 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
           Alice wants to open a new bank account. BigOnlineBank offers the ability to
           do this from home if she can provide electronic credentials.  She offers
           government-issued certificates that verify her identity (address, national
-          identity number, etc.), and opens her new account from her couch.
+          identity number, etc.), and opens her new account from her couch. As part of
+          this process, BigOnlineBank has stood up their own verification and issueing
+          services. Once they have verified Alice's credentials, they then notify Alice
+          that she can collect her proof of account credential from the provided link
+          at her leisure. 
         </dd>
       </dl>
     </section>
