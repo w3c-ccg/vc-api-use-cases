@@ -241,26 +241,11 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
     <h2>User Roles</h2>
       <p>
         There are three roles supported by <a>Verifiable Credentials</a> as defined by the 
-        VCWG: <a>Issuer</a>,
-        <a>Verifier</a>, and <a>Holder</a>.
+        VCWG: <a>Issuer</a>, <a>Verifier</a>, and <a>Holder</a>. A fourth role is defined in
+        the VC Use Cases, this is the role of subject, however, for the purposes of the VC-API
+        the subject does not have an explicit role outside of acting as both Holder and Subject.
+        Do to this, the Subject role does not appear here in the VC-API. 
       </p>  
-      <p>
-        The above roles were those defined for the VCWG, however, due to the way most 
-        production software on the internet works, for the purposes of the VC-API there arises
-        the need to delve into some detail as to how the Issuer and Verifier roles are structured.
-        This is due to the fact that there are many use cases where one company is making use of 
-        services to handle part of the technology stack. This has lead to both Verifier
-        and Issuer splitting into two entities each: <a>Issuer Service</a>, <a>Issuer Coordinator</a>,
-        <a>Verifier Service</a>, and <a>Verifier Coordinator</a>. 
-      </p>
-      <p>
-        Thus, the full set of roles considered in the VC-API are
-        <a>Issuer Service</a>, <a>Issuer Coordinator</a>, <a>Verifier Service</a>, <a>Verifier Coordinator</a>,
-        and <a>Holder</a>.
-        It is fully expected that software will exist that takes on multiple roles in the
-        set of: <a>Issuer Service</a>, <a>Issuer Coordinator</a>
-        <a>Verifier Service</a>, and <a>Verifier Coordinator</a>. 
-      </p>
       <figure>
         <img alt="VC-API User Roles" 
            style="display:block; margin:auto"
@@ -269,6 +254,32 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
           VC-API User Roles
         </figcaption>
       </figure>
+      <p>
+        The above roles were those defined for the VCWG, however, due to the way most 
+        production software on the internet works, for the purposes of the VC-API there arises
+        the need to delve into some detail as to how the Issuer and Verifier roles are structured.
+        This is due to the fact that there are many use cases where one company is making use of 
+        services to handle part of the technology stack. This has lead to both Verifier
+        and Issuer splitting into two entities each, henceforth refered to as components of the 
+        Issuer and Verifier: <a>Issuer Service</a>, <a>Issuer Coordinator</a>,
+        <a>Verifier Service</a>, and <a>Verifier Coordinator</a>. 
+      </p>
+      <figure>
+        <img alt="VC-API Role Components" 
+           style="display:block; margin:auto"
+           src="role-components.png" />
+        <figcaption>
+          VC-API Role Components
+        </figcaption>
+      </figure>
+      <p>
+        The combination of the respective Service and Coordinator components combine to fulfill
+        the role of the Issuer and Verifier as described in the VCWG. 
+        It is fully expected by the VC-API that software will exist that may fulfil only part of
+        each of the roles by implimenting any combnation of these components: 
+        <a>Issuer Service</a>, <a>Issuer Coordinator</a>
+        <a>Verifier Service</a>, and <a>Verifier Coordinator</a>. 
+      </p>
 
     <dl>
       <dt>
