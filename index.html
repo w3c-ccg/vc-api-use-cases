@@ -152,45 +152,758 @@ to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
 
   <section>
     <!-- Editor - @eric-schuh -->
-    <h2>Introduction</h2>
+    <h2>Abstract</h2>
       <p>
-        For Verifiable Credentials to be realized as a usable data format there needs to exist a neutral, 
-        standard-governed way for Issuers, Holders and Verifiers of these credentials to transport them between said entities.
-        TODO: Finish introduction
+        Fundamentally, the Verifiable Credential API (VC-API) is a standard developed to give technologists a way to enable holders of
+        VCs to use them how and where they choose. Verifiable Credentials make claims which may be a qualification, achievement, quality, or piece 
+        of information about an entity's background such as a name, government ID, payment provider, home address, or university degree. 
+        The use cases outlined here are provided to help make progress toward possible future standardization and interoperability of the transport
+        of both low- and high-stakes claims as outlined in the VC Use Cases. The use cases in this document focus on concrete 
+        scenarios that the technology defined by the group should address.
+      </p>
+  </section>
+  <section id='sotd'>
+      <p>
+        This document represents a concise but limited collection of use cases meant
+        to be reviewed alongside the <a href="https://w3c-ccg.github.io/vc-api/">Verifiable
+        Credentials API</a>.
+      </p>
+      <p>
+        Work on this document is ongoing and subject to change as the conversation around the
+        VC API evolves in the main group. This should currently be treated as a draft document and
+        as such will have errors. As the VC API gets closer to a completed specification, this 
+        document should reflect the current understanding and status of that work. 
+      </p>
+      <p>
+        Comments regarding this document are welcome. Please file directly on
+        <a href="https://github.com/w3c-ccg/vc-api-use-cases/issues/">GitHub</a>, or send them
+        to <a href="mailto:public-vc-comments@w3.org">public-vc-comments@w3.org</a>
+        (<a href="mailto:public-vc-comments-request@w3.org?subject=subscribe">subscribe</a>,
+        <a href="https://lists.w3.org/Archives/Public/public-vc-comments/">archives</a>).
+      </p>
+  </section>
+  <h2>Introduction</h2>
+      <p>
+        The VC-API Working Group at the W3C is developing standards for
+        exchanging Verifiable Credentials that have been verified by a third
+        party and to make them easier for holders to use on the Web and in life.
     </p>
     <section>
-      <h3>Existing Work</h3>
+      <h3>Importance of this work</h3>
+        <p>
+          <a>Entities</a> (people, organizations, devices) need to make many kinds of
+          <a>claims</a> as part of their everyday activities. As more and more of these
+          important activities move to the Internet, <a>entities</a> need to be able to
+          transmit instantly <em>verifiable</em> claims (e.g., about their location,
+          accomplishments, value, what-have-you). From educational records to payment
+          account access, the next generation of web applications will authorize
+          <a>entities</a> to perform actions based on rich sets of credentials issued by
+          trusted parties. The Holders of these claims, in the form of Verfiable Credentials,
+          need to be able to take the claims they control and make use of them where, when,
+          and how they wish, often in ways the original issuer of the VC may not have 
+          originally indended. Having a common, standard way for these Holders of claims
+          to use them as they wish is vital to a person having control of their own data. 
+      </p>
       <p>
-        TODO: fill in
+          Standardization of the transport layer for digital <a>claims</a> makes it possible for many
+          stakeholders to interact with their desired counterparties, without being locked into proprietary platforms.
+      </p>
+    </section>
+    <section>
+      <h3>Use case model</h3>
+      <p>
+          This document presents an aggregate use case model, comprised of Needs, Roles,
+          Tasks, and Sequences. Taken together, these models define the use cases that
+          the VC-API Working Group has addressed.
+      </p>
+      <p>
+          User needs define the problem space addressed by <a>Verifiable Credentials</a>.
+          User Roles specify the roles different <a>entities</a> play when interacting
+          with <a>Verifiable Credentials</a>. Tasks define the functions users can
+          accomplish, and sequences demonstrate how tasks might be realized, by
+          interactions between <a>entities</a> over time.
+      </p>
+      <p>
+          As with all models, this use case model is neither exhaustive nor complete. The
+          listed uses cannot capture all possible use cases. Similarly, the models do not
+          completely characterize the use cases represented. However, the combined model
+          is intended to provide specific, coherent guidance for the work ahead.
+      </p>
+      <p>
+        The model used here draws heavily from the Verifiable Credentials Use Cases model.
+        This is due to the fact that the VC-API is meant to support the transport of 
+        VCs in the use cases considered for the Verfiable Credential Working Group.
       </p>
     </section>
   </section>
+  
+  <section>
+    <h2>User Roles</h2>
+      <p>
+        There are three roles supported by <a>Verifiable Credentials</a> as defined by the 
+        VCWG: <a>Issuer</a>, <a>Verifier</a>, and <a>Holder</a>. In the VC Use Cases, a fourth
+        role — that of subject — is defined. However, for the purposes of the VC-API, the subject
+        is not relevant except when the same entity is both the Holder and the subject. For this
+        reason, the Subject role does not appear in the VC-API.
+      </p>  
+      <figure>
+        <img alt="VC-API User Roles" 
+           style="display:block; margin:auto"
+           src="user-roles.png" />
+        <figcaption>
+          VC-API User Roles
+        </figcaption>
+      </figure>
+      <p>
+        The above roles were those defined for the VCWG, however, due to the way most 
+        production software on the internet works, for the purposes of the VC-API there arises
+        the need to delve into some detail as to how the Issuer and Verifier roles are structured.
+        This is due to the fact that there are many use cases where one company is making use of 
+        services to handle part of the technology stack. This has led to both Verifier
+        and Issuer splitting into two entities each, henceforth refered to as components of the 
+        Issuer and Verifier: <a>Issuer Service</a>, <a>Issuer Coordinator</a>,
+        <a>Verifier Service</a>, and <a>Verifier Coordinator</a>. 
+      </p>
+      <figure>
+        <img alt="VC-API Role Components" 
+           style="display:block; margin:auto"
+           src="role-components.png" />
+        <figcaption>
+          VC-API Role Components
+        </figcaption>
+      </figure>
+      <p>
+        The respective Service and Coordinator components combine to fulfill
+        the role of the Issuer and Verifier as described in the VCWG. 
+        It is fully expected by the VC-API that software will exist that may fulfill only part of
+        any of the roles, by implementing any combination of these component roles: 
+        <a>Issuer Service</a>, <a>Issuer Coordinator</a>
+        <a>Verifier Service</a>, and <a>Verifier Coordinator</a>. 
+      </p>
+
+    <dl>
+      <dt>
+        Issuer Service
+      </dt>
+      <dd>
+        The <a>component</a> that creates, generates, and delivers a <a>Verifiable Credential</a> — which contains
+        a some set of <a>claims</a> made by the Issuer Coordinator about one or more subjects — to the Issuer Coordinator. 
+      </dd>
+      <dt>
+        Issuer Coordinator
+      </dt>
+      <dd>
+        The <a>component</a> that deals with business rules and policies around a
+        user's request for a particlar <a>claim</a> to be issued.
+      </dd>
+      <dt>
+        Verifier Service
+      </dt>
+      <dd>
+        The <a>component</a> performing the verification of a <a>Verifiable Credential</a> containing <a>claims</a> about a given <a>subject</a>.
+      </dd>
+      <dt>
+        Verifier Coordinator
+      </dt>
+      <dd>
+        The <a>component</a> that deals with business rules and policies around a
+        user's request for a particular <a>Verifiable Credential</a> to be verified. 
+      </dd>
+      <dt>
+        Subject
+      </dt>
+      <dd>
+        The <a>entity</a> about whom a <a>claim</a> is made.
+      </dd>
+      <dt>
+        Holder
+      </dt>
+      <dd>
+        A role an <a>entity</a> may perform by possessing one or more
+        <a>verifiable credentials</a>. A <a>holder</a> is usually, but not always, the
+        <a>subject</a> of the <a>verifiable credentials</a> that they are holding.
+        <a>Holders</a> store their <a>credentials</a> in <a>credential repositories</a>.
+      </dd>
+    </dl>
+  </section>
+
 
   <section>
-    <h2>Use Cases</h2>
-    <p>New cases to be aggregated here, from VC and DID Use Case documents.
-    </p>
-  </section>
-<section>
-  <h2>Requirements</h2>
+    <h2>User Needs</h2>
+      <p>
+        The <a>VC-API</a> address user needs in a number of key domains:
+      </p>
 
-</section>
-<section>
-  <h2>Features and Benefits</h2>
-</section>
-<section>
-  <!-- Editor - @eric-schuh -->
-  <h2>VC API Actions</h2>
+      <figure>
+        <img alt='VC-API User Needs'
+           style='display:block; margin:auto'
+           src="vc-api-problem-domain.png" />
+        <figcaption>
+          VC-API, Example Domains for User Needs
+        </figcaption>
+      </figure>
+
     <section>
-      <h3>Issuer to Holder</h3>
+      <h3>Education</h3>
+      <p>
+        The education domain includes all levels of the educational experience; from
+        primary through professional continuing education.
+      </p>
+      <dl class="left dl-horizontal">
+        <dt>
+          <udef>E.1 Digital transcript</udef>
+        </dt>
+        <dd>
+          A couple of years after Joleen succussfully started an "extended transcript"
+          program at the Unniversity she works for, the administration has decided to
+          issue all transcripts digitally. As such they upgrade the system to make use
+          of Education Credential Issuer Inc's issuing service, and put together a new
+          web page to act as their issueing coordinator. Once the system is in place,
+          Joleen pushes an email notification to the student body, both past and present,
+          that they can now receive digital transcripts at the newly created website to 
+          the digital wallet of their choice. 
+        </dd>
+        <dt>
+          <udef>E.2 Taking a test</udef>
+        </dt>
+        <dd>
+          Eunice is about to take her ACT (a test used to evaluate her readiness for
+          college). When she arrives at the testing center, she is required to present
+          identification. She presents her government-issued identity credential in the
+          form of a QR Code to the test runner, who scans it. The test runner's device
+          acts as the verification coordinator, which makes use of the ACT orginization's
+          verification service to verify the presented identification credential. 
+          Everything checks out with Eunice's identification and she sits down to 
+          take the text. 
+        </dd>
+        <dt>
+          <udef>E.3 Transferring schools</udef>
+        </dt>
+        <dd>
+          Rocky is an undergraduate student at Wossamotta U.  His school provides a
+          <a>credential repository</a> service to all students and alumni, so he chooses
+          to use it. In his third year, Rocky decides to transfer to Moosylvania Tech.
+          They do not offer a service, but he does not want to continue to use the
+          service of his old (and now rival school) so he moves his <a>verfifiable credentials</a> to the
+          service offered by his bank without needing to have them reissued.
+        </dd>
+        <dt>
+          <udef>E.4 Online classes</udef>
+        </dt>
+        <dd>
+          In MOOC and other online learning systems, being able to reliably identify
+          participants is vital to ensure the individual evaluation and certification.
+          Nick is participating in a course online and takes a test. He is required to
+          provide his credentials to prove his identity before the test, which he does
+          in the form of a government-issued idenfication credential. MOOC uses a backend
+          verification service which verifies these, and once they are satisfied that Nick
+          is who he says he is, have Nick take the courses he signed up for. At the end of
+          the courses, MOOC then uses their proprietary issuer service to provide Nick a 
+          <a>verifiable credential</a> to the wallet of his choice regarding the results of his test.
+        </dd>
+      </dl>
     </section>
     <section>
-      <h3>Present for Verification</h3>
+      <h3>Retail</h3>
+      <p>
+        The retail domain encompasses all things where there is an exchange of value on
+        an individual level. This includes brick-and-mortar store fronts, web-only
+        venues, and even person-to-person sales.
+      </p>
+      <dl class="left dl-horizontal">
+        <dt>
+          <udef>R.1 Address verification</udef>
+        </dt>
+        <dd>
+          Francis has found the perfect pair of shoes. When processing orders, Giant Shoe
+          Company wants to be certain that his shipping address is accurate (inaccurate
+          addresses are very expensive in terms of customer service). They offer a
+          discount for customers who make verifiable addresses available as part of the
+          checkout process. Francis offers a verifiable credential--containing a claim by a known authority that a specific address has been verified--to Giant Shoe Company's 
+          verifier coordinator, which verifies Francis's address, making use of 
+          Generic Verfifier Service Inc. Francis gets the perfect shoes for
+          even less than he expected.
+        </dd>
+        <dt>
+          <udef>R.2 Adult beverages</udef>
+        </dt>
+        <dd>
+          June goes to her local beer and wine store to buy a bottle of wine. She submits
+          a proof-of-age credential that lets the liquor store owner know that she is over
+          21 without having to reveal her actual date of birth, her address, or her state
+          ID number. The store makes use of their Point of Sale Vendor's verification service
+          which intigrates into the Point of Sale so the clerk has an easy UI to use during
+          the transaction.
+        </dd>
+        <dt>
+          <udef>R.3 Fraud detection</udef>
+        </dt>
+        <dd>
+          On a bright Sunday, Oskar remembers that he still needs to buy his wife a
+          precious gift for their wedding anniversary. However, he is acutely aware that
+          it is precisely in weekends that gangs set up fraudulent web shops that claim
+          to sell such gifts, while in fact they only take the cash, and disappear on
+          Mondays. So before actually purchasing a gift from the web shop of his choice,
+          he requests the shop to provide a credential issued by the chamber of commerce,
+          that contains proof of legitimacy. After having verified that the shop is
+          legit, by making use of the Verifier Service built into his
+          digital wallet which receives the proof of legitimacy, he can purchase his gift.
+        </dd>
+      </dl>
     </section>
     <section>
-      <h3>Refresh</h3>
+      <h3>Finance</h3>
+      <p>
+        The Finance domain includes banking, brokerage, insurance, and other
+        industries where there is a high value placed on knowing exactly with whom
+        you are dealing.
+      </p>
+      <dl class="left dl-horizontal">
+        <dt>
+          <udef>F.1 Reuse know your customer</udef>
+        </dt>
+        <dd>
+          Jane is opening an account at MidBank in Finland.  As part of that process,
+          the bank asks her to provide two from a variety of possible sources to confirm
+          her identity &mdash; a so-called &quot;Know Your Customer&quot; check. She goes
+          to the bank website, logs in, and navigates to the KYC page. She then
+          selects the government-supplied <a>verifiable credentials</a> that confirm she
+          receives postal mail at a certain address and that she has a national ID card.
+          She submits these to Midbank's verification coordinator. MidBank has their own verification service, which 
+          checks the provided credentials, and confirms that they are properly issues,
+          and still valid, credentials issued to Jane. Confirming these allows the bank 
+          to open her account and be confident in her identity when she conducts transactions.
+        </dd>
+        <dd>
+          Now that the account is open, Jane is issued, by MidBank's Issuer Service,
+          a digitally-signed <a>credential</a> for her checking account at MidBank. 
+          This <a>credential</a> verifies that Jane has an account at MidBank 
+          and has access to her associated checking account. Since MidBank 
+          (and all banks in Finland) are required to perform &quot;Know Your Customer&quot; 
+          checks on accounts, this credential can also be used as sufficient 
+          verification by other financial institutions. This can help Jane assure 
+          destination banks that she is verified, thereby allaying concerns about 
+          misdirected transactions and money laundering.
+        </dd>
+        <dt>
+          <udef>F.2 Money transfer</udef>
+        </dt>
+        <dd>
+          Susan wants to send funds to her family in another country via a popular money
+          transfer service.  She has <a>verifiable credentials</a> in her
+          <a>credential repository</a> that can be used to share her
+          identity profile. She has also been sent a <a>credential</a> from her
+          family verifying their banking information. By sharing these with the money
+          transfer service, which have decided to make use of TopBank's Verification
+          Service, they can automatically verify the source and destination of
+          funds, thus being confident in the delivery of those funds and satisfying
+          various regulations regarding prevention of money laundering.
+        </dd>
+        <dt>
+          <udef>F.3 Closing account</udef>
+        </dt>
+        <dd>
+          John opens a checking account at Big Bank Co and is issued a
+          <a>verifiable credential</a> indicating that the account exists, that the bank
+          verified John's identity, and that John has access to the account. To receive 
+          these credentials, John goes to Big Bank Co's website, selecting his prefered
+          wallet as the destination. Some time later, John is moving to a new city 
+          and decides to close that account.  Big Bank Co needs to revoke that claim 
+          as part of their normal account closing process. When John later goes to
+          do KYC with the New Bank Co, in his new city, he mistakenly submits his old
+          Big Bank Co account credential as part of the KYC process. New Bank Co's 
+          verification service flags this credential as revoked, and New Bank Co's website
+          asks John for additional info. 
+        </dd>
+        <dt>
+          <udef>F.4 Trying out a new service</udef>
+        </dt>
+        <dd>
+          Nikita has several accounts with BigBank, as well as a brokerage account with
+          WallStreetCo. She had placed all of her <a>claims</a> in a
+          <a>credential repository</a> at BigBank that came free when she opened her
+          accounts. WallStreetCo is now offering a new <a>repository</a> that has an
+          interface she thinks she will prefer. Nikita copies her <a>claims</a> from
+          BigBank into the repository at WallStreetCo to experiment with their service,
+          but continues to use the service from BigBank while she is testing.
+        </dd>
+        <dt>
+          <udef>F.5 New bank account from home</udef>
+        </dt>
+        <dd>
+          Alice wants to open a new bank account. BigOnlineBank offers the ability to
+          do this from home if she can provide electronic credentials.  She offers
+          government-issued certificates that verify her attributes (address, national
+          identity number, etc.), and opens her new account from her couch. As part of
+          this process, BigOnlineBank has stood up their own verification and issueing
+          services. Once they have verified Alice's credentials, they then notify Alice
+          that she can collect her proof of account credential from the provided link
+          at her leisure. 
+        </dd>
+      </dl>
+    </section>
+
+    <section>
+      <h3>Healthcare</h3>
+        <p>
+          Privacy is critically important in the healthcare industry. This domain looks
+          at everything from physical interaction to connecting patients and providers
+          with service organizations.
+        </p> 
+      <dl class="left dl-horizontal">
+        <dt>
+          <udef>H.1 Prescribing</udef>
+        </dt>
+        <dd>
+          Barney is a physician, and has recently become board certified in his state.
+          The state's board makes use of the international Medical Certificate Issuer
+          to issue credentials that adhere to the international standards for 
+          medical practitioners. Upon completing his state's board certificate test, 
+          Barney is issued a verifiable credential confirming that he is
+          certified to practice medicine in that state.  Barney can now use this
+          credential when writing prescriptions and referrals, thereby improving
+          accountability and verifiability.
+        </dd>
+        <dt>
+          <udef>H.2 Online pharmacy</udef>
+        </dt>
+        <dd>
+          iPharmacy receives a prescription for Bob electronically from a local clinic.
+          It includes a certificate about the physician that issued the prescription as
+          well as one about Bob. iPharmacy's system automatically verifies the ability
+          of the physician to write prescriptions, as well as Bob's insurance coverage.
+          When Bob arrives to pick up his medication, iPharmacy further correlates his
+          identity with the certificate, thereby improving the end-to-end accountability
+          of their system.
+        </dd>
+        <dt>
+          <udef>H.3 Insurance claim</udef>
+        </dt>
+        <dd>
+          Tracy has a sore throat soon after moving to a new town. She finds a physician
+          through her health care network and goes in for treatment. She is a new
+          patient, so the clinic needs to know who she is and how she will be paying.
+          When checking in, she presents her <a>verifiable credential</a> that
+          demonstrates her identity attributes and her proof of insurance, which is checked by
+          the clinic using the issuer service provided by the Medical Office Supply
+          Co. When the clinic submits this to the insurance company, 
+          they can automatically ascertain that she submitted her proof of identity 
+          and insurance to the provider, and granted the physician 
+          the ability to submit the claim for payment.
+        </dd>
+        <dt>
+          <udef>H.4 Traveling illness</udef>
+        </dt>
+        <dd>
+          John is on the vacation of a lifetime, travelling the world. Falling ill, he
+          visits a health clinic in a country in which he does not live. At the clinic,
+          he is asked for proof of identity.  He provides a credential that verifies his
+          name and address, but elects not to disclose his marital status nor his social
+          security number, as those are neither requested nor required at this clinic.
+          He further marks the disclosure as expiring in 30 days&mdash;he does not want
+          his information verifiable after that time. The clinic verifies these credentials,
+          making use of Medical Office Supply Co's verification service after John submits
+          the credentials to their administrative staff at the clinic via QR Code. 
+        </dd>
+        <dt>
+          <udef>H.5 Proving Legal Disability Status</udef>
+        </dt>
+        <dd>
+          Trina, who is legally blind, is currently unemployed, and needs to use the
+          local free disability ride service to get to the employment office. To use
+          this service, she is required to verify that she maintains legal disability
+          status. Trina provides her government-issued disability credential to sign up
+          for the ride service, and is not required to disclose her specific disability
+          to the ride service, as this could put her at personal risk. As the ride 
+          service is only checking very specific credentials, they have created their
+          own verification service to use. Once Trina's credential has been verifies,
+          they issue her a credential which gives full access to their service. 
+        </dd>
+      </dl>
+    </section>
+
+    <section>
+      <h3>Professional Credentials</h3>
+      <p>
+          In many aspects of life it is important to know that <a>entities</a> are who
+          they say they are, and that they can do what they say. Professional
+          accreditation is one way of learning about the abilities of an <a>entity</a>.
+          Being able to verify these credentials is essential to their value.
+      </p>
+      <dl class="left dl-horizontal">
+        <dt>
+          <udef>C.1 Find a doctor</udef>
+        </dt>
+        <dd>
+          Jason is looking for a new primary care physician.  His health provider
+          includes information on their web site about the physicians they have on
+          staff, including <a data-lt="claim">verifiable credentials</a> about their
+          education, board certification, and continuing education. Jason would like
+          assurance that these are legit physicians, and so downloads the provided
+          credentials and submits them to the Open Medical Board Verification Service,
+          a national organization that checks the validity of medical claims for the
+          public. Once submitted, and verified, Jason is confident that 
+          his new physician satisfies his requirements.
+        </dd>
+        <dt>
+          <udef>C.2 Busy doctor</udef>
+        </dt>
+        <dd>
+          Barney was a board-certified physician, but he ran out of time to complete
+          his continuing education requirements and his certification lapsed. Since the
+          board can revoke his certification, <a>credential verifiers</a> will
+          automatically be aware that he can no longer issue prescriptions or perform
+          medical procedures. However, Barney finds himself on a cruise where a fellow
+          cruise enjoyer has fallen over, in clear pain. Barney applies first aid until
+          the cruise doctors can get there. As part of the cruise ship's inquiry to the 
+          event, for liability reasons, Barney provides them, via email, 
+          his revoked physician credentials, along side his, still valid, 
+          first aid certificate. The cruise doctor reviews these after they are verified
+          by the Generic Verifier Service that the cruise ship uses, and sends Barney
+          a response email thanking him for the assistance. 
+        </dd>
+        <dt>
+          <udef>C.3 Bad university</udef>
+        </dt>
+        <dd>
+          Jane was issued a certificate by BigTraining Co., indicating that she was a
+          trained Project Manager.  It was later discovered that BigTraining Co. was not
+          actually training anyone, and their organization's authority to issue Project Manager certifications was revoked via
+          the US Department of Education's Accreditation Database. Jane's credential is
+          therefore invalid, and when Jane goes to submit the credential received from
+          BigTrainin Co. at her next job, she is notified by the company she is applying
+          to that her credential is not valid. 
+        </dd>
+        <dt>
+          <udef>C.4 New employer</udef>
+        </dt>
+        <dd>
+          Jessica is a medical doctor practicing in the United States. She has a variety
+          of digital <a>claims</a> that explain her qualifications, schooling, continuing
+          education achievements, and board certifications. These are all stored in the
+          <a>credential repository</a> provided by her employer.  When she is offered a
+          position with another health provider network, she can automatically transfer
+          all of these <a>claims</a> to her new employer.
+        </dd>
+        <dt>
+          <udef>C.5 Social authority</udef>
+        </dt>
+        <dd>
+          Josie is a healthcare worker that has created a profile on a professional
+          social network to make herself readily available for new opportunities in the
+          workforce. She lists her employment history and credentials including degrees,
+          certificates, and digital badges. The website requests verification of her
+          <a>claims</a> in order for her credentials to be visible when she
+          posts messages. Josie authorizes the sharing of the relevant <a>claims</a> with
+          the website, and the site verifies them, making use of their partner, 
+          Workplace Credential Verifier Service, before allowing Josie to expose them.
+        </dd>
+        <dd>
+          "Freedom?" is an online forum that encourages free discussion about issues
+          controversial in Freedonia.  The forum allows users to register anonymous
+          accounts, but it also allows users to obtain badges based upon real-world
+          certifications. Paula has been certified as an aid worker, and wishes that
+          information to be marked on her posts.  She shares her certificate with the
+          forum, but limits it to only verifying that she is the <a>holder</a> of the
+          certificate, that she is the <a>subject</a> of it, and that she is an aid
+          worker.  In this way she maintains her anonymity in this controversial forum
+          while still being able to assist her fellow countrymen.
+        </dd>
+        <dt>
+          <udef>C.6 Job applicant</udef>
+        </dt>
+        <dd>
+          Software Co. has posted an open position online and they are receiving
+          thousands of applications. Cindy has applied for the job. Unlike many
+          applicants, she has attached her education credentials&mdash;college degree,
+          additional specific software training, etc.  Software Co. evaluates these
+          credentials, using the international Education Verification Service,
+          which was stood up by a group of international univerisities to make the
+          verification of education credentials easy, as they receive her application.  
+          Because her materials are verifiable and verified, her application is immediately
+          forwarded as a viable candidate.
+        </dd>
+      </dl>
+    </section>
+    <section>
+      <h3>Legal Identity</h3>
+      <p>
+        For many transactions, an <a>entity</a> must be able to prove some aspect of
+        their identity in a way that can be quickly verified.  Governments and other
+        widely recognized <a>entities</a> are well positioned to provide such
+        identification in a verifiable digital form.
+      </p>
+      <dl class="left dl-horizontal">
+        <dt>
+          <udef>L.1 Digital driving license</udef>
+        </dt>
+        <dd>
+          Asako just passed the final test to receive a drivers license. As she is still
+          a new driver, and may be pulled over for a traffic violation, she would like
+          to receive a <a>credential</a> that asserts a <a>claim</a> that she has right
+          to drive a car. She requests a credential on the certifying authority's website,
+          (<a>issuer</a>) that she can use to prove to the officer
+          (<a>credential verifier</a>) that her <a>claim</a> is valid. The certifying 
+          authority and officer both make use of the state's issuing and verifier 
+          services, respectively, as they are both state entities. 
+        </dd>
+        <dt>
+          <udef>L.2 Seamless immigration</udef>
+        </dt>
+        <dd>
+          Tom is a frequent international traveler. In order to speed processing
+          through immigration check points, he applies for a digital passport from his
+          governmental authority. After satisfying background check requirements, 
+          by submitting a few credentials requested by the government authority, the
+          authority issues Tom an electronic version of his passport. This version is
+          verifiable and retains a history of all the places he visits so that
+          immigration officials can quickly and easily evaluate his suitability as a
+          visitor to their country. Once they are satisfied, they will automatically
+          add the details of this new visit to Tom's passport.
+        </dd>
+        <dt>
+          <udef>L.3 Speedy air travel</udef>
+        </dt>
+        <dd>
+          Security for air travel is more and more rigorous, requiring more and more
+          time to validate each passenger. Ivan has a collection of
+          <a>verifiable credentials</a> that are assembled into his air travel
+          <em>Identity Profile</em>. When Ivan needs to pass through a security
+          checkpoint at his airport, he presents this profile before entering the
+          line. Because his identification can be immediately and automatically
+          verified, by the TSA's verification service, he is permitted to skip 
+          the long line and go straight to the metal detector.
+        </dd>
+        <dt>
+          <udef>L.4 Refugee crisis</udef>
+        </dt>
+        <dd>
+          Thousands of people each year are displaced because of man-made and natural
+          disasters. Anoushka is one such, having been forced to flee her village along
+          with her mother and younger brother. They reach an IFRC center just across
+          the border in a relatively safe area, but with no documentation. Since the
+          government of her homeland is in turmoil, there is no way for the IFRC staff
+          to easily establish their identities. Fortunately, Anoushka had been issued
+          a self-sovereign proof of birth, attached to which is the proof of birth and
+          marriage for her parents. She is able to retrieve this because it is available
+          from many places, including the Internet. Since it is verifiable, the IFRC is
+          comfortable vouching for them and resettling them in a safer area for the
+          duration of the conflict.
+        </dd>
+      </dl>
+    </section>
+    <section>
+      <h3>Devices</h3>
+        <p>
+          Intelligence devices are created and deployed so that they can interact with
+          other <a>entities</a> (people, organizations, devices). Establishing trust
+          and maintaining secure relationships with these devices is especially critical.
+        </p>
+        <dl class="left dl-horizontal">
+          <dt>
+            <udef>D.1 Devices during manufacturing</udef>
+          </dt>
+          <dd>
+            <p>
+              Bob, the director of production at HVAC Manufacturing, issues a
+              device-identifying <a>verifiable credential</a> (e.g. IDevID, IAK) at the
+              factory for an energy-saving fan controller IoT device. HVAC Manufacturing
+              provides Bob with the front end software for this, and has stood up their
+              own, custom, issueing service for use company wide. 
+            </p>
+            <p>
+              Carol, senior quality engineer at Certifications Testing Lab, issues a
+              certification of specification-compliance <a>verifiable credential</a> to the
+              fan-controller device at the certification lab during the manufacturing
+              process. Certifications Testing Lab provides Carol with the front end software
+              to do this but makes use of the international Fan-Controller Standards Group's
+              issueing service, which requires attestations of the engineer making the 
+              final claims about the device, before it will issue the specification-compliance
+              certificate. 
+            </p>
+            <p>
+              When the fan controller is installed at the customer's office at Modern Office
+              Spaces, the controller's identifying <a>credential</a> can be verified by Sam,
+              IT technician, to establish the identity of the controller as part of the
+              on-boarding of the new controller. The controller's specification-compliance
+              <a>credential</a> is verified to demonstrate the controller's Energy-Star
+              compliance. Sam's handheld scanner makes use of Scanner Co's verification 
+              service, a package deal with the device. 
+            </p>
+          </dd>
+          <dt>
+            <udef>D.2 Devices during delivery</udef>
+          </dt>
+          <dd>
+            <p>
+              As the fan controller leaves the factory, additional
+              <a>verifiable credentials</a> are issued by Vince, a systems engineer at VAR
+              Resellers, as he verifies the manufacturer's configuration matches the
+              <a>verifiable credentials</a> accompanying the device. For this process,
+              VAR Resellers has stood up their own verification and issueing services
+              to be used within the company. He then installs a software package specific 
+              to Modern Office Spaces needs and issues <a>verifiable credentials</a> 
+              that establish evidence of possession by VAR Resellers and the software 
+              additions Vince made to the device.
+            </p>
+            <p>
+              Finally, upon delivery to Sam, the end customer, the
+              <a>verifiable credentials</a> show that the fan controller has been securely
+              handled and contains the correct features and certifications.
+            </p>
+          </dd>
+          <dt>
+            <udef>D.3 Devices setup for operating autonomously</udef>
+          </dt>
+          <dd>
+            <p>
+              Sam, the new device owner, needs to trust the device originated from HVAC
+              Manufacturing and was handled correctly at Certifications Testing Lab and
+              installed with the correct software package at VAR Resellers. After Sam
+              verifies each of the <a>verifiable credentials</a>, using Generic Online
+              Verifier's online service. He issues another <a>verifiable credential</a> 
+              for fan controller #37 which includes assertions relating to trust: 
+              device manufacturer model/version, software manufacturer
+              model/version, security versions of components TCB, and associated devices the
+              fan controller is authorized to interact with including thermostat-board-room.
+              To do this, he goes to HVAC Manufacturing's website and requests the new
+              credential by scanning his new device's barcode and submitting an image to
+              HVAC Manufacturing's website. After verifying the device is one of their, HVAC 
+              Manufacturing issuer's Sam the requested credential. 
+            </p>
+            <p>
+              The thermostat-board-room monitors room temperature. When the temperature is
+              too hot it switches the fan controller #37 on and later when the temperature
+              reaches a comfortable level, off. The device makes sure the control signals
+              from thermostat-board-room are authorized (namely, that Sam intended for
+              thermostat-board-room to control the fan controller). To do this, Sam decides
+              he trust's HVAC Manufacturing to verify these types of credentials for him, and
+              so he puts the end-point provided by HVAC Manufacturing for these types of 
+              purposes into his fan-controller's settings page. 
+            </p>
+            <p>
+              Sam is concerned about the security of the smart board room. He configures
+              the autonomously interacting devices to re-verify device trustworthiness
+              attributes periodically by re-checking that the device originated from HVAC
+              Manufacturing and was handled correctly by Certifications Testing Lab and
+              installed with the correct software package by VAR Resellers. For this purpose,
+              Sam does not trust HVAC Manufacturing's verifier service, as there could be
+              a conflict of interest there, so Sam instead decides to use Generic HVAC
+              Verifier's verification service, adding the provided end-point to the approriate
+              configuration files so the devices use his selected verification services. 
+            </p>
+            <p>
+              Sam may update the device’s software occasionally during its lifetime. Even
+              though Sam is applying the update, VAR Resellers supplies the correct update.
+              The device ensures that only VAR Resellers is able to supply the updated
+              software image and that only Sam is able to apply the update.
+            </p>
+          </dd>
+        </dl>
     </section>
 </section>
+
+
 <section>
   <!-- Editor - @eric-schuh -->
   <h2>Focal Use Cases</h2>
