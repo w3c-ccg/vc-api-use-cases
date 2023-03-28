@@ -78,7 +78,7 @@ identities enable tracking and customization of <a>entity</a> interactions
 across digital contexts, typically using identifiers and attributes. Unintended
 distribution or use of identity information can compromise privacy. Collection
 and use of such information should follow the principle of
-<a>data minimization</a>.
+data minimization.
   </dd>
   <dt><dfn data-lt="identity providers|idp">identity provider</dfn></dt>
   <dd>
@@ -166,5 +166,28 @@ The <a>entity</a> verifying a claim about a given subject.
   <dt><dfn data-lt="URI|URIs">URI</dfn></dt>
   <dd>
 A Uniform Resource Identifier, as defined by [[RFC3986]].
+  </dd>
+  <dt><dfn data-lt="Issuer Service"></dfn>issuer service</dt>
+  <dd>
+        The <a>component</a> that creates, generates, and delivers a <a>Verifiable Credential</a> — which contains
+        a some set of <a>claims</a> made by the Issuer Coordinator about one or more subjects — to the Issuer Coordinator. 
+  </dd>
+    <dt><dfn data-lt="Issuer Coordinator"></dfn>issuer coordinator</dt>
+  <dd>
+        The <a>component</a> that deals with business rules and policies around a
+        user's request for a particlar <a>claim</a> to be issued.
+  </dd>
+    <dt><dfn data-lt="Verifier Service"></dfn>verifier service</dt>
+  <dd>
+        The <a>component</a> performing the verification of a <a>Verifiable Credential</a> containing <a>claims</a> about a given <a>subject</a>.
+  </dd>
+    <dt><dfn data-lt="Verifier Coordinator"></dfn>verifier coordinator</dt>
+  <dd>
+        The <a>component</a> that deals with business rules and policies around a
+        user's request for a particular <a>Verifiable Credential</a> to be verified.
+  </dd>
+    <dt><dfn data-lt="component"></dfn>component</dt>
+  <dd>
+    A representation of a set of tasks under the perview of a single <a>entity</a> which are indented to be implimentable seperately from other components. 
   </dd>
 </dl>
